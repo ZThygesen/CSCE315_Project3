@@ -1,0 +1,28 @@
+inventory
+product_ID,product_name,product_type,price,total_quantity
+'6258ebb8-4436-11ed-97a8-698b2ad48b41','Brown Rice','Rice',0,4800
+'6258ebb9-4436-11ed-97a8-698b2ad48b41','Rice Pilaf','Rice',0,4800
+'6258ebba-4436-11ed-97a8-698b2ad48b41','Pita','Pita',0,4200
+'6258ebbb-4436-11ed-97a8-698b2ad48b41','Butter Chicken','Protein',8.09,2400
+'6258ebbc-4436-11ed-97a8-698b2ad48b41','Beef Gyro','Protein',8.09,2400
+'6258ebbd-4436-11ed-97a8-698b2ad48b41','Falafel','Protein',8.09,2400
+'6258ebbe-4436-11ed-97a8-698b2ad48b41','Veggie Medley','Protein',8.09,2400
+'6258ebbf-4436-11ed-97a8-698b2ad48b41','Onions','Topping',0,450.0
+'6258ebc0-4436-11ed-97a8-698b2ad48b41','Diced Tomatoes','Topping',0,450.0
+'6258ebc1-4436-11ed-97a8-698b2ad48b41','Tomato and Onion','Topping',0,450.0
+'6258ebc2-4436-11ed-97a8-698b2ad48b41','Olives','Topping',0,450.0
+'6258ebc3-4436-11ed-97a8-698b2ad48b41','Cucumbers','Topping',0,450.0
+'6258ebc4-4436-11ed-97a8-698b2ad48b41','Cabbage','Topping',0,450.0
+'6258ebc5-4436-11ed-97a8-698b2ad48b41','Couscous','Topping',0,450.0
+'6258ebc6-4436-11ed-97a8-698b2ad48b41','Hummus','Topping',0,450.0
+'6258ebc7-4436-11ed-97a8-698b2ad48b41','Red Pepper Hummus','Topping',0,450.0
+'6258ebc8-4436-11ed-97a8-698b2ad48b41','Jalapeno Feta','Dressing',0,1500
+'6258ebc9-4436-11ed-97a8-698b2ad48b41','Tzaziki','Dressing',0,1500
+'6258ebca-4436-11ed-97a8-698b2ad48b41','Spicy Tzaziki','Dressing',0,1500
+'6258ebcb-4436-11ed-97a8-698b2ad48b41','Harissa Yogurt','Dressing',0,1500
+'6258ebcc-4436-11ed-97a8-698b2ad48b41','Spicy Harissa','Dressing',0,1500
+'6258ebcd-4436-11ed-97a8-698b2ad48b41','Lemon Dill Yogurt','Dressing',0,1500
+'6258ebce-4436-11ed-97a8-698b2ad48b41','Greek Pomegranate Vinaigrette','Dressing',0,1500
+'6258ebcf-4436-11ed-97a8-698b2ad48b41','Hummus & Pita','Side',3.49,300
+'6258ebd0-4436-11ed-97a8-698b2ad48b41','2 Falafels','Side',3.49,300
+'6258ebd1-4436-11ed-97a8-698b2ad48b41','Fountain Drink','Side',2.45,300

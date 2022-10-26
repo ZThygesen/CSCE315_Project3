@@ -1,0 +1,6 @@
+employees
+employee_ID,firstName,lastName,DOB,address,phone_number,position
+'6258ebd2-4436-11ed-97a8-698b2ad48b41','Adam','Pinto','2000-01-02','123 Add Ln',1234567890,'Manager'
+'6258ebd3-4436-11ed-97a8-698b2ad48b41','Ardian','Kuswanto','2001-02-03','456 Sub St',1002003000,'Server'
+'6258ebd4-4436-11ed-97a8-698b2ad48b41','Justin','Heger','2002-03-04','789 Mul Rd',3002001000,'Server'
+'6258ebd5-4436-11ed-97a8-698b2ad48b41','Zach','Thygesen','2003-04-05','101 Div Dr',1231231234,'Server'
