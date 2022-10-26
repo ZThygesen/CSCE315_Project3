@@ -1,0 +1,9 @@
+menu
+product_ID, product_name, price, calories
+'51ed3d7f-8664-42ba-bd59-ce61e9cb8763','Gyro', 8.09, '724-929'
+'303beee3-a948-4e42-a0c8-6f6f9e5da03a','Bowl', 8.09, '340-919'
+'0088b9e7-92f0-4f73-b2ef-a43fbf888f49','Hummus & Pita', 3.90, '380'
+'1d347e29-0228-4490-91df-2f68b11f9cdf','2 Falafels', 3.49, '170'
+'c9ba755b-a604-4888-a74a-d58303f611fa','Extra Protein', 1.99, ''
+'6050e825-c5e1-4208-a667-ce5e89d81866','Extra Dressing', 0.39, ''
+'3607acf3-b25b-4fcd-b876-18213c65d7e9','Fountain Drink', 2.45, '0-280'

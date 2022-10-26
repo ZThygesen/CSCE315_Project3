@@ -63,6 +63,7 @@ public class addToDatabase{
             files.add("data_creation/csv_files/order_product.csv");
             files.add("data_creation/csv_files/shipments.csv");
             files.add("data_creation/csv_files/shipment_product.csv");
+            files.add("data_creation/csv_files/menu.csv");
 
             // loops through each of the files and adds their data to database
             for (int i = 0; i < files.size(); i++) {

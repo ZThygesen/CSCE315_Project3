@@ -49,11 +49,11 @@ public class addTables {
             tables.add("CREATE TABLE orders (order_ID VARCHAR(255) PRIMARY KEY, employee_ID VARCHAR(255) references employees(employee_ID), customer_ID VARCHAR(255) references customers(customer_ID), total_price DOUBLE PRECISION, order_date DATE)");
             tables.add("CREATE TABLE order_product (order_ID VARCHAR(255) references orders(order_ID), product_ID VARCHAR(255) references inventory(product_ID), servings INT)");
             tables.add("CREATE TABLE shipment_product (shipment_ID VARCHAR(255) references shipments(shipment_ID), product_ID VARCHAR(255) references inventory(product_ID), ship_quantity DOUBLE PRECISION, expiration_date TIMESTAMP)");
-        
+            tables.add("CREATE TABLE menu (product_ID VARCHAR(255) PRIMARY KEY, product name VARCHAR(255), price DOUBLE PRECISION, calories VARCHAR(255))");
+            
             // Grant table permissions to all team members in database
             tables.add("GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO csce315_903_kuswanto");
             tables.add("GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO csce315_903_heger");
-            tables.add("GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO csce315_903_pinto");
             tables.add("GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO csce315_903_thygesen");
         }
         else if (answer.equals("d")) {
@@ -62,7 +62,6 @@ public class addTables {
             // Grant table permissions to all team members in database
             tables.add("GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO csce315_903_kuswanto");
             tables.add("GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO csce315_903_heger");
-            tables.add("GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO csce315_903_pinto");
             tables.add("GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO csce315_903_thygesen");
 
             tables.add("DROP TABLE IF EXISTS shipment_product");
@@ -72,6 +71,7 @@ public class addTables {
             tables.add("DROP TABLE IF EXISTS inventory");
             tables.add("DROP TABLE IF EXISTS employees");
             tables.add("DROP TABLE IF EXISTS customers");
+            tables.add("DROP TABLE IF EXISTS menu");
         }
         else {
             System.out.println("Invalid Input."); 
