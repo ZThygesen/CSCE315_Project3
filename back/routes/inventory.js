@@ -3,14 +3,15 @@ const router = express.Router();
 const pool = require("../pool");
 
 router.get("/", (req, res) => {
-    teammembers = [];
+    inventory = [];
     pool
-        .query("SELECT * FROM teammembers;")
+        .query("SELECT * FROM inventory;")
         .then(query_res => {
             for (let i = 0; i < query_res.rowCount; i++) {
-                teammembers.push(query_res.rows[i]);
+                inventory.push(query_res.rows[i]);
             }
-            res.json({ teammembers: teammembers });
+            console.log(inventory);
+            res.json({ inventory: inventory });
         });
 });
 
