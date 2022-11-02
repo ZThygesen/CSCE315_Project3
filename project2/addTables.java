@@ -45,11 +45,11 @@ public class addTables {
             tables.add("CREATE TABLE customers (customer_ID VARCHAR(255) PRIMARY KEY, firstName VARCHAR(255), lastName VARCHAR(255))");
             tables.add("CREATE TABLE employees (employee_ID VARCHAR(255) PRIMARY KEY, firstName VARCHAR(255), lastName VARCHAR(255), DOB DATE, address VARCHAR(255), phone_number VARCHAR(255), position VARCHAR(255))");
             tables.add("CREATE TABLE shipments (shipment_ID VARCHAR(255) PRIMARY KEY, vendor VARCHAR(255), purchase_date TIMESTAMP, arrival_date TIMESTAMP, employee_ID VARCHAR(255) references employees(employee_ID), ship_price DOUBLE PRECISION)");
-            tables.add("CREATE TABLE inventory (product_ID VARCHAR(255) PRIMARY KEY, product_name VARCHAR(255), product_type VARCHAR(255), price DOUBLE PRECISION, total_quantity DOUBLE PRECISION)");
+            tables.add("CREATE TABLE inventory (product_ID VARCHAR(255) PRIMARY KEY, product_name VARCHAR(255), product_type VARCHAR(255), total_quantity DOUBLE PRECISION)");
             tables.add("CREATE TABLE orders (order_ID VARCHAR(255) PRIMARY KEY, employee_ID VARCHAR(255) references employees(employee_ID), customer_ID VARCHAR(255) references customers(customer_ID), total_price DOUBLE PRECISION, order_date DATE)");
             tables.add("CREATE TABLE order_product (order_ID VARCHAR(255) references orders(order_ID), product_ID VARCHAR(255) references inventory(product_ID), servings INT)");
             tables.add("CREATE TABLE shipment_product (shipment_ID VARCHAR(255) references shipments(shipment_ID), product_ID VARCHAR(255) references inventory(product_ID), ship_quantity DOUBLE PRECISION, expiration_date TIMESTAMP)");
-            tables.add("CREATE TABLE menu (product_ID VARCHAR(255) PRIMARY KEY, product name VARCHAR(255), price DOUBLE PRECISION, calories VARCHAR(255))");
+            tables.add("CREATE TABLE menu (item_ID VARCHAR(255) PRIMARY KEY, item_name VARCHAR(255), price DOUBLE PRECISION, calories VARCHAR(255))");
             
             // Grant table permissions to all team members in database
             tables.add("GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO csce315_903_kuswanto");
