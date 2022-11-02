@@ -19,18 +19,18 @@ export default function Menu() {
             <h1>Menu</h1>
             <div className="menu-container">
                 <table className="menu-table">
-                    <thread>
+                    <thead>
                         <tr>
                             <th>Item</th>
                             <th>Price</th>
                             <th>Calories</th>
                         </tr>
-                    </thread>
+                    </thead>
                     <tbody>
                         {
                             menu.map((item, i) => (
                                 <tr key={i}>
-                                    <td>{item.product_name}</td>
+                                    <td>{item.item_name}</td>
                                     <td>{item.price}</td>
                                     <td>{item.calories}</td>
                                 </tr>

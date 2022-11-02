@@ -1,17 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const pool = require("../pool");
+const conn = require("../db");
 
-router.get("/", (req, res) => {
-    menu = [];
-    pool
-        .query("SELECT * FROM menu;")
-        .then(query_res => {
-            for (let i = 0; i < query_res.rowCount; i++) {
-                menu.push(query_res.rows[i]);
-            }
-            res.json({ menu: menu });
-        });
+router.get("/", async(req, res) => {
+    const query = "SELECT * FROM menu";
+
+    const menu = await conn.db.query(query);
+
+    res.json({ menu: menu });
 });
 
 module.exports = router;
