@@ -14,3 +14,11 @@
     justify-content: center;
     background-color: var(--primary-green);
 }
+
+.send-to-backend-example {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #a9a9a9;
+    padding: 20px;
+}
