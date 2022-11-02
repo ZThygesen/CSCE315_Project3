@@ -15,7 +15,7 @@ inventory = []
 def create_inventory():
     writer = csv.writer(open('data_creation/csv_files/inventory.csv', 'w', newline = ''))
 
-    fieldnames = ['product_ID', 'product_name', 'product_type', 'price', 'total_quantity']
+    fieldnames = ['product_ID', 'product_name', 'product_type', 'total_quantity']
 
     writer.writerow(['inventory'])
     writer.writerow(fieldnames)
@@ -25,7 +25,6 @@ def create_inventory():
             'product_ID': "'{}'".format(uuid.uuid1()),
             'product_name': product,
             'product_type': get_product_type(product),
-            'price': get_product_price(product),
             'total_quantity': get_initial_quantity(product) * get_serving_size(product)
         }
 
@@ -35,7 +34,6 @@ def create_inventory():
             item['product_ID'],
             item['product_name'],
             item['product_type'],
-            item['price'],
             item['total_quantity']
         ])
 
