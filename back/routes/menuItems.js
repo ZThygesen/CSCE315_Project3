@@ -3,14 +3,15 @@ const router = express.Router();
 const pool = require("../pool");
 
 router.get("/", (req, res) => {
-    inventory = [];
+    menuItems = [];
+ 
     pool
-        .query("SELECT * FROM inventory;")
+        .query("SELECT item_id, item_name, price FROM menu;")
         .then(query_res => {
             for (let i = 0; i < query_res.rowCount; i++) {
-                inventory.push(query_res.rows[i]);
+                menuItems.push(query_res.rows[i]);
             }
-            res.json({ inventory: inventory });
+            res.json({ menuItems: menuItems });
         });
 });
 

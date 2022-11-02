@@ -10,7 +10,6 @@ router.get("/", (req, res) => {
             for (let i = 0; i < query_res.rowCount; i++) {
                 menu.push(query_res.rows[i]);
             }
-            console.log(menu);
             res.json({ menu: menu });
         });
 });
