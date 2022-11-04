@@ -2,7 +2,7 @@ header {
     display: flex;
     align-items: center;
     padding: 20px 40px;
-    background-color: var(--primary-blue);
+    background-color: var(--primary-color);
 }
 
 #site-title {
@@ -18,5 +18,5 @@ header {
 }
 
 #leaf-icon {
-    color: var(--primary-green);
+    color: var(--secondary-color);
 }

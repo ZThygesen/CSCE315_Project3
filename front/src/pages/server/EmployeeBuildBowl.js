@@ -1,12 +1,90 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import Extra from "../../components/Extra";
+import Option from "../../components/Option";
+import "./Server.css";
 
 export default function EmployeeBuildBowl() {
     const navigate = useNavigate();
 
+    const location = useLocation();
+    const { items } = location.state;
+
+    const menuItems = items.menuItems;
+    const bases = items.bases;
+    const proteins = items.proteins;
+    const toppings = items.toppings;
+    const dressings = items.dressings;
+    const extraProtein = menuItems.filter(item => item.item_name === "Extra Protein")[0];
+    const extraDressing = menuItems.filter(item => item.item_name === "Extra Dressing")[0];
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        console.log("Submitted");
+    }
+
     return (
         <>
-            <h1>Employee Build a Bowl</h1>
-            <button onClick={() => navigate(-1)}>Cancel</button>
+            <div className="bowl-container">
+                <div className="bowl-title">
+                    <h1>Bowl</h1>
+                </div>
+
+                <form onSubmit={handleSubmit} className="options-form">
+                    <div className="bowl-options">
+                        <div className="bowl-option">
+                            <p>Base</p>
+                        </div>
+                        <div className="options">
+                            {
+                                bases.map((item, i) =>
+                                    <Option key={i} data={item} buttonType="radio" />
+                                )
+                            }
+                        </div>
+
+                        <div className="bowl-option">
+                            <p>Protein</p>
+                        </div>
+                        <div className="options">
+                            {
+                                proteins.map((item, i) =>
+                                    <Option key={i} data={item} buttonType="radio" />
+                                )
+                            }
+                            <Extra data={extraProtein} type="Protein" />
+                        </div>
+
+                        <div className="bowl-option">
+                            <p>Toppings</p>
+                        </div>
+                        <div className="options">
+                            {
+                                toppings.map((item, i) =>
+                                    <Option key={i} data={item} buttonType="checkbox" />
+                                )
+                            }
+                        </div>
+
+                        <div className="bowl-option">
+                            <p>Dressing</p>
+                        </div>
+                        <div className="options">
+                            {
+                                dressings.map((item, i) =>
+                                    <Option key={i} data={item} buttonType="radio" />
+                                )
+                            }
+                            <Extra data={extraDressing} type="Dressing" />
+                        </div>
+                    </div>
+                    <div className="bowl-button-container">
+                        <div className="bowl-buttons">
+                            <button type="button" className="bowl-button" onClick={() => navigate(-1)}>Cancel</button>
+                            <button type="submit" className="bowl-button">Add to Order</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </>
     );
 }

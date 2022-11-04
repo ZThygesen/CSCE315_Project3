@@ -1,0 +1,32 @@
+label.option,
+label.extra {
+    margin: 12px;
+    padding: 10px 20px;
+    border: 2px solid var(--primary-color);
+    border-radius: 25px;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    user-select: none;
+    transition: all 0.15s;
+}
+
+label.extra {
+    border-radius: 0px;
+}
+
+label.option:hover,
+label.extra:hover {
+    background-color: #69b370;
+    cursor: pointer;
+}
+
+.options-form input[type="checkbox"] {
+    display: none;
+    visibility: hidden;
+}
+
+.options-form input[type="checkbox"]:checked + label.option, 
+.options-form input[type="checkbox"]:checked + label.extra {
+    background-color: var(--primary-color);
+    color: var(--font-color);
+}
