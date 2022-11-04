@@ -17,9 +17,44 @@ export default function EmployeeBuildBowl() {
     const extraProtein = menuItems.filter(item => item.item_name === "Extra Protein")[0];
     const extraDressing = menuItems.filter(item => item.item_name === "Extra Dressing")[0];
 
+    // finds and returns the object corresponding to the selected options
+    function getSelectionObject(selectionId) {
+        let selection;
+        for (let key in items) {
+            for (let i = 0; i < items[key].length; i++) {
+                if (items[key][i].product_id === selectionId || items[key][i].item_id === selectionId) {
+                    selection = items[key][i];
+                    break;
+                }
+            }
+
+            if (selection !== undefined) {
+                break;
+            }
+        }
+
+        return selection
+    }
+
+    function checkExtras(selections) {
+        const hasExtraProtein = selections.filter(selection => (
+            selection.item_name === "Extra Protein" ||
+            selection.item_name === "Extra Dressing"
+        ));
+    }
+    
     function handleSubmit(e) {
         e.preventDefault();
-        console.log("Submitted");
+        
+        const selections = Array.from(document.querySelectorAll(".options-form input[type=\"checkbox\"]"))
+            .filter(option => option.checked)
+            .map(selection => getSelectionObject(selection.id));
+        
+        if (checkExtras(selections)) {
+            alert("Can't select extra")
+        } else {
+            alert("Success")
+        }
     }
 
     return (
