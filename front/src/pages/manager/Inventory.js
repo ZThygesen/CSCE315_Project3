@@ -15,9 +15,8 @@ export default function Inventory() {
     console.log(inventory);
 
     return (
-        <>
+        <div className="inventory-container">
             <h1>Inventory</h1>
-            <div className="inventory-container">
                 <table className="inventory-table">
                     <thead>
                         <tr>
@@ -42,11 +41,11 @@ export default function Inventory() {
                         }
                     </tbody>
                 </table>
-            </div>
-
-            <button onClick={() => navigate("add-inventory")}>Add Inventory</button>
-            <button onClick={() => navigate("remove-inventory")}>Remove Inventory</button>
-            <button onClick={() => navigate("update-inventory")}>Update Inventory</button>
-        </>
+                <div className="inventory-nav">
+                    <button onClick={() => navigate("add-inventory")}>Add Inventory</button>
+                    <button onClick={() => navigate("remove-inventory")}>Remove Inventory</button>
+                    <button onClick={() => navigate("update-inventory")}>Update Inventory</button>
+                </div>
+        </div>
     );
 }

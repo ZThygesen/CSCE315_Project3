@@ -6,10 +6,11 @@ import SalesReport from "./SalesReport";
 import ExcessReport from "./ExcessReport";
 import RestockReport from "./RestockReport";
 import ServerRoutes from "../server/ServerRoutes";
+import "./manager.css";
 
 export default function ManagerRoutes() {
     return (
-        <>
+        <div className="manager-container">
             <ManagerNav />
             <Routes>
                 <Route path="inventory/*" element={<InventoryRoutes />} />
@@ -20,6 +21,6 @@ export default function ManagerRoutes() {
                 <Route path="create-order/*" element={<ServerRoutes />} />
                 <Route path="*" element={<Navigate to="inventory" replace />} />
             </Routes>
-        </>
+        </div>
     );
 }

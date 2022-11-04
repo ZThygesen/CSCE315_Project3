@@ -4,7 +4,7 @@ export default function ManagerNav() {
     const navigate = useNavigate();
 
     return (
-        <>
+        <div className="manager-nav">
             <button onClick={() => navigate("inventory")}>Inventory</button>
             <button onClick={() => navigate("menu")}>Menu</button>
             <button onClick={() => navigate("sales-report")}>Sales Report</button>
@@ -12,6 +12,6 @@ export default function ManagerNav() {
             <button onClick={() => navigate("restock-report")}>Restock Report</button>
             <button onClick={() => navigate("create-order")}>Create Order</button>
             <button onClick={() => navigate("/")}>Logout</button>
-        </>
+        </div>
     )
 }
