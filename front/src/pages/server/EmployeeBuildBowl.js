@@ -36,11 +36,36 @@ export default function EmployeeBuildBowl() {
         return selection
     }
 
-    function checkExtras(selections) {
+    function checkExtraProtein(selections) {
         const hasExtraProtein = selections.filter(selection => (
-            selection.item_name === "Extra Protein" ||
+            selection.item_name === "Extra Protein"
+        )).length > 0;
+
+        const hasProtein = selections.filter(selection => (
+            selection.product_type === "Protein"
+        )).length > 0;
+
+        if (hasExtraProtein && !hasProtein) {
+            return true;
+        }
+
+        return false;
+    }
+
+    function checkExtraDressing(selections) {
+        const hasExtraDressing = selections.filter(selection => (
             selection.item_name === "Extra Dressing"
-        ));
+        )).length > 0;
+
+        const hasDressing = selections.filter(selection => (
+            selection.product_type === "Dressing"
+        )).length > 0;
+
+        if (hasExtraDressing && !hasDressing) {
+            return true;
+        }
+
+        return false;
     }
     
     function handleSubmit(e) {
@@ -50,11 +75,15 @@ export default function EmployeeBuildBowl() {
             .filter(option => option.checked)
             .map(selection => getSelectionObject(selection.id));
         
-        if (checkExtras(selections)) {
-            alert("Can't select extra")
-        } else {
-            alert("Success")
+        if (checkExtraProtein(selections)) {
+            alert("Can't select extra protein with no protein selected");
+            return;
+        } else if (checkExtraDressing(selections)) {
+            alert("Can't select extra dressing with no dressing selected");
+            return;
         }
+
+        alert("Success");
     }
 
     return (
