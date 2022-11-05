@@ -1,3 +1,9 @@
+.current-order-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #a9a9a9;
+}
+
 .bowl-container {
     width: 80%;
     max-width: 1400px;

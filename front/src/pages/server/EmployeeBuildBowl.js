@@ -67,6 +67,18 @@ export default function EmployeeBuildBowl() {
 
         return false;
     }
+
+    function calculatePrice(selections) {
+        // start with base price of a bowl
+        let price = menuItems.filter(item => item.item_name === "Bowl")[0].price;
+
+        // get the price for all the potentially selected extras
+        selections.forEach(selection => {
+            price += (selection.price === undefined) ? 0 : selection.price;
+        });
+
+        return price;
+    }
     
     function handleSubmit(e) {
         e.preventDefault();
@@ -83,7 +95,9 @@ export default function EmployeeBuildBowl() {
             return;
         }
 
-        alert("Success");
+        const price = calculatePrice(selections);
+
+        navigate("/employee/server", { state: { type: "Bowl", selections: selections,  price: price } });
     }
 
     return (
