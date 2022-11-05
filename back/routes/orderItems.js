@@ -14,7 +14,7 @@ function getItemsByType(items) {
 router.get("/", async (req, res) => {
     const queries = [
         { query: "SELECT product_id, product_name, product_type FROM inventory" },
-        { query: "SELECT item_id, item_name, price FROM menu" }
+        { query: "SELECT product_id, product_name, price FROM menu" }
     ];
 
     const sql = conn.pgp.helpers.concat(queries);

@@ -1,56 +1,19 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import OrderItem from "../../components/OrderItem.js";
 
-export default function EmployeeCreateOrder() {
+export default function EmployeeCreateOrder(props) {
     const navigate = useNavigate();
-
-    const [orderItems, setOrderItems] = useState([]);
-
-    const location = useLocation();
-    const { selections, type, price } = location.state;
-
-    useEffect(() => {
-        console.log("here")
-        setOrderItems(current => [...current, {
-            type: type,
-            items: selections,
-            price: price
-        }]);
-    }, [type, selections, price]);
-
-    function editItem(item) {
-        console.log("Editing...");
-    }
-
-    function removeItem(item) {
-        let index;
-        for (let i = 0; i < orderItems.length; i++) {
-            if (orderItems[i] === item) {
-                index = i;
-            }
-        }
-
-        setOrderItems(current => current.splice(index, 1));
-    }
 
     function calculatePrice() {
         // start with base price of a bowl
         let price = 0;
 
         // get the price for all the potentially selected extras
-        orderItems.forEach(item => {
+        props.orderItems.forEach(item => {
             price += item.price;
         });
 
         return price.toFixed(2);
-    }
-
-    async function buildBowl() {
-        const response = await fetch("/api/order-items");
-        const items = await response.json();
-        
-        navigate("build-a-bowl", { state: { items: items } });
     }
 
     return (
@@ -66,12 +29,12 @@ export default function EmployeeCreateOrder() {
                     </thead>
                     <tbody>
                         {
-                            orderItems.map((item, i) => (
+                            props.orderItems.map((item, i) => (
                                 <tr key={i}>
                                     <OrderItem
                                         item={item}
-                                        editItem={editItem}
-                                        removeItem={removeItem}
+                                        editOrderItem={props.editOrderItem}
+                                        removeOrderItem={props.removeOrderItem}
                                     />
                                 </tr>
                             ))
@@ -82,9 +45,9 @@ export default function EmployeeCreateOrder() {
                     Total: ${calculatePrice()}
                 </div>
             </div>
-            <button onClick={buildBowl}>Employee Build a Bowl</button>
-            <button onClick={() => navigate("build-a-gyro")}>Employee Build a Gyro</button>
-            <button onClick={() => navigate("sides")}>Employee Sides</button>
+            <button onClick={() => props.changePage("bowl")}>Employee Build a Bowl</button>
+            <button onClick={() => props.changePage("gyro")}>Employee Build a Gyro</button>
+            <button onClick={() => props.changePage("side")}>Employee Sides</button>
             <button onClick={() => navigate("/")}>Logout</button>
         </>
     );

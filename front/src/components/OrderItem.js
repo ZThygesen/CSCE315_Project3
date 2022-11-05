@@ -55,8 +55,8 @@ export default function OrderChoice(props) {
                 {getItemDisplay()}
             </td>
             <td>{props.item.price}</td>
-            <td><FiEdit onClick={() => props.editItem(props.item)} /></td>
-            <td><FiTrash onClick={() => props.removeItem(props.item)} /></td>
+            <td><FiEdit onClick={() => props.editOrderItem(props.item)} /></td>
+            <td><FiTrash onClick={() => props.removeOrderItem(props.item)} /></td>
         </>
     );
 }   
