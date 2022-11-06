@@ -14,6 +14,16 @@ export default function EmployeeCreateOrder(props) {
         return price.toFixed(2);
     }
 
+    function submitOrder() {
+        fetch("/api/submit-order", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ items: props.orderItems })
+        })
+            .then(res => res.json())
+            .then(hello => console.log(hello));
+    }
+
     return (
         <>
             <h1>Employee Create Order</h1>
@@ -47,6 +57,7 @@ export default function EmployeeCreateOrder(props) {
             <button onClick={() => props.changePage("Gyro")}>Employee Build a Gyro</button>
             <button onClick={() => props.changePage("Side")}>Employee Sides</button>
             <button onClick={() => navigate("/")}>Logout</button>
+            <button onClick={submitOrder}>Submit Order</button>
         </>
     );
 }

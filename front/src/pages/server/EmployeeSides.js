@@ -1,3 +1,4 @@
+import { v4 as uuid } from "uuid";
 import Option from "../../components/Option";
 import "./Server.css";
 
@@ -33,8 +34,8 @@ export default function EmployeeSides(props) {
         } else {
             selections.map(selection => (
                 props.addSide({
-                    id: selection.product_id,
-                    type: selection.product_type,
+                    id: uuid(),
+                    type: "Side",
                     items: selection,
                     price: selection.price
                 })

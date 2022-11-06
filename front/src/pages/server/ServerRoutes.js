@@ -22,7 +22,6 @@ export default function ServerRoutes() {
     }, []);
 
     function addOrderItem(item) {
-        console.log(item)
         if (item !== undefined) {
             if (editItem !== undefined) {
                 const index = orderItems.indexOf(editItem);
