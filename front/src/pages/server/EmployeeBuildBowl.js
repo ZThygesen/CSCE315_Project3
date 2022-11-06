@@ -92,12 +92,16 @@ export default function EmployeeBuildBowl(props) {
 
         const price = calculatePrice(selections);
         
-        props.addBowl({
-            id: uuid(),
-            type: "Bowl",
-            items: selections,
-            price: price
-        });
+        if (selections.length === 0) {
+            props.addBowl();
+        } else {
+            props.addBowl({
+                id: uuid(),
+                type: "Bowl",
+                items: selections,
+                price: price
+            });
+        }
     }
 
     return (

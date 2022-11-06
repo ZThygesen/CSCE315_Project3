@@ -91,12 +91,17 @@ export default function EmployeeBuildGyro(props) {
 
         const price = calculatePrice(selections);
         
-        props.addGyro({
-            id: uuid(),
-            type: "Gyro",
-            items: selections,
-            price: price
-        });
+        if (selections.length === 0) {
+            props.addGyro();
+        } else {
+            props.addGyro({
+                id: uuid(),
+                type: "Gyro",
+                items: selections,
+                price: price
+            });
+        }
+    
     }
 
     return (

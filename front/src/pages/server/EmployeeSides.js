@@ -27,14 +27,19 @@ export default function EmployeeSides(props) {
             .filter(option => option.checked)
             .map(selection => getSelectionObject(selection.id));
         
-        selections.map(selection => (
-            props.addSide({
-                id: selection.product_id,
-                type: selection.product_type,
-                items: selection,
-                price: selection.price
-            })
-        ));
+        if (selections.length === 0) {
+            console.log("here")
+            props.addSide();
+        } else {
+            selections.map(selection => (
+                props.addSide({
+                    id: selection.product_id,
+                    type: selection.product_type,
+                    items: selection,
+                    price: selection.price
+                })
+            ))
+        }
     }
 
     return (
