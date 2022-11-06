@@ -20,13 +20,13 @@ label.extra:hover {
     cursor: pointer;
 }
 
-.options-form input[type="checkbox"] {
+.order-options-form input[type="checkbox"] {
     display: none;
     visibility: hidden;
 }
 
-.options-form input[type="checkbox"]:checked + label.option, 
-.options-form input[type="checkbox"]:checked + label.extra {
+.order-options-form input[type="checkbox"]:checked + label.option, 
+.order-options-form input[type="checkbox"]:checked + label.extra {
     background-color: var(--primary-color);
     color: var(--font-color);
 }

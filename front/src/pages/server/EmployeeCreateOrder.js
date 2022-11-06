@@ -5,11 +5,8 @@ export default function EmployeeCreateOrder(props) {
     const navigate = useNavigate();
 
     function calculatePrice() {
-        // start with base price of a bowl
         let price = 0;
 
-        console.log(props.orderItems)
-        // get the price for all the potentially selected extras
         props.orderItems.forEach(item => {
             price += item.price;
         });

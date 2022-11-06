@@ -22,6 +22,7 @@ export default function ServerRoutes() {
     }, []);
 
     function addOrderItem(item) {
+        console.log(item)
         if (item !== undefined) {
             if (editItem !== undefined) {
                 const index = orderItems.indexOf(editItem);
@@ -37,7 +38,7 @@ export default function ServerRoutes() {
 
         setEditItem(undefined);
 
-        changePage("main");
+        changePage("Main");
     }
 
     function editOrderItem(item) {
@@ -47,7 +48,7 @@ export default function ServerRoutes() {
 
     function removeOrderItem(item) {
         const index = orderItems.indexOf(item);
-        console.log(index);
+ 
         const newOrderItems = [...orderItems];
         newOrderItems.splice(index, 1);
 
