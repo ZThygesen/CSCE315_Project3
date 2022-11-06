@@ -4,7 +4,7 @@ import "./Server.css";
 
 export default function EmployeeSides(props) {
     const sides = props.items;
-    console.log(sides)
+
     const editMode = props.editItem !== undefined
 
     function getSelectionObject(selectionId) {
@@ -29,7 +29,6 @@ export default function EmployeeSides(props) {
             .map(selection => getSelectionObject(selection.id));
         
         if (selections.length === 0) {
-            console.log("here")
             props.addSide();
         } else {
             selections.map(selection => (

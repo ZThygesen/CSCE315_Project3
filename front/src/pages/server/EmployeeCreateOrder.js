@@ -15,13 +15,21 @@ export default function EmployeeCreateOrder(props) {
     }
 
     function submitOrder() {
+        if (props.orderItems.length === 0) {
+            alert("Cannot submit empty order");
+            return;
+        }
+
         fetch("/api/submit-order", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ items: props.orderItems, price: calculatePrice() })
         })
             .then(res => res.json())
-            .then(hello => console.log(hello));
+            .then(res => {
+                alert(res);
+                props.clearOrder();
+            });
     }
 
     return (
@@ -57,6 +65,7 @@ export default function EmployeeCreateOrder(props) {
             <button onClick={() => props.changePage("Gyro")}>Employee Build a Gyro</button>
             <button onClick={() => props.changePage("Side")}>Employee Sides</button>
             <button onClick={() => navigate("/")}>Logout</button>
+            <button onClick={props.clearOrder}>Cancel Order</button>
             <button onClick={submitOrder}>Submit Order</button>
         </>
     );

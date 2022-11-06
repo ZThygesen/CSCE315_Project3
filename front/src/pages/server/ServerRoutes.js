@@ -54,6 +54,12 @@ export default function ServerRoutes() {
         setOrderItems(newOrderItems);
     }
 
+    function clearOrder() {
+        setOrderItems([]);
+        setEditItem(undefined);
+        changePage("Main");
+    }
+
     function changePage(page) {
         setIsMainPage(false);
         setIsBowlPage(false);
@@ -86,6 +92,7 @@ export default function ServerRoutes() {
                     changePage={changePage}
                     removeOrderItem={removeOrderItem}
                     editOrderItem={editOrderItem}
+                    clearOrder={clearOrder}
                 />}
             {isBowlPage && <EmployeeBuildBowl items={items} addBowl={addOrderItem} editItem={editItem} />}
             {isGyroPage && <EmployeeBuildGyro items={items} addGyro={addOrderItem} editItem={editItem} />}
