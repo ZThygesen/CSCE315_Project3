@@ -43,7 +43,7 @@ export default function OrderChoice(props) {
         } else {
             return (
                 <div className="order-item">
-                    Side
+                    {props.item.items.product_name}
                 </div>
             );
         }
@@ -54,8 +54,14 @@ export default function OrderChoice(props) {
             <td>
                 {getItemDisplay()}
             </td>
-            <td>{props.item.price}</td>
-            <td><FiEdit onClick={() => props.editOrderItem(props.item)} /></td>
+            <td>${props.item.price.toFixed(2)}</td>
+            <td>
+                {
+                    props.item.type !== "Side" ?
+                        <FiEdit onClick={() => props.editOrderItem(props.item)} /> :
+                        <></>
+                }
+            </td >
             <td><FiTrash onClick={() => props.removeOrderItem(props.item)} /></td>
         </>
     );

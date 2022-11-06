@@ -90,7 +90,11 @@ export default function ServerRoutes() {
                 />}
             {isBowlPage && <EmployeeBuildBowl items={items} addBowl={addOrderItem} editItem={editItem} />}
             {isGyroPage && <EmployeeBuildGyro items={items} addGyro={addOrderItem} editItem={editItem} />}
-            {isSidePage && <EmployeeSides items={items.menuItems} addSide={addOrderItem} />}
+            {isSidePage && <EmployeeSides
+                items={items.menuItems.filter(item => item.product_type === "Side")}
+                addSide={addOrderItem}
+                editItem={editItem}
+            />}
         </>
     )
 }  

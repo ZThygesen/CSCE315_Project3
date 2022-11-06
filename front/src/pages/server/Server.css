@@ -4,6 +4,7 @@
     background-color: #a9a9a9;
 }
 
+/* ----------- Build a Bowl and Gyro Screens ----------- */
 .order-options-container {
     width: 80%;
     max-width: 1400px;
@@ -22,6 +23,7 @@
 .order-options-title h1 {
     grid-column: 2;
 }
+
 
 .order-options {
     background-color: black;
@@ -57,6 +59,31 @@
     display: flex;
     gap: 20px;
 }
+
+/* ----------- Side Selection Screen ----------- */
+.side-options-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15%;
+}
+
+.side-options-container .order-options-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    margin-top: 50px;
+}
+
+.side-option-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+/* ----------- Ordering Screen Buttons ----------- */
 
 .order-option-button {
     color: var(--primary-color);

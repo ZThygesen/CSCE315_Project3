@@ -1,12 +1,67 @@
-import { useNavigate } from "react-router-dom";
+import Option from "../../components/Option";
+import "./Server.css";
 
-export default function EmployeeSides() {
-    const navigate = useNavigate();
+export default function EmployeeSides(props) {
+    const sides = props.items;
+    console.log(sides)
+    const editMode = props.editItem !== undefined
+
+    function getSelectionObject(selectionId) {
+        let selection;
+        
+        for (let i = 0; i < sides.length; i++) {
+            if (sides[i].product_id === selectionId) {
+                selection = sides[i];
+                break;
+            }
+            
+        }
+
+        return selection
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        const selections = Array.from(document.querySelectorAll(".order-options-form input[type=\"checkbox\"]"))
+            .filter(option => option.checked)
+            .map(selection => getSelectionObject(selection.id));
+        
+        selections.map(selection => (
+            props.addSide({
+                id: selection.product_id,
+                type: selection.product_type,
+                items: selection,
+                price: selection.price
+            })
+        ));
+    }
 
     return (
         <>
-            <h1>Employee Sides</h1>
-            <button onClick={() => navigate(-1)}>Cancel</button>
+            <div className="side-options-container">
+                <div className="side-options-title">
+                    <h1>Side Selections</h1>
+                </div>
+                <form onSubmit={handleSubmit} className="order-options-form">
+                    <div className="side-options">
+                        {
+                            sides.map((item, i) =>
+                                <Option
+                                    key={i}
+                                    data={item}
+                                    buttonType="checkbox"
+                                    checked={editMode ? props.editItem.items.includes(item) : false}
+                                />
+                            )
+                        }
+                    </div>
+                    <div className="side-option-buttons">
+                        <button type="button" className="order-option-button" onClick={() => props.addSide()}>Cancel</button>
+                        <button type="submit" className="order-option-button">Add to Order</button>
+                    </div>
+                </form>
+            </div>
         </>
     );
 }
