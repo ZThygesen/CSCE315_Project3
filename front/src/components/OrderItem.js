@@ -43,7 +43,7 @@ export default function OrderChoice(props) {
         } else {
             return (
                 <div className="order-item">
-                    {props.item.items.product_name}
+                    {props.item.items[0].product_name}
                 </div>
             );
         }

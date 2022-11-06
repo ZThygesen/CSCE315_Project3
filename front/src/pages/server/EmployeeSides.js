@@ -36,7 +36,7 @@ export default function EmployeeSides(props) {
                 props.addSide({
                     id: uuid(),
                     type: "Side",
-                    items: selection,
+                    items: [selection],
                     price: selection.price
                 })
             ))

@@ -18,7 +18,7 @@ export default function EmployeeCreateOrder(props) {
         fetch("/api/submit-order", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ items: props.orderItems })
+            body: JSON.stringify({ items: props.orderItems, price: calculatePrice() })
         })
             .then(res => res.json())
             .then(hello => console.log(hello));
