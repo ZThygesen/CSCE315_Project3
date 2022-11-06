@@ -13,7 +13,7 @@ function getItemsByType(items) {
 
 router.get("/", async (req, res) => {
     const queries = [
-        { query: "SELECT product_id, product_name, product_type FROM inventory" },
+        { query: "SELECT product_id, product_name, product_type, serving_size FROM inventory" },
         { query: "SELECT product_id, product_name, price, product_type FROM menu" }
     ];
 

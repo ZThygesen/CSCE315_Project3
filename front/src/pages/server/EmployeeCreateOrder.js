@@ -33,40 +33,49 @@ export default function EmployeeCreateOrder(props) {
     }
 
     return (
-        <>
-            <h1>Employee Create Order</h1>
-            <div className="current-order-container">
-                <table className="current-order-table">
-                    <thead>
-                        <tr>
-                            <th>Item</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            props.orderItems.map((item, i) => (
-                                <tr key={i}>
-                                    <OrderItem
-                                        item={item}
-                                        editOrderItem={props.editOrderItem}
-                                        removeOrderItem={props.removeOrderItem}
-                                    />
-                                </tr>
-                            ))
-                        }
-                    </tbody>
-                </table>
-                <div className="current-order-price">
-                    Total: ${calculatePrice()}
+        <div className="create-order-container">
+            <div className="left">
+                <p>Current Order</p>
+                <div className="current-order-container">
+                    <table className="current-order-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                props.orderItems.map((item, i) => (
+                                    <tr key={i}>
+                                        <OrderItem
+                                            item={item}
+                                            editOrderItem={props.editOrderItem}
+                                            removeOrderItem={props.removeOrderItem}
+                                        />
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                    <div className="current-order-price">
+                        Total: ${calculatePrice()}
+                    </div>
+                </div>
+                <div className="order-buttons-container">
+                    <button onClick={() => navigate("/")}>Logout</button>
+                    <button onClick={props.clearOrder}>Cancel Order</button>
+                    <button onClick={submitOrder}>Submit Order</button>
                 </div>
             </div>
-            <button onClick={() => props.changePage("Bowl")}>Employee Build a Bowl</button>
-            <button onClick={() => props.changePage("Gyro")}>Employee Build a Gyro</button>
-            <button onClick={() => props.changePage("Side")}>Employee Sides</button>
-            <button onClick={() => navigate("/")}>Logout</button>
-            <button onClick={props.clearOrder}>Cancel Order</button>
-            <button onClick={submitOrder}>Submit Order</button>
-        </>
+            <div className="right">
+                <p>Add Items</p>
+                <div className="add-items-container">
+                    <button onClick={() => props.changePage("Bowl")}>Bowl</button>
+                    <button onClick={() => props.changePage("Gyro")}>Gyro</button>
+                    <button onClick={() => props.changePage("Side")}>Sides</button>
+                </div>
+            </div>
+        </div>
     );
 }

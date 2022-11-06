@@ -39,6 +39,13 @@ function containsExtra(items, extra) {
     return (items.filter(item => item.product_name === `Extra ${extra}`).length > 0);
 }
 
+async function subtractFromInventory(productId, amount) {
+    const query = `UPDATE inventory SET total_quantity = total_quantity - ${amount}
+        WHERE product_id = '${productId}'`;
+    
+    await conn.db.query(query);
+}
+
 async function createAndInsertOrderProducts(orderId, orderItems) {
     let query = "INSERT INTO order_product (order_id, product_id, servings) VALUES";
 
@@ -64,6 +71,7 @@ async function createAndInsertOrderProducts(orderId, orderItems) {
                     servings += 1;
                 }
 
+                subtractFromInventory(product.product_id, product.serving_size * servings);
                 query += `('${orderId}', '${product.product_id}', ${servings}),`;
             }
         });
