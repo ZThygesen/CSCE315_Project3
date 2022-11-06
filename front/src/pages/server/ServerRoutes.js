@@ -13,6 +13,7 @@ export default function ServerRoutes() {
     const [items, setItems] = useState({});
 
     const [orderItems, setOrderItems] = useState([]);
+    const [editItem, setEditItem] = useState(undefined);
 
     useEffect(() => {
         fetch("/api/order-items")
@@ -20,28 +21,37 @@ export default function ServerRoutes() {
             .then(test => setItems(test));
     }, []);
 
-    //console.log(items)
-    
     function addOrderItem(item) {
         if (item !== undefined) {
-            setOrderItems(current => [...current, item]);
+            if (editItem !== undefined) {
+                const index = orderItems.indexOf(editItem);
+
+                const newOrderItems = [...orderItems];
+                newOrderItems[index] = item;
+
+                setOrderItems(newOrderItems);
+            } else {
+                setOrderItems(current => [...current, item]);
+            }
         }
+
+        setEditItem(undefined);
+
         changePage("main");
     }
 
     function editOrderItem(item) {
-
+        setEditItem(item);
+        changePage(item.type);
     }
 
-     function removeOrderItem(item) {
-        let index;
-        for (let i = 0; i < orderItems.length; i++) {
-            if (orderItems[i] === item) {
-                index = i;
-            }
-        }
+    function removeOrderItem(item) {
+        const index = orderItems.indexOf(item);
+        console.log(index);
+        const newOrderItems = [...orderItems];
+        newOrderItems.splice(index, 1);
 
-        setOrderItems(current => current.splice(index, 1));
+        setOrderItems(newOrderItems);
     }
 
     function changePage(page) {
@@ -51,16 +61,16 @@ export default function ServerRoutes() {
         setIsSidePage(false);
 
         switch (page) {
-            case ("main"):
+            case ("Main"):
                 setIsMainPage(true);
                 break;
-            case ("bowl"):
+            case ("Bowl"):
                 setIsBowlPage(true);
                 break;
-            case ("gyro"):
+            case ("Gyro"):
                 setIsGyroPage(true);
                 break;
-            case ("side"):
+            case ("Side"):
                 setIsSidePage(true);
                 break;
             default:
@@ -77,8 +87,8 @@ export default function ServerRoutes() {
                     removeOrderItem={removeOrderItem}
                     editOrderItem={editOrderItem}
                 />}
-            {isBowlPage && <EmployeeBuildBowl items={items} addBowl={addOrderItem} />}
-            {isGyroPage && <EmployeeBuildGyro items={items} addGyro={addOrderItem} />}
+            {isBowlPage && <EmployeeBuildBowl items={items} addBowl={addOrderItem} editItem={editItem} />}
+            {isGyroPage && <EmployeeBuildGyro items={items} addGyro={addOrderItem} editItem={editItem} />}
             {isSidePage && <EmployeeSides items={items.menuItems} addSide={addOrderItem} />}
         </>
     )

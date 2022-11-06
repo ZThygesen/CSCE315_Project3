@@ -5,16 +5,14 @@ import Option from "../../components/Option";
 import "./Server.css";
 
 export default function EmployeeBuildBowl(props) {
-    const [bowlItems, setBowlItems] = useState([]);
-    
-    const [bowlOptions, setBowlOptions] = useState([]);
-
     const bases = props.items.bases;
     const proteins = props.items.proteins;
     const toppings = props.items.toppings;
     const dressings = props.items.dressings;
     const extraProtein = props.items.menuItems.filter(item => item.product_name === "Extra Protein")[0];
     const extraDressing = props.items.menuItems.filter(item => item.product_name === "Extra Dressing")[0];
+
+    const editMode = props.editItem !== undefined
 
     function getSelectionObject(selectionId) {
         let selection;
@@ -103,17 +101,6 @@ export default function EmployeeBuildBowl(props) {
         });
     }
 
-    /* useEffect(() => {
-        setBowlOptions
-    })
-    const bases = bases.map((item, i) =>
-            <Option key={i} data={item} buttonType="radio" />
-        )
-
-    function addItem(item) {
-        setBowlItems(current => [...current, item]);
-    } */
-
     return (
         <>
             <div className="bowl-container">
@@ -129,7 +116,12 @@ export default function EmployeeBuildBowl(props) {
                         <div className="options">
                             {
                                 bases.map((item, i) =>
-                                    <Option key={i} data={item} buttonType="radio" />
+                                    <Option
+                                        key={i}
+                                        data={item}
+                                        buttonType="radio"
+                                        checked={editMode ? props.editItem.items.includes(item) : false}
+                                    />
                                 )
                             }
                         </div>
@@ -140,10 +132,19 @@ export default function EmployeeBuildBowl(props) {
                         <div className="options">
                             {
                                 proteins.map((item, i) =>
-                                    <Option key={i} data={item} buttonType="radio" />
+                                    <Option
+                                        key={i}
+                                        data={item}
+                                        buttonType="radio"
+                                        checked={editMode ? props.editItem.items.includes(item) : false}
+                                    />
                                 )
                             }
-                            <Extra data={extraProtein} type="Protein" />
+                            <Extra
+                                data={extraProtein}
+                                type="Protein"
+                                checked={editMode ? props.editItem.items.includes(extraProtein) : false}
+                            />
                         </div>
 
                         <div className="bowl-option">
@@ -152,7 +153,12 @@ export default function EmployeeBuildBowl(props) {
                         <div className="options">
                             {
                                 toppings.map((item, i) =>
-                                    <Option key={i} data={item} buttonType="checkbox" />
+                                    <Option
+                                        key={i}
+                                        data={item}
+                                        buttonType="checkbox"
+                                        checked={editMode ? props.editItem.items.includes(item) : false}
+                                    />
                                 )
                             }
                         </div>
@@ -163,10 +169,19 @@ export default function EmployeeBuildBowl(props) {
                         <div className="options">
                             {
                                 dressings.map((item, i) =>
-                                    <Option key={i} data={item} buttonType="radio" />
+                                    <Option
+                                        key={i}
+                                        data={item}
+                                        buttonType="radio"
+                                        checked={editMode ? props.editItem.items.includes(item) : false}
+                                    />
                                 )
                             }
-                            <Extra data={extraDressing} type="Dressing" />
+                            <Extra
+                                data={extraDressing}
+                                type="Dressing"
+                                checked={editMode ? props.editItem.items.includes(extraDressing) : false}
+                            />
                         </div>
                     </div>
                     <div className="bowl-button-container">

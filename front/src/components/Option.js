@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./Option.css";
 
 export default function OptionButton(props) {
@@ -5,8 +6,10 @@ export default function OptionButton(props) {
     const name = props.data.product_name;
     const type = props.data.product_type;
     const buttonType = props.buttonType;
+    
+    const [checked, setChecked] = useState(props.checked);
 
-    function handleChange() {
+    function handleChange(e) {
         // if only 1 button can be selected for the given option type (e.x. proteins),
         // then toggle off the other currently selected option, given there is one
         if (buttonType === "radio") {
@@ -15,6 +18,8 @@ export default function OptionButton(props) {
                 .filter(button => button.id !== id)
                 .map(button => button.checked = false);
         }
+        
+        setChecked(e.target.checked);
     }
 
     return (
@@ -23,6 +28,7 @@ export default function OptionButton(props) {
                 type="checkbox"
                 name={type}
                 id={id}
+                checked={checked}
                 onChange={handleChange}
             />
             <label htmlFor={id} className="option">{name}</label>

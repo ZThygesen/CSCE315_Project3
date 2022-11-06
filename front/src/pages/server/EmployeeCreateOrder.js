@@ -8,6 +8,7 @@ export default function EmployeeCreateOrder(props) {
         // start with base price of a bowl
         let price = 0;
 
+        console.log(props.orderItems)
         // get the price for all the potentially selected extras
         props.orderItems.forEach(item => {
             price += item.price;
@@ -45,9 +46,9 @@ export default function EmployeeCreateOrder(props) {
                     Total: ${calculatePrice()}
                 </div>
             </div>
-            <button onClick={() => props.changePage("bowl")}>Employee Build a Bowl</button>
-            <button onClick={() => props.changePage("gyro")}>Employee Build a Gyro</button>
-            <button onClick={() => props.changePage("side")}>Employee Sides</button>
+            <button onClick={() => props.changePage("Bowl")}>Employee Build a Bowl</button>
+            <button onClick={() => props.changePage("Gyro")}>Employee Build a Gyro</button>
+            <button onClick={() => props.changePage("Side")}>Employee Sides</button>
             <button onClick={() => navigate("/")}>Logout</button>
         </>
     );
