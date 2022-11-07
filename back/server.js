@@ -8,6 +8,7 @@ const menu = require("./routes/menu");
 const orderItems = require("./routes/orderItems");
 const updateInv = require("./routes/updateInv");
 const addInv = require("./routes/addInv");
+const removeInv = require("./routes/removeInv");
 
 app.use(express.json());
 app.use("/api/home", home);
@@ -16,6 +17,7 @@ app.use("/api/menu", menu);
 app.use("/api/order-items", orderItems);
 app.use("/api/update-inv", updateInv);
 app.use("/api/add-inv", addInv);
+app.use("/api/remove-inv", removeInv);
 
 
 function fahrenheitToCelsius(fahrenheit) {

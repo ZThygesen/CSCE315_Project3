@@ -4,9 +4,6 @@ import uuid from 'react-uuid';
 
 export default function AddInventory() {
     const navigate = useNavigate();
-
-    //Stores the invetory items from the database
-    const [inventory, setInventory] = useState([{}]);
     
     //Gets the inventory from the database using Express route and puts in 'inventory'
     useEffect(() => {
@@ -15,26 +12,34 @@ export default function AddInventory() {
             .then(inventory => setInventory(inventory.inventory));
     }, []);
 
+    //What happens when the user clicks submit
     function handleSubmit(e) {
         e.preventDefault();
         
         const temp = uuid();
         const id = temp.toString();
 
+        var selection = document.getElementById("type");
+        const type = selection.options[selection.selectedIndex].value;
+
         const name = document.getElementById("name").value;
         const quantity = document.getElementById("quan").value;
-        const type = document.getElementById("type").value;
         const serve = document.getElementById("serve").value;
         const minimum = document.getElementById("min").value;
 
-        fetch("/api/add-inv", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name: name, id: id, quantity: quantity, type: type, serve: serve, onhand: minimum })
-        })
-            .then(res => res.json())
-        
+        if(name === '' || quantity === '' || type === '' || serve === "" || minimum === '' ){
+            alert("Please enter all the fields")
+        } else {
+
+            fetch("/api/add-inv", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name: name, id: id, quantity: quantity, type: type, serve: serve, onhand: minimum })
+            })
+                .then(res => res.json())
+            
             alert("Update sent");
+        }
     }
 
     return (
@@ -49,8 +54,19 @@ export default function AddInventory() {
                 <label for="quan">Enter the quantity:</label>
                 <input type="text" id="quan" name="quan"></input>
 
-                <label for="type">Enter the product type:</label>
-                <input type="text" id="type" name="type"></input>
+                <p></p>
+                <label for="type">
+                    Choose a product type:
+                </label>
+                <select id="type">
+                        <option value="Pita">Pita</option>
+                        <option value="Rice">Rice</option>
+                        <option value="Protein">Protein</option>
+                        <option value="Topping">Topping</option>
+                        <option value="Dressing">Dressing</option>
+                        <option value="Side">Side</option>
+                </select>
+                <p></p>
 
                 <label for="serve">Enter the serving size:</label>
                 <input type="text" id="serve" name="serve"></input>

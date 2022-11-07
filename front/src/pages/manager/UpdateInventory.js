@@ -12,6 +12,7 @@ export default function UpdateInventory() {
             .then(inventory => setInventory(inventory.inventory));
     }, []);
 
+    //What happens when the user clicks submit
     function handleSubmit(e) {
         e.preventDefault();
         
@@ -37,11 +38,13 @@ export default function UpdateInventory() {
         <>
             <h1>Update Inventory</h1>
 
+            {/* Where the user enters the information */}
             <form onSubmit={handleSubmit}>
+                
+                {/* Lists the items currently in the inventory */}
                 <label for="item">
                     Choose an item to update:
                 </label>
-
                 <select id="item">
                     {
                         inventory.map((item,i) => 
