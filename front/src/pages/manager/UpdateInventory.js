@@ -4,10 +4,7 @@ import { useEffect, useState } from "react";
 export default function UpdateInventory() {
     const navigate = useNavigate();
 
-//Changes start here
     const [inventory, setInventory] = useState([{}]);
-
-    const [success, setSuccess] = useState([{}]);
 
     useEffect(() => {
         fetch("/api/inventory")
@@ -32,6 +29,8 @@ export default function UpdateInventory() {
             body: JSON.stringify({ id: id, quantity: quantity, type: type, serve: serve, onhand: minimum })
         })
             .then(res => res.json())
+        
+            alert("Update sent");
     }
 
     return (
@@ -70,5 +69,4 @@ export default function UpdateInventory() {
             <button onClick={() => navigate(-1)}>Back</button>
         </>
     );
-//Changes end here
 }

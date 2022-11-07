@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
 
     await conn.db.query(query);
 
-    res.json({ success: 1 });
+    //res.json({ success: 1 });
 });
 
 module.exports = router;
