@@ -4,6 +4,7 @@ import Option from "../../components/Option";
 import "./Server.css";
 
 export default function EmployeeBuildGyro(props) {
+    const pita = props.items.pita[0];
     const proteins = props.items.proteins;
     const toppings = props.items.toppings;
     const dressings = props.items.dressings;
@@ -90,10 +91,11 @@ export default function EmployeeBuildGyro(props) {
         }
 
         const price = calculatePrice(selections);
-        
+
         if (selections.length === 0) {
             props.addGyro();
         } else {
+            selections.push(pita);
             props.addGyro({
                 id: uuid(),
                 type: "Gyro",
