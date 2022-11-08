@@ -39,11 +39,11 @@ export default function AddMenu() {
 
             {/* Where user enters information on new item */}
             <form onSubmit={handleSubmit}>
-                <label for="name">Enter the new menu item name:</label>
+                <label htmlFor="name">Enter the new menu item name:</label>
                 <input type="text" id="name" name="name"></input>
 
                 <p></p>
-                <label for="type">
+                <label htmlFor="type">
                     Choose a product type:
                 </label>
                 <select id="type">
@@ -53,10 +53,10 @@ export default function AddMenu() {
                 </select>
                 <p></p>
 
-                <label for="price">Enter the menu price:</label>
+                <label htmlFor="price">Enter the menu price:</label>
                 <input type="text" id="price" name="price"></input>
 
-                <label for="cal">Enter the new menu item calorie/caloric range:</label>
+                <label htmlFor="cal">Enter the new menu item calorie/caloric range:</label>
                 <input type="text" id="cal" name="cal"></input>
 
                 <input type="submit" value="Submit"></input>

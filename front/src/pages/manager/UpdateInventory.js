@@ -42,7 +42,7 @@ export default function UpdateInventory() {
             <form onSubmit={handleSubmit}>
                 
                 {/* Lists the items currently in the inventory */}
-                <label for="item">
+                <label htmlFor="item">
                     Choose an item to update:
                 </label>
                 <select id="item">
@@ -54,16 +54,16 @@ export default function UpdateInventory() {
                 </select>
                 <p></p>
 
-                <label for="quan">Enter the quantity:</label>
+                <label htmlFor="quan">Enter the quantity:</label>
                 <input type="text" id="quan" name="quan"></input>
 
-                <label for="type">Enter the product type:</label>
+                <label htmlFor="type">Enter the product type:</label>
                 <input type="text" id="type" name="type"></input>
 
-                <label for="serve">Enter the serving size:</label>
+                <label htmlFor="serve">Enter the serving size:</label>
                 <input type="text" id="serve" name="serve"></input>
 
-                <label for="min">Enter the minimum required amount:</label>
+                <label htmlFor="min">Enter the minimum required amount:</label>
                 <input type="text" id="min" name="min"></input>
 
                 <input type="submit" value="Submit"></input>

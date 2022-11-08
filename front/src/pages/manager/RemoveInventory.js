@@ -37,7 +37,7 @@ export default function RemoveInventory() {
             <form onSubmit={handleSubmit}>
                 
                 {/* Lists the items currently in the inventory */}
-                <label for="item">
+                <label htmlFor="item">
                     Choose an item to remove:
                 </label>
                 <select id="item">

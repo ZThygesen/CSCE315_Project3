@@ -1,18 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 import uuid from 'react-uuid';
 
 export default function AddInventory() {
     const navigate = useNavigate();
-
-    const [inventory, setInventory] = useState([{}]);
-    
-    //Gets the inventory from the database using Express route and puts in 'inventory'
-    useEffect(() => {
-        fetch("/api/inventory")
-            .then(res => res.json())
-            .then(inventory => setInventory(inventory.inventory));
-    }, []);
 
     //What happens when the user clicks submit
     function handleSubmit(e) {
@@ -50,14 +40,14 @@ export default function AddInventory() {
 
             {/* Where user enters information on new item */}
             <form onSubmit={handleSubmit}>
-                <label for="name">Enter the new item name:</label>
+                <label htmlFor="name">Enter the new item name:</label>
                 <input type="text" id="name" name="name"></input>
 
-                <label for="quan">Enter the quantity:</label>
+                <label htmlFor="quan">Enter the quantity:</label>
                 <input type="text" id="quan" name="quan"></input>
 
                 <p></p>
-                <label for="type">
+                <label htmlFor="type">
                     Choose a product type:
                 </label>
                 <select id="type">
@@ -70,10 +60,10 @@ export default function AddInventory() {
                 </select>
                 <p></p>
 
-                <label for="serve">Enter the serving size:</label>
+                <label htmlFor="serve">Enter the serving size:</label>
                 <input type="text" id="serve" name="serve"></input>
 
-                <label for="min">Enter the minimum required amount:</label>
+                <label htmlFor="min">Enter the minimum required amount:</label>
                 <input type="text" id="min" name="min"></input>
 
                 <input type="submit" value="Submit"></input>
