@@ -1,0 +1,274 @@
+.create-order-container {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    width: 90%;
+    max-width: 1000px;
+}
+
+.create-order-container .left,
+.create-order-container .right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5vh;
+}
+
+.create-order-title {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.create-order-container button {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    border-style: none;
+    border: 3px solid var(--primary-color);
+    border-radius: 25px;
+    width: 150px;
+    height: 60px;
+    font-size: 28px;
+    transition: all 0.15s;
+}
+
+.create-order-container button:hover {
+    background-color: var(--primary-color);
+    color: var(--font-color);
+    cursor: pointer;
+}
+
+/* ----------- Current Order Section ----------- */
+.current-order-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #D9D9D9;
+    height: 100%;
+    max-height: 40vh;
+    width: 90%;
+    border-radius: 20px;
+    padding: 10px;
+    border: 2px solid black;
+}
+
+.current-order-labels {
+    border-bottom: 1px solid black;
+    overflow: auto;
+    scrollbar-gutter: stable;
+}
+
+.current-order-labels p {
+    font-size: 26px;
+    margin: 0;
+    font-weight: 500;
+}
+
+.current-order-items-container {
+    flex: 1;
+    overflow: auto;
+    scrollbar-gutter: stable;
+}
+
+.current-order-item {
+    margin-top: 20px;
+}
+
+.current-order-item p {
+    margin: 0;
+    font-size: 22px;
+}
+
+.order-item-details p {
+    margin-left: 50px;
+}
+
+.order-item-details p {
+    font-size: 18px;
+}
+
+.current-order-price {
+    border-top: 1px solid black;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.current-order-labels,
+.order-item {
+    display: grid;
+    grid-template-columns: 30px 5fr 4fr 50px 50px;
+    align-items: center;
+    justify-items: center;
+}
+
+.order-item-label,
+.item-name {
+    justify-self: start;
+    grid-column: 2;
+}
+
+.item-edit,
+.item-remove {
+    transform: scale(1.5);
+    transition: all 0.1s;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.item-dropdown,
+.item-dropup {
+    transform: scale(1.1);
+    transition: all 0.1s;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+.item-edit:hover,
+.item-remove:hover,
+.item-dropdown:hover,
+.item-dropup:hover {
+    cursor: pointer;
+    background-color: #a9a9a9;
+}
+
+.item-remove {
+    grid-column: 5;
+}
+
+/* ----------- Order Options Button Section ----------- */
+.order-buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 30px;
+    width: 90%;
+}
+
+.order-buttons-container button {
+    font-size: 24px;
+    width: 130px;
+}
+
+/* ----------- Add Items Section ----------- */
+.create-order-container .right {
+    margin-top: 12vh;
+}
+
+.add-items-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+/* ----------------------------------------------------- */
+/* ----------- Build a Bowl and Gyro Screens ----------- */
+.order-options-container {
+    width: 80%;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.order-options-title,
+.order-options,
+.order-options-button-container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    justify-items: center;
+}
+
+.order-options-title h1 {
+    grid-column: 2;
+}
+
+
+.order-options {
+    background-color: black;
+    grid-gap: 1px;
+}
+
+.order-options-title,
+.order-option,
+.options {
+    background-color: #fff;
+    height: 100%;
+    width: 100%;
+}
+
+.order-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.order-option-buttons {
+    margin-top: 30px;
+    grid-column: 2;
+    display: flex;
+    gap: 20px;
+}
+
+/* ----------- Side Selection Screen ----------- */
+.side-options-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15vh;
+}
+
+.side-options-container .order-options-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    margin-top: 50px;
+}
+
+.side-option-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+/* ----------- Ordering Screen Buttons ----------- */
+
+.order-option-button {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    border-style: none;
+    border: 3px solid var(--primary-color);
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 28px;
+    transition: all 0.15s;
+}
+
+.order-option-button:hover {
+    background-color: var(--primary-color);
+    color: var(--font-color);
+    cursor: pointer;
+}
+
+/* ----------- Customer CSS ----------- */
+.add-items-container.customer button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    justify-content: center;
+}
+
+.bowl-price,
+.gyro-price {
+    font-size: 18px;
+}

@@ -1,62 +1,66 @@
 import { useState } from "react";
-import { FiEdit, FiTrash } from "react-icons/fi";
-import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io"
+import { TfiAngleDoubleDown, TfiAngleDoubleUp, TfiPencil, TfiTrash } from "react-icons/tfi";
 import "./OrderItem.css"
 
 export default function OrderChoice(props) {
-    const [extendDisplay, setExtendDisplay] = useState(false);
+    const isSide = props.item.type === "Side";
+    const [isExtended, setIsExtended] = useState(false);
 
     function changeDropdown() {
-        setExtendDisplay(current => !current);
+        setIsExtended(current => !current);
     }
 
-    function getItemDisplay() {
-        if (props.item.type !== "Side") {
-            return (
-                <div className="order-item">
-                    <div className="order-dropdown">
-                        {extendDisplay ?
-                            <IoIosArrowDropup onClick={changeDropdown} /> :
-                            <IoIosArrowDropdown onClick={changeDropdown} />
-                        }
-                    </div>
-                    <div>
-                        <p>{props.item.type}</p>
-                        {
-                            extendDisplay ? 
-                                <div>
-                                    {
-                                        props.item.items.map((item, i) => (
-                                            <p key={i}>
-                                                {item.product_name === undefined ?
-                                                    item.item_name : item.product_name
-                                                }
-                                            </p>
-                                        ))
-                                    }
-                                </div> :
-                                <></>
-                        }
-                    </div>
+    function sideDisplay() {
+        return (
+            <>
+                <p className="item-name">{props.item.items[0].product_name}</p>
+                <p className="item-price">${props.item.price.toFixed(2)}</p>
+                <TfiTrash className="item-remove" onClick={() => props.removeOrderItem(props.item)} />
+            </>
+        );
+    }
+
+    function itemDisplay() {
+        return (
+            <>
+                <div className="item-dropdown">
+                    {isExtended ?
+                        <TfiAngleDoubleUp className="item-dropup" onClick={changeDropdown} /> :
+                        <TfiAngleDoubleDown className="item-dropdown" onClick={changeDropdown} />
+                    }
                 </div>
-            );
-        } else {
-            return (
-                <div className="order-item">
-                    Side
-                </div>
-            );
-        }
+                <p className="item-name">{props.item.type}</p>
+                <p className="item-price">${props.item.price.toFixed(2)}</p>
+                <TfiPencil className="item-edit" onClick={() => props.editOrderItem(props.item)} />
+                <TfiTrash className="item-remove" onClick={() => props.removeOrderItem(props.item)} />
+            </>
+        );
+    }
+
+    function getItemDetails() {
+        return (
+            <>
+                {
+                    props.item.items.map((item, i) => (
+                        <p key={i}>
+                            {item.product_name === undefined ?
+                                item.product_name : item.product_name
+                            }
+                        </p>
+                    ))
+                }
+            </>
+        );
     }
 
     return (
-        <>
-            <td>
-                {getItemDisplay()}
-            </td>
-            <td>{props.item.price}</td>
-            <td><FiEdit onClick={() => props.editItem(props.item)} /></td>
-            <td><FiTrash onClick={() => props.removeItem(props.item)} /></td>
-        </>
+        <div className="current-order-item">
+            <div className="order-item">
+                {isSide ? sideDisplay() : itemDisplay()}
+            </div>
+            <div className="order-item-details">
+                {isExtended && getItemDetails()}
+            </div>
+        </div>
     );
 }   
