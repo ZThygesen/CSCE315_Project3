@@ -14,6 +14,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--primary-green);
+    background-color: var(--secondary-color);
     padding: 20px;
 }
