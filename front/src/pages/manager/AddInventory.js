@@ -4,6 +4,8 @@ import uuid from 'react-uuid';
 
 export default function AddInventory() {
     const navigate = useNavigate();
+
+    const [inventory, setInventory] = useState([{}]);
     
     //Gets the inventory from the database using Express route and puts in 'inventory'
     useEffect(() => {
@@ -48,7 +50,7 @@ export default function AddInventory() {
 
             {/* Where user enters information on new item */}
             <form onSubmit={handleSubmit}>
-                <label for="quan">Enter the new item name:</label>
+                <label for="name">Enter the new item name:</label>
                 <input type="text" id="name" name="name"></input>
 
                 <label for="quan">Enter the quantity:</label>
