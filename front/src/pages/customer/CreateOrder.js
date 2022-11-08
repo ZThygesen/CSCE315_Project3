@@ -41,7 +41,7 @@ export default function CreateOrder() {
             <div className="items">
                 <div className="menu-items">
                     <h1>Menu Items</h1>
-                    {menuItems.map((item, i) => <p key={i}>{item.item_name}</p>)}
+                    {menuItems.map((item, i) => <p key={i}>{item.product_name}</p>)}
                 </div>
                 <div className="bases">
                     <h1>Bases</h1>

@@ -30,7 +30,7 @@ export default function Menu() {
                         {
                             menu.map((item, i) => (
                                 <tr key={i}>
-                                    <td>{item.item_name}</td>
+                                    <td>{item.product_name}</td>
                                     <td>{item.price}</td>
                                     <td>{item.calories}</td>
                                 </tr>
