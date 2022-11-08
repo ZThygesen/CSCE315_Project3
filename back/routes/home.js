@@ -1,17 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const pool = require("../pool");
+const conn = require("../db");
 
-router.get("/", (req, res) => {
-    teammembers = [];
-    pool
-        .query("SELECT * FROM teammembers;")
-        .then(query_res => {
-            for (let i = 0; i < query_res.rowCount; i++) {
-                teammembers.push(query_res.rows[i]);
-            }
-            res.json({ teammembers: teammembers });
-        });
+router.get("/", async (req, res) => {
+    const query = "SELECT * FROM teammembers";
+
+    const teammembers = await conn.db.query(query);
+    
+    res.json({ teammembers: teammembers });
 });
 
 module.exports = router;

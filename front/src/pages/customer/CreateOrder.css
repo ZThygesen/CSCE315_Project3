@@ -1,0 +1,19 @@
+.items {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+}
+
+.menu-items,
+.bases,
+.proteins,
+.toppings,
+.dressings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--secondary-color);
+    padding: 20px;
+}
