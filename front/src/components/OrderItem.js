@@ -29,7 +29,7 @@ export default function OrderChoice(props) {
                                         props.item.items.map((item, i) => (
                                             <p key={i}>
                                                 {item.product_name === undefined ?
-                                                    item.item_name : item.product_name
+                                                    item.product_name : item.product_name
                                                 }
                                             </p>
                                         ))
