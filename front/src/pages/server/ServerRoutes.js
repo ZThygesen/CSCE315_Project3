@@ -3,6 +3,7 @@ import EmployeeCreateOrder from "./EmployeeCreateOrder";
 import EmployeeBuildBowl from "./EmployeeBuildBowl";
 import EmployeeBuildGyro from "./EmployeeBuildGyro";
 import EmployeeSides from "./EmployeeSides";
+import "../CreateOrder.css";
 
 export default function ServerRoutes() {
     const [isMainPage, setIsMainPage] = useState(true)

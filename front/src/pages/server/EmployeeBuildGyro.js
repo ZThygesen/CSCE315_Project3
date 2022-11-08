@@ -1,7 +1,6 @@
 import { v4 as uuid } from "uuid";
 import Extra from "../../components/Extra";
 import Option from "../../components/Option";
-import "./Server.css";
 
 export default function EmployeeBuildGyro(props) {
     const pita = props.items.pita[0];

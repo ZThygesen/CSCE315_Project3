@@ -6,6 +6,7 @@ export default function OptionButton(props) {
     const name = props.data.product_name;
     const type = props.data.product_type;
     const buttonType = props.buttonType;
+    const price = props.price;
     
     const [checked, setChecked] = useState(props.checked);
 
@@ -31,7 +32,14 @@ export default function OptionButton(props) {
                 checked={checked}
                 onChange={handleChange}
             />
-            <label htmlFor={id} className="option">{name}</label>
+            <label htmlFor={id} className="option">
+                {name}
+                {
+                    price !== undefined ?
+                        <> +${price.toFixed(2)}</> :
+                        <></>
+                }
+            </label>
         </>
     );
 }

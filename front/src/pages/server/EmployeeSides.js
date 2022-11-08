@@ -1,6 +1,5 @@
 import { v4 as uuid } from "uuid";
 import Option from "../../components/Option";
-import "./Server.css";
 
 export default function EmployeeSides(props) {
     const sides = props.items;
