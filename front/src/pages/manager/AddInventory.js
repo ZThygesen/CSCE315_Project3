@@ -51,7 +51,7 @@ export default function AddInventory() {
                 </div>
 
                 <div className="add-inventory-input">
-                    <label for="type">
+                    <label htmlFor="type">
                         Choose a product type:
                     </label>
                     <select id="type">

@@ -43,7 +43,7 @@ export default function UpdateInventory() {
                 
                 {/* Lists the items currently in the inventory */}
                 <div className="update-inventory-input">
-                    <label for="item">
+                    <label htmlFor="item">
                         Choose an item to update:
                     </label>
                     <select id="item">
