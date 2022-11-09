@@ -30,29 +30,32 @@ export default function RemoveInventory() {
     }
 
     return (
-        <>
+        <div className="remove-inventory-container">
             <h1>Remove Inventory</h1>
 
             {/* Where the user enters the information */}
-            <form onSubmit={handleSubmit}>
+            <form className="remove-inventory-form" onSubmit={handleSubmit}>
                 
                 {/* Lists the items currently in the inventory */}
-                <label htmlFor="item">
-                    Choose an item to remove:
-                </label>
-                <select id="item">
-                    {
-                        inventory.map((item,i) => 
-                            <option key={i} value={item.product_id} name={item.product_name}>{item.product_name}</option>
-                        )
-                    }
-                </select>
+                <div className="remove-inventory-input">
+                    <label htmlFor="item">
+                        Choose an item to remove:
+                    </label>
+                    <select id="item">
+                        {
+                            inventory.map((item,i) =>
+                                <option key={i} value={item.product_id} name={item.product_name}>{item.product_name}</option>
+                            )
+                        }
+                    </select>
+                </div>
                 <p></p>
 
-                <input type="submit" value="Submit"></input>
+                <div className="remove-inventory-buttons">
+                    <button type="button" onClick={() => navigate(-1)}>Back</button>
+                    <button type="submit" value="Submit">Remove Item</button>
+                </div>
             </form>
-
-            <button onClick={() => navigate(-1)}>Back</button>
-        </>
+        </div>
     );
 }

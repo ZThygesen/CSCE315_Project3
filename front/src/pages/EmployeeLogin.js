@@ -7,9 +7,13 @@ export default function EmployeeLogin() {
         <>
             {/** TODO: IMPLEMENT OAUTH LOGIN */}
             <h1>Employee Login</h1>
-            <button onClick={() => navigate("manager")}>Manager</button>
-            <button onClick={() => navigate("server", { state: {} })}>Server</button>
-            <button onClick={() => navigate(-1)}>Cancel</button>
+            <div className="employee-login-container">
+                <div className="login-buttons">
+                    <button onClick={() => navigate("manager")}>Manager</button>
+                    <button onClick={() => navigate("server", { state: {} })}>Server</button>
+                </div>
+                <button onClick={() => navigate(-1)}>Cancel</button>
+            </div>
         </>
     );
 }

@@ -6,7 +6,7 @@ import SalesReport from "./SalesReport";
 import ExcessReport from "./ExcessReport";
 import RestockReport from "./RestockReport";
 import ServerRoutes from "../server/ServerRoutes";
-import "./manager.css";
+import "./Manager.css";
 
 export default function ManagerRoutes() {
     return (

@@ -12,35 +12,33 @@ export default function Menu() {
             .then(menu => setMenu(menu.menu));
     }, []);
 
-    console.log(menu);
-
     return (
-        <>
+        <div className="menu-container">
             <h1>Menu</h1>
-            <div className="menu-container">
-                <table className="menu-table">
-                    <thead>
-                        <tr>
-                            <th>Item</th>
-                            <th>Price</th>
-                            <th>Calories</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            menu.map((item, i) => (
-                                <tr key={i}>
-                                    <td>{item.product_name}</td>
-                                    <td>{item.price}</td>
-                                    <td>{item.calories}</td>
-                                </tr>
-                            ))
-                        }
-                    </tbody>
-                </table>
-            </div>
+            <table className="menu-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Calories</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        menu.map((item, i) => (
+                            <tr key={i}>
+                                <td>{item.product_name}</td>
+                                <td>{item.price}</td>
+                                <td>{item.calories}</td>
+                            </tr>
+                        ))
+                    }
+                </tbody>
+            </table>
             
-            <button onClick={() => navigate("add-menu-item")}>Add Menu Item</button>
-        </>
+            <div className="menu-buttons">
+                <button onClick={() => navigate("add-menu-item")}>Add Menu Item</button>
+            </div>
+        </div>
     );
 }
