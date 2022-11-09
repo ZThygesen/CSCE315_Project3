@@ -45,41 +45,51 @@ export default function AddInventory() {
     }
 
     return (
-        <>
+        <div className="add-inventory-container">
             <h1>Add Inventory</h1>
 
             {/* Where user enters information on new item */}
-            <form onSubmit={handleSubmit}>
-                <label for="name">Enter the new item name:</label>
-                <input type="text" id="name" name="name"></input>
+            <form className="add-inventory-form" onSubmit={handleSubmit}>
+                <div className="add-inventory-input">
+                    <label for="name">Enter the new item name:</label>
+                    <input type="text" id="name" name="name" />
+                </div>
 
-                <label for="quan">Enter the quantity:</label>
-                <input type="text" id="quan" name="quan"></input>
+                <div className="add-inventory-input">
+                    <label for="quan">Enter the quantity:</label>
+                    <input type="number" id="quan" name="quan" />
+                </div>
 
-                <p></p>
-                <label for="type">
-                    Choose a product type:
-                </label>
-                <select id="type">
+                <div className="add-inventory-input">
+                    <label for="type">
+                        Choose a product type:
+                    </label>
+                    <select id="type">
                         <option value="Pita">Pita</option>
                         <option value="Rice">Rice</option>
                         <option value="Protein">Protein</option>
                         <option value="Topping">Topping</option>
                         <option value="Dressing">Dressing</option>
                         <option value="Side">Side</option>
-                </select>
-                <p></p>
+                    </select>
+                </div>
 
-                <label for="serve">Enter the serving size:</label>
-                <input type="text" id="serve" name="serve"></input>
+                <div className="add-inventory-input">
+                    <label for="serve">Enter the serving size:</label>
+                    <input type="number" id="serve" name="serve" />
+                </div>
 
-                <label for="min">Enter the minimum required amount:</label>
-                <input type="text" id="min" name="min"></input>
+                <div className="add-inventory-input">
+                    <label for="min">Enter the minimum required amount:</label>
+                    <input type="number" id="min" name="min" />
+                </div>
 
-                <input type="submit" value="Submit"></input>
+                <div className="add-inventory-buttons">
+                    <button type="button" onClick={() => navigate(-1)}>Back</button>
+                    <button type="submit" value="Submit">Add Item</button>
+                </div>
             </form>
 
-            <button onClick={() => navigate(-1)}>Back</button>
-        </>
+        </div>
     );
 }

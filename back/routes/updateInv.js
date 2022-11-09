@@ -3,8 +3,6 @@ const router = express.Router();
 const conn = require("../db");
 
 router.post("/", async (req, res) => {
-    console.log(req.body);
-
     var temp = "UPDATE inventory SET ";
 
     if(req.body.quantity != ''){
@@ -22,7 +20,6 @@ router.post("/", async (req, res) => {
 
     const query = temp.substring(0, temp.length-2) + " WHERE product_id = \'" + req.body.id + "\'";
 
-    console.log(query);
 
     await conn.db.query(query);
 });

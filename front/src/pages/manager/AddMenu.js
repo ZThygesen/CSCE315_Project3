@@ -34,35 +34,42 @@ export default function AddMenu() {
     }
 
     return (
-        <>
+        <div className="add-menu-container">
             <h1>Add Menu</h1>
 
             {/* Where user enters information on new item */}
-            <form onSubmit={handleSubmit}>
-                <label for="name">Enter the new menu item name:</label>
-                <input type="text" id="name" name="name"></input>
+            <form className="add-menu-form" onSubmit={handleSubmit}>
+                <div className="add-menu-input">
+                    <label for="name">Enter the new menu item name:</label>
+                    <input type="text" id="name" name="name" />
+                </div>
 
-                <p></p>
-                <label for="type">
-                    Choose a product type:
-                </label>
-                <select id="type">
-                        <option value="Type">Type</option>
-                        <option value="Side">Side</option>
-                        <option value="Extra">Extra</option>
-                </select>
-                <p></p>
+                <div className="add-menu-input">
+                    <label for="type">
+                        Choose a product type:
+                    </label>
+                    <select id="type">
+                            <option value="Type">Type</option>
+                            <option value="Side">Side</option>
+                            <option value="Extra">Extra</option>
+                    </select>
+                </div>
 
-                <label for="price">Enter the menu price:</label>
-                <input type="text" id="price" name="price"></input>
+                <div className="add-menu-input">
+                    <label for="price">Enter the menu price:</label>
+                    <input type="text" id="price" name="price" />
+                </div>
 
-                <label for="cal">Enter the new menu item calorie/caloric range:</label>
-                <input type="text" id="cal" name="cal"></input>
+                <div className="add-menu-input">
+                    <label for="cal">Enter the new menu item calorie/caloric range:</label>
+                    <input type="text" id="cal" name="cal" />
+                </div>
 
-                <input type="submit" value="Submit"></input>
+                <div className="add-menu-buttons">
+                    <button type="button" onClick={() => navigate(-1)}>Back</button>
+                    <button type="submit" value="Submit">Add Item</button>
+                </div>
             </form>
-
-            <button onClick={() => navigate(-1)}>Back</button>
-        </>
+        </div>
     );
 }

@@ -35,41 +35,51 @@ export default function UpdateInventory() {
     }
 
     return (
-        <>
+        <div className="update-inventory-container">
             <h1>Update Inventory</h1>
 
             {/* Where the user enters the information */}
-            <form onSubmit={handleSubmit}>
+            <form className="update-inventory-form" onSubmit={handleSubmit}>
                 
                 {/* Lists the items currently in the inventory */}
-                <label for="item">
-                    Choose an item to update:
-                </label>
-                <select id="item">
-                    {
-                        inventory.map((item,i) => 
-                            <option key={i} value={item.product_id} name={item.product_name}>{item.product_name}</option>
-                        )
-                    }
-                </select>
-                <p></p>
+                <div className="update-inventory-input">
+                    <label for="item">
+                        Choose an item to update:
+                    </label>
+                    <select id="item">
+                        {
+                            inventory.map((item,i) =>
+                                <option key={i} value={item.product_id} name={item.product_name}>{item.product_name}</option>
+                            )
+                        }
+                    </select>
+                </div>
 
-                <label for="quan">Enter the quantity:</label>
-                <input type="text" id="quan" name="quan"></input>
+                <div className="update-inventory-input">
+                    <label for="quan">Enter the quantity:</label>
+                    <input type="text" id="quan" name="quan" />
+                </div>
 
-                <label for="type">Enter the product type:</label>
-                <input type="text" id="type" name="type"></input>
+                <div className="update-inventory-input">
+                    <label for="type">Enter the product type:</label>
+                    <input type="text" id="type" name="type" />
+                </div>
 
-                <label for="serve">Enter the serving size:</label>
-                <input type="text" id="serve" name="serve"></input>
+                <div className="update-inventory-input">
+                    <label for="serve">Enter the serving size:</label>
+                    <input type="text" id="serve" name="serve" />
+                </div>
 
-                <label for="min">Enter the minimum required amount:</label>
-                <input type="text" id="min" name="min"></input>
+                <div className="update-inventory-input">
+                    <label for="min">Enter the minimum required amount:</label>
+                    <input type="text" id="min" name="min" />
+                </div>
 
-                <input type="submit" value="Submit"></input>
+                <div className="update-inventory-buttons">
+                    <button type="button" onClick={() => navigate(-1)}>Back</button>
+                    <button type="submit" value="Submit">Update Item</button>
+                </div>
             </form>
-
-            <button onClick={() => navigate(-1)}>Back</button>
-        </>
+        </div>
     );
 }

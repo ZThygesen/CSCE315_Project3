@@ -72,7 +72,7 @@ export default function CreateOrder(props) {
                             navigate("/");
                         }}
                     >
-                        Cancel Order
+                        Cancel
                     </button>
                     <button onClick={submitOrder}>Checkout</button>
                 </div>

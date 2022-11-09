@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import "./ManagerNav.css";
 
 export default function ManagerNav() {
+
     const navigate = useNavigate();
 
     return (
@@ -13,5 +15,5 @@ export default function ManagerNav() {
             <button onClick={() => navigate("create-order")}>Create Order</button>
             <button onClick={() => navigate("/")}>Logout</button>
         </div>
-    )
+    );
 }
