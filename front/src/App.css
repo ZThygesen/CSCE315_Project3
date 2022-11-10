@@ -62,3 +62,13 @@ body {
     display: flex;
     gap: 20px;
 }
+.map-container {
+    width: 800px;
+    height: 600px;
+}
+
+.map-title {
+    padding: 10px;
+    text-decoration: underline;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
