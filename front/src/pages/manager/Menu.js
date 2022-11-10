@@ -38,6 +38,7 @@ export default function Menu() {
             
             <div className="menu-buttons">
                 <button onClick={() => navigate("add-menu-item")}>Add Menu Item</button>
+                <button onClick={() => navigate("remove-menu-item")}>Remove Menu Item</button>
             </div>
         </div>
     );
