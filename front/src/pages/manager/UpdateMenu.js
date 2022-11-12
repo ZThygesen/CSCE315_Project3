@@ -56,17 +56,17 @@ export default function UpdateMenu() {
                 </div>
 
                 <div className="update-menu-input">
-                    <label htmlFor="price">Enter the quantity:</label>
+                    <label htmlFor="price">Enter the price:</label>
                     <input type="text" id="price" name="price" />
                 </div>
 
                 <div className="update-menu-input">
-                    <label htmlFor="cal">Enter the product type:</label>
+                    <label htmlFor="cal">Enter the calories:</label>
                     <input type="text" id="cal" name="cal" />
                 </div>
 
                 <div className="update-menu-input">
-                    <label htmlFor="type">Enter the serving size:</label>
+                    <label htmlFor="type">Enter the product type:</label>
                     <input type="text" id="type" name="type" />
                 </div>
 
