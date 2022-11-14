@@ -9,7 +9,7 @@ export default function Home() {
     });
 
     if (!isLoaded) return <div>Loading...</div>;
-    //return <Map />;
+    
     return (
         <>
             <h1>Welcome to Pom & Honey!</h1>
@@ -26,7 +26,7 @@ export default function Home() {
 }
 
 function Map() {
-    const center = useMemo(() => ({lat: 30.612279124091536, lng: -96.34155326707841}), []); 
+    const center = useMemo(() => ({lat: 30.61227281695433, lng: -96.34128581712766}), []); 
 
     return (
         <GoogleMap
@@ -34,7 +34,7 @@ function Map() {
                 center={center}
                 mapContainerClassName="map-container"
             >
-                <Marker position= {center} />
+                <Marker position= {center}/>
             </GoogleMap>
     );
 }
