@@ -38,17 +38,3 @@ function Map() {
             </GoogleMap>
     );
 }
-
-// {/* <h1>We are located in the MSC!</h1>
-//             <LoadScript
-//                 googleMapsApiKey="AIzaSyCNNtfx44impW9Ii9Rq26p6D6E05cQNyvk"
-//             >
-//                 <GoogleMap
-//                     mapContainerStyle={containerStyle}
-//                     center={center}
-//                     zoom={10}
-//                 >
-//           { /* Child components, such as markers, info windows, etc. */ }
-//           <></>
-//         </GoogleMap>
-//       </LoadScript> */}
