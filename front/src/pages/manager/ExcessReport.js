@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 var whattest = [];
 export default function ExcessReport() {
@@ -15,32 +15,31 @@ export default function ExcessReport() {
     function handleSubmit() {
         //e.preventDefault();
 
-        // const startDate = document.getElementById("start").value;
-        // const endDate = document.getElementById("end").value;
-        const start = "2022-10-16";
-        const end = "2022-12-05"; 
+        const start = document.getElementById("start").value;
+        const end = document.getElementById("end").value;
+        //var start = '2022-10-16';
+        //var end ='2022-12-05'; 
 
         if(start === '' || end === ''){
             alert("Please enter all the fields")
         } else {
 
             fetch("/api/excessReport", {
-                method: "GET",
+                method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ start: start, end: end})
+                body: JSON.stringify({ start: start, end: end })
             })
                 .then(res => res.json())
                 .then(excessReport => setExcessReport(excessReport.excessReport))
-            
-            alert("Update sent");
         }
     }
 
     function getExcess(item) {
+        whattest = [];
         for (let i = 0; i < item.length; i++) {
             var numItemsSold = Number(item[i].total_servings) * item[i].serving_size;
-            if ((numItemsSold / (item[i].total_quantity+numItemsSold)) < 0.1) {
-                
+            if ((numItemsSold / (item[i].total_quantity + numItemsSold)) < 0.1) {
+                console.log("ITEM INFO: " + item[i].product_name + (numItemsSold / (item[i].total_quantity + numItemsSold)));
                 whattest.push(item[i].product_name);
             }
             
@@ -70,6 +69,10 @@ export default function ExcessReport() {
                 <button onClick={() => {
                     dualFunction();
                 }}> Generate Excess Report </button>
+                <button onClick={() => {
+                    whattest = [];
+                    console.log(whattest);
+                }}> Clear Excess Report </button>
             </div>
             
             <table className="excessReport-table">
@@ -79,15 +82,15 @@ export default function ExcessReport() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {
+                    {
                         whattest.map(item => {
                             return (
                                 <tr key = {item.product_name}>
-                                    <td>[item.product_name</td>
+                                    <td>{item}</td>
                                 </tr>
                             );
                         })
-                    } */}
+                    }
                 </tbody>
             </table>
         </div>
