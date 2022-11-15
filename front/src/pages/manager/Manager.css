@@ -10,7 +10,8 @@
 }
 
 .inventory-container,
-.menu-container {
+.menu-container,
+.excessReport-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,7 +20,8 @@
 }
 
 .inventory-table,
-.menu-table {
+.menu-table,
+.excessReport-table {
     padding: 20px;
     background-color: var(--table-background);
     border-color: white;
