@@ -40,6 +40,7 @@
 .inventory-buttons button,
 .menu-buttons button,
 .add-inventory-buttons button,
+.excess-report-buttons button,
 .remove-inventory-buttons button,
 .update-inventory-buttons button,
 .add-menu-buttons button {
@@ -56,6 +57,7 @@
 .inventory-buttons button:hover,
 .menu-buttons button:hover,
 .add-inventory-buttons button:hover,
+.excess-report-buttons button:hover,
 .remove-inventory-buttons button:hover,
 .update-inventory-buttons button:hover,
 .add-menu-buttons button:hover {
