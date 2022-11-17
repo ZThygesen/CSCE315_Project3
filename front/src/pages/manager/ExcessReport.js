@@ -10,9 +10,8 @@ export default function ExcessReport() {
 
         const start = document.getElementById("start").value;
         const end = document.getElementById("end").value;
-        //var start = '2022-10-16';
-        //var end ='2022-12-05'; 
-        console.log("here")
+
+        console.log(excessReport)
 
         if(start === '' || end === ''){
             alert("Please enter all the fields")
@@ -25,25 +24,25 @@ export default function ExcessReport() {
             })
                 .then(res => res.json())
                 .then(excessReport => {
-                    setExcessReport(excessReport.excessReport);
-                    getExcess(excessReport);  
+                    setExcessReport(excessReport.excessReport)
+                    getExcess(excessReport);
                 });
         }
     }
 
     function getExcess(item) {
-        whattest = [];
-        for (let i = 0; i < item.length; i++) {
-            var numItemsSold = Number(item[i].total_servings) * item[i].serving_size;
-            if ((numItemsSold / (item[i].total_quantity + numItemsSold)) < 0.1) {
-                console.log("ITEM INFO: " + item[i].product_name + (numItemsSold / (item[i].total_quantity + numItemsSold)));
-                whattest.push(item[i].product_name);
+        console.log(item)
+        item.map((element, i) => {
+            var numItemsSold = Number(element.total_servings) * element.serving_size;
+            if ((numItemsSold / (element.total_quantity + numItemsSold)) < 0.1) {
+                console.log("ITEM INFO: " + element.product_name + (numItemsSold / (element.total_quantity + numItemsSold)));
+                whattest.push(element.product_name);
+                
             }
-            
-        }
+            return whattest;
+        }, {});
         
         console.log(whattest);
-        return whattest;
     }
 
     return (
@@ -52,12 +51,12 @@ export default function ExcessReport() {
                 <h1>Excess Report</h1>
                 <div className="excess-report-input">
                         <label htmlFor="start">Enter the start date:</label>
-                        <input type="date" id="start" name="start" />
+                        <input type="date" id="start" name="start" value="2022-09-06" />
                 </div>
 
                 <div className="excess-report-input">
                     <label htmlFor="end">Enter the end date:</label>
-                    <input type="date" id="end" name="end" />
+                    <input type="date" id="end" name="end" value="2022-09-10"/>
                 </div>
 
                 <div className="excess-report-buttons">
