@@ -23,6 +23,7 @@
 .inventory-table,
 .menu-table,
 .excessReport-table {
+    margin-top: 20px;
     padding: 20px;
     background-color: var(--table-background);
     border-color: white;
@@ -53,6 +54,7 @@
     padding: 5px 10px;
     font-size: 22px;
     transition: all 0.1s;
+    margin-inline: 20px;
 }
 
 .inventory-buttons button:hover,
@@ -81,6 +83,7 @@
 .add-inventory-form,
 .remove-inventory-form,
 .update-inventory-form,
+.expressReport-form,
 .add-menu-form {
     display: flex;
     flex-direction: column;
