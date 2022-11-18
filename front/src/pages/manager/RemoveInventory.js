@@ -47,7 +47,7 @@ export default function RemoveInventory() {
 
     return (
         <div className="remove-inventory-container">
-            {<Modal isVisible={isLoading} body={ <LoadingSpinner /> } />}
+            <Modal isVisible={isLoading} body={ <LoadingSpinner /> } />
             {initialLoading ? <></> :
                 <>
                     <h1>Remove Inventory</h1>

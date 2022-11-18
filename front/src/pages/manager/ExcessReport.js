@@ -1,8 +1,10 @@
 import { useState } from "react";
+import Modal from "../../components/Modal";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 export default function ExcessReport() {
-
-    var [excessItems, setExcessItems] = useState([{}]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [excessItems, setExcessItems] = useState([{}]);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -17,7 +19,7 @@ export default function ExcessReport() {
             alert("Invalid Dates")
         }
         else {
-
+            setIsLoading(true);
             fetch("/api/excessReport", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -25,14 +27,15 @@ export default function ExcessReport() {
             })
                 .then(res => res.json())
                 .then(excessItems => {
-                    setExcessItems(excessItems.excessItems)
-                    console.log(excessItems)
+                    setIsLoading(false);
+                    setExcessItems(excessItems.excessItems);
                 });
         }
     }
 
     return (
         <div className="excessReport-container">
+            <Modal isVisible={isLoading} body={ <LoadingSpinner /> } />
             <form className="expressReport-form" onSubmit={handleSubmit}>
                 <h1>Excess Report</h1>
                 <div className="excess-report-input">

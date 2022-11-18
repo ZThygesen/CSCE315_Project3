@@ -52,7 +52,7 @@ export default function UpdateInventory() {
 
     return (
         <div className="update-inventory-container">
-            {<Modal isVisible={isLoading} body={ <LoadingSpinner />} />}
+            <Modal isVisible={isLoading} body={ <LoadingSpinner />} />
             {initialLoading ? <></> :
                 <>
                     <h1>Update Inventory</h1>

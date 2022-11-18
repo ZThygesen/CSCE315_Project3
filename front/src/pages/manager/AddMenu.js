@@ -42,7 +42,7 @@ export default function AddMenu() {
 
     return (
         <div className="add-menu-container">
-            {<Modal isVisible={isLoading} body={<LoadingSpinner />} />}
+            <Modal isVisible={isLoading} body={<LoadingSpinner />} />
             <h1>Add Menu</h1>
             {/* Where user enters information on new item */}
             <form className="add-menu-form" onSubmit={handleSubmit}>

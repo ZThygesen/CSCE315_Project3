@@ -43,7 +43,7 @@ export default function AddInventory() {
 
     return (
         <div className="add-inventory-container">
-            {<Modal isVisible={isLoading} body={<LoadingSpinner />} />}
+            <Modal isVisible={isLoading} body={<LoadingSpinner />} />
             <h1>Add Inventory</h1>
             {/* Where user enters information on new item */}
             <form className="add-inventory-form" onSubmit={handleSubmit}>
