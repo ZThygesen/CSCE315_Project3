@@ -19,7 +19,7 @@ export default function ServerRoutes() {
     useEffect(() => {
         fetch("/api/order-items")
             .then(res => res.json())
-            .then(test => setItems(test));
+            .then(items => setItems(items));
     }, []);
 
     function addOrderItem(item) {

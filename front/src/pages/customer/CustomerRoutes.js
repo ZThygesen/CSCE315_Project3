@@ -3,9 +3,13 @@ import CreateOrder from "./CreateOrder";
 import BuildBowl from "./BuildBowl";
 import BuildGyro from "./BuildGyro";
 import Sides from "./Sides";
+import Modal from "../../components/Modal";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import "../CreateOrder.css";
 
 export default function CustomerRoutes() {
+    const [isLoading, setIsLoading] = useState(false);
+
     const [isMainPage, setIsMainPage] = useState(true)
     const [isBowlPage, setIsBowlPage] = useState(false);
     const [isGyroPage, setIsGyroPage] = useState(false);
@@ -16,10 +20,34 @@ export default function CustomerRoutes() {
     const [orderItems, setOrderItems] = useState([]);
     const [editItem, setEditItem] = useState(undefined);
 
+    const customStyles = {
+        content: {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+            backgroundColor: "grey",
+            width: 400,
+        },
+    };
+
     useEffect(() => {
+        setIsLoading(true);
         fetch("/api/order-items")
             .then(res => res.json())
-            .then(test => setItems(test));
+            .then(items => {
+                /* setItems(items);
+                setIsLoading(false); */
+                setTimeout(() => {
+                    setItems(items);
+                    setIsLoading(false);
+                }, 250);
+            });
     }, []);
 
     function addOrderItem(item) {
@@ -87,24 +115,30 @@ export default function CustomerRoutes() {
 
     return (
         <>
-            {isMainPage &&
-                <CreateOrder
-                    orderItems={orderItems}
-                    changePage={changePage}
-                    removeOrderItem={removeOrderItem}
-                    editOrderItem={editOrderItem}
-                    clearOrder={clearOrder}
-                    orderTypes={items.menuItems}
-                />
-            }
-            {isBowlPage && <BuildBowl items={items} addBowl={addOrderItem} editItem={editItem} />}
-            {isGyroPage && <BuildGyro items={items} addGyro={addOrderItem} editItem={editItem} />}
-            {isSidePage &&
-                <Sides
-                    items={items.menuItems.filter(item => item.product_type === "Side")}
-                    addSide={addOrderItem}
-                    editItem={editItem}
-                />
+            <Modal isVisible={isLoading} body={<LoadingSpinner />} />
+        
+            {isLoading ? <></> :   
+                <>
+                    {isMainPage &&
+                        <CreateOrder
+                            orderItems={orderItems}
+                            changePage={changePage}
+                            removeOrderItem={removeOrderItem}
+                            editOrderItem={editOrderItem}
+                            clearOrder={clearOrder}
+                            orderTypes={items.menuItems}
+                        />
+                    }
+                    {isBowlPage && <BuildBowl items={items} addBowl={addOrderItem} editItem={editItem} />}
+                    {isGyroPage && <BuildGyro items={items} addGyro={addOrderItem} editItem={editItem} />}
+                    {isSidePage &&
+                        <Sides
+                            items={items.menuItems.filter(item => item.product_type === "Side")}
+                            addSide={addOrderItem}
+                            editItem={editItem}
+                        />
+                    }
+                </>
             }
         </>
     )
