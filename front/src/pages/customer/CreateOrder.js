@@ -1,8 +1,13 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import OrderItem from "../../components/OrderItem.js";
+import Modal from "../../components/Modal";
+import LoadingSpinner from "../../components/LoadingSpinner.js";
 
 export default function CreateOrder(props) {
     const navigate = useNavigate();
+
+    const [isLoading, setIsLoading] = useState(false);
 
     let bowlPrice;
     let gyroPrice;
@@ -27,6 +32,7 @@ export default function CreateOrder(props) {
             return;
         }
 
+        setIsLoading(true);
         fetch("/api/submit-order", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -34,6 +40,7 @@ export default function CreateOrder(props) {
         })
             .then(res => res.json())
             .then(res => {
+                setIsLoading(false);
                 alert(res);
                 props.clearOrder();
                 navigate("/");
@@ -41,56 +48,59 @@ export default function CreateOrder(props) {
     }
 
     return (
-        <div className="create-order-container">
-            <div className="left">
-                <p className="create-order-title">Current Order</p>
-                <div className="current-order-container">
-                    <div className="current-order-labels">
-                        <p className="order-item-label">Item</p>
-                        <p>Price</p>
+        <>
+            <Modal isVisible={isLoading} full={true} body={<LoadingSpinner />} />
+            <div className="create-order-container">
+                <div className="left">
+                    <p className="create-order-title">Current Order</p>
+                    <div className="current-order-container">
+                        <div className="current-order-labels">
+                            <p className="order-item-label">Item</p>
+                            <p>Price</p>
+                        </div>
+                        <div className="current-order-items-container">
+                            {
+                                props.orderItems.map((item, i) => (
+                                    <OrderItem
+                                        key={i}
+                                        item={item}
+                                        editOrderItem={props.editOrderItem}
+                                        removeOrderItem={props.removeOrderItem}
+                                    />
+                                ))
+                            }
+                        </div>
+                        <div className="current-order-price">
+                            Total: ${calculatePrice()}
+                        </div>
                     </div>
-                    <div className="current-order-items-container">
-                        {
-                            props.orderItems.map((item, i) => (
-                                <OrderItem
-                                    key={i}
-                                    item={item}
-                                    editOrderItem={props.editOrderItem}
-                                    removeOrderItem={props.removeOrderItem}
-                                />
-                            ))
-                        }
-                    </div>
-                    <div className="current-order-price">
-                        Total: ${calculatePrice()}
+                    <div className="order-buttons-container">
+                        <button
+                            onClick={() => {
+                                props.clearOrder();
+                                navigate("/");
+                            }}
+                        >
+                            Cancel
+                        </button>
+                        <button onClick={submitOrder}>Checkout</button>
                     </div>
                 </div>
-                <div className="order-buttons-container">
-                    <button
-                        onClick={() => {
-                            props.clearOrder();
-                            navigate("/");
-                        }}
-                    >
-                        Cancel
-                    </button>
-                    <button onClick={submitOrder}>Checkout</button>
+                <div className="right">
+                    <p className="create-order-title">Add Items</p>
+                    <div className="add-items-container customer">
+                        <button
+                            onClick={() => props.changePage("Bowl")}>
+                            Build a Bowl<br /><span className="bowl-price">${bowlPrice}</span>
+                        </button>
+                        <button
+                            onClick={() => props.changePage("Gyro")}>
+                            Build a Gyro<br /><span className="gyro-price">${gyroPrice}</span>
+                        </button>
+                        <button onClick={() => props.changePage("Side")}>Sides</button>
+                    </div>
                 </div>
             </div>
-            <div className="right">
-                <p className="create-order-title">Add Items</p>
-                <div className="add-items-container customer">
-                    <button
-                        onClick={() => props.changePage("Bowl")}>
-                        Build a Bowl<br /><span className="bowl-price">${bowlPrice}</span>
-                    </button>
-                    <button
-                        onClick={() => props.changePage("Gyro")}>
-                        Build a Gyro<br /><span className="gyro-price">${gyroPrice}</span>
-                    </button>
-                    <button onClick={() => props.changePage("Side")}>Sides</button>
-                </div>
-            </div>
-        </div>
+        </>
     );
 }

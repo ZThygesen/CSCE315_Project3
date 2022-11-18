@@ -7,6 +7,8 @@ router.post("/", async (req, res) => {
         "'" + req.body.id + "', '" + req.body.name + "', '" + req.body.type + "', " + req.body.quantity + ", " + req.body.serve + ", " + req.body.onhand + ")";
 
     await conn.db.query(query);
+
+    res.json("Item added successfully!");
 });
 
 module.exports = router;
