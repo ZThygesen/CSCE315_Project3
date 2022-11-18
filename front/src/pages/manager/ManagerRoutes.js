@@ -18,7 +18,11 @@ export default function ManagerRoutes() {
                 <Route path="sales-report" element={<SalesReport />} />
                 <Route path="excess-report" element={<ExcessReport />} />
                 <Route path="restock-report" element={<RestockReport />} />
-                <Route path="create-order/*" element={<ServerRoutes />} />
+                <Route path="create-order/*" element={
+                    <div className="manager-create-order-container">
+                        <ServerRoutes manager={true} />
+                    </div>
+                } />
                 <Route path="*" element={<Navigate to="inventory" replace />} />
             </Routes>
         </div>

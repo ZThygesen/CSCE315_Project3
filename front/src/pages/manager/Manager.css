@@ -10,7 +10,8 @@
 
 .inventory-container,
 .menu-container,
-.excessReport-container {
+.excessReport-container,
+.manager-create-order-container {
     position: relative;
     display: flex;
     flex-direction: column;

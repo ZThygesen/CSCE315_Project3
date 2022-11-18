@@ -3,9 +3,13 @@ import EmployeeCreateOrder from "./EmployeeCreateOrder";
 import EmployeeBuildBowl from "./EmployeeBuildBowl";
 import EmployeeBuildGyro from "./EmployeeBuildGyro";
 import EmployeeSides from "./EmployeeSides";
+import Modal from "../../components/Modal";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import "../CreateOrder.css";
 
-export default function ServerRoutes() {
+export default function ServerRoutes(props) {
+    const [isLoading, setIsLoading] = useState(true);
+
     const [isMainPage, setIsMainPage] = useState(true)
     const [isBowlPage, setIsBowlPage] = useState(false);
     const [isGyroPage, setIsGyroPage] = useState(false);
@@ -16,10 +20,19 @@ export default function ServerRoutes() {
     const [orderItems, setOrderItems] = useState([]);
     const [editItem, setEditItem] = useState(undefined);
 
+    const managerMode = props.manager === undefined ? false : true;
+    console.log(managerMode);
+
     useEffect(() => {
+        setIsLoading(true);
         fetch("/api/order-items")
             .then(res => res.json())
-            .then(items => setItems(items));
+            .then(items => {
+                setTimeout(() => {
+                    setItems(items);
+                    setIsLoading(false);
+                }, 250);
+            });
     }, []);
 
     function addOrderItem(item) {
@@ -87,23 +100,29 @@ export default function ServerRoutes() {
 
     return (
         <>
-            {isMainPage &&
-                <EmployeeCreateOrder
-                    orderItems={orderItems}
-                    changePage={changePage}
-                    removeOrderItem={removeOrderItem}
-                    editOrderItem={editOrderItem}
-                    clearOrder={clearOrder}
-                />
-            }
-            {isBowlPage && <EmployeeBuildBowl items={items} addBowl={addOrderItem} editItem={editItem} />}
-            {isGyroPage && <EmployeeBuildGyro items={items} addGyro={addOrderItem} editItem={editItem} />}
-            {isSidePage &&
-                <EmployeeSides
-                    items={items.menuItems.filter(item => item.product_type === "Side")}
-                    addSide={addOrderItem}
-                    editItem={editItem}
-                />
+            <Modal isVisible={isLoading} full={!managerMode} body={<LoadingSpinner />} />
+
+            {isLoading ? <></> :
+                <>
+                    {isMainPage &&
+                        <EmployeeCreateOrder
+                            orderItems={orderItems}
+                            changePage={changePage}
+                            removeOrderItem={removeOrderItem}
+                            editOrderItem={editOrderItem}
+                            clearOrder={clearOrder}
+                        />
+                    }
+                    {isBowlPage && <EmployeeBuildBowl items={items} addBowl={addOrderItem} editItem={editItem} />}
+                    {isGyroPage && <EmployeeBuildGyro items={items} addGyro={addOrderItem} editItem={editItem} />}
+                    {isSidePage &&
+                        <EmployeeSides
+                            items={items.menuItems.filter(item => item.product_type === "Side")}
+                            addSide={addOrderItem}
+                            editItem={editItem}
+                        />
+                    }
+                </>
             }
         </>
     )

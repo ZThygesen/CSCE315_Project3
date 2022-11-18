@@ -25,8 +25,6 @@ export default function CustomerRoutes() {
         fetch("/api/order-items")
             .then(res => res.json())
             .then(items => {
-                /* setItems(items);
-                setIsLoading(false); */
                 setTimeout(() => {
                     setItems(items);
                     setIsLoading(false);
