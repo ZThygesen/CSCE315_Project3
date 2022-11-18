@@ -3,7 +3,6 @@
     display: grid;
     flex: 1;
     grid-template-columns: 350px 1fr;
-    column-gap: 20px;
     justify-items: center;
     width: 100%;
     height: 100%;
@@ -12,18 +11,19 @@
 .inventory-container,
 .menu-container,
 .excessReport-container {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow-y: auto;
-    
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .inventory-table,
 .menu-table,
 .excessReport-table {
-    margin-top: 20px;
     padding: 20px;
     background-color: var(--table-background);
     border-color: white;
@@ -74,10 +74,12 @@
 .remove-inventory-container,
 .update-inventory-container,
 .add-menu-container {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 8vh;
+    justify-content: center;
+    width: 100%;
 }
 
 .add-inventory-form,

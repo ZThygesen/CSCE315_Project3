@@ -22,6 +22,8 @@ router.post("/", async (req, res) => {
 
 
     await conn.db.query(query);
+
+    res.json("Item updated successfully!");
 });
 
 module.exports = router;

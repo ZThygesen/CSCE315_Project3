@@ -8,7 +8,7 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import "../CreateOrder.css";
 
 export default function CustomerRoutes() {
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const [isMainPage, setIsMainPage] = useState(true)
     const [isBowlPage, setIsBowlPage] = useState(false);
@@ -19,22 +19,6 @@ export default function CustomerRoutes() {
 
     const [orderItems, setOrderItems] = useState([]);
     const [editItem, setEditItem] = useState(undefined);
-
-    const customStyles = {
-        content: {
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            top: "50%",
-            left: "50%",
-            right: "auto",
-            bottom: "auto",
-            marginRight: "-50%",
-            transform: "translate(-50%, -50%)",
-            backgroundColor: "grey",
-            width: 400,
-        },
-    };
 
     useEffect(() => {
         setIsLoading(true);
@@ -115,7 +99,7 @@ export default function CustomerRoutes() {
 
     return (
         <>
-            <Modal isVisible={isLoading} body={<LoadingSpinner />} />
+            <Modal isVisible={isLoading} full={true} body={<LoadingSpinner />} />
         
             {isLoading ? <></> :   
                 <>

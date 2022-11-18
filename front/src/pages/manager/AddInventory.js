@@ -1,8 +1,13 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import uuid from 'react-uuid';
+import Modal from "../../components/Modal";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 export default function AddInventory() {
     const navigate = useNavigate();
+
+    const [isLoading, setIsLoading] = useState(false);
 
     //What happens when the user clicks submit
     function handleSubmit(e) {
@@ -22,22 +27,24 @@ export default function AddInventory() {
         if(name === '' || quantity === '' || type === '' || serve === "" || minimum === '' ){
             alert("Please enter all the fields")
         } else {
-
+            setIsLoading(true);
             fetch("/api/add-inv", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name: name, id: id, quantity: quantity, type: type, serve: serve, onhand: minimum })
             })
                 .then(res => res.json())
-            
-            alert("Update sent");
+                .then(res => {
+                    setIsLoading(false);
+                    alert(res);
+                });
         }
     }
 
     return (
         <div className="add-inventory-container">
+            {<Modal isVisible={isLoading} body={<LoadingSpinner />} />}
             <h1>Add Inventory</h1>
-
             {/* Where user enters information on new item */}
             <form className="add-inventory-form" onSubmit={handleSubmit}>
                 <div className="add-inventory-input">
@@ -79,7 +86,6 @@ export default function AddInventory() {
                     <button type="submit" value="Submit">Add Item</button>
                 </div>
             </form>
-
         </div>
     );
 }

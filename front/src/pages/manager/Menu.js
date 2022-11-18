@@ -1,44 +1,58 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Modal from "../../components/Modal";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 export default function Menu() {
     const navigate = useNavigate();
 
+    const [isLoading, setIsLoading] = useState(true);
+
     const [menu, setMenu] = useState([{}]);
 
     useEffect(() => {
+        setIsLoading(true);
         fetch("/api/menu")
             .then(res => res.json())
-            .then(menu => setMenu(menu.menu));
+            .then(menu => {
+                setTimeout(() => {
+                    setMenu(menu.menu);
+                    setIsLoading(false);
+                }, 250);
+            });
     }, []);
 
     return (
         <div className="menu-container">
-            <h1>Menu</h1>
-            <table className="menu-table">
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Price</th>
-                        <th>Calories</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        menu.map((item, i) => (
-                            <tr key={i}>
-                                <td>{item.product_name}</td>
-                                <td>{item.price}</td>
-                                <td>{item.calories}</td>
+            <Modal isVisible={isLoading} body={<LoadingSpinner />} />
+            {isLoading ? <></> :
+                <>
+                    <h1>Menu</h1>
+                    <table className="menu-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Price</th>
+                                <th>Calories</th>
                             </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
-            
-            <div className="menu-buttons">
-                <button onClick={() => navigate("add-menu-item")}>Add Menu Item</button>
-            </div>
+                        </thead>
+                        <tbody>
+                            {
+                                menu.map((item, i) => (
+                                    <tr key={i}>
+                                        <td>{item.product_name}</td>
+                                        <td>{item.price}</td>
+                                        <td>{item.calories}</td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                    <div className="menu-buttons">
+                        <button onClick={() => navigate("add-menu-item")}>Add Menu Item</button>
+                    </div>
+                </>
+            }
         </div>
     );
 }
