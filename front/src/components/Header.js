@@ -4,7 +4,6 @@ import "./Header.css";
 import { GoogleTranslate } from "./GoogleTranslate";
 
 export default function Header() {
-    const google = window.google
 
     return (
         <header>

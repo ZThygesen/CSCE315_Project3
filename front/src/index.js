@@ -11,7 +11,7 @@ root.render(
         </BrowserRouter>
     </React.StrictMode>
 );
-
+/*
 route.post('/', (req, res) => {
     var q = req.body.q;
     console.log(q);
@@ -26,4 +26,4 @@ route.post('/', (req, res) => {
     console.log(body);
     res.send(body);
     });
-})
+})*/
