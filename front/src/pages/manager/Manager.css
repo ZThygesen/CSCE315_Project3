@@ -45,7 +45,9 @@
 .excess-report-buttons button,
 .remove-inventory-buttons button,
 .update-inventory-buttons button,
-.add-menu-buttons button {
+.add-menu-buttons button,
+.remove-menu-buttons button,
+.update-menu-buttons button {
     border-style: none;
     background-color: var(--secondary-color);
     color: var(--primary-color);
@@ -63,7 +65,9 @@
 .excess-report-buttons button:hover,
 .remove-inventory-buttons button:hover,
 .update-inventory-buttons button:hover,
-.add-menu-buttons button:hover {
+.add-menu-buttons button:hover,
+.remove-menu-buttons button:hover,
+.update-menu-buttons button:hover {
     cursor: pointer;
     background-color: var(--primary-color);
     color: var(--font-color);
@@ -73,7 +77,9 @@
 .add-inventory-container,
 .remove-inventory-container,
 .update-inventory-container,
-.add-menu-container {
+.add-menu-container,
+.remove-menu-container,
+.update-menu-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -84,7 +90,9 @@
 .remove-inventory-form,
 .update-inventory-form,
 .expressReport-form,
-.add-menu-form {
+.add-menu-form,
+.remove-menu-form,
+.update-menu-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -94,7 +102,9 @@
 .add-inventory-input,
 .remove-inventory-input,
 .update-inventory-input,
-.add-menu-input {
+.add-menu-input,
+.remove-menu-input,
+.update-menu-input {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -103,7 +113,9 @@
 .add-inventory-buttons,
 .remove-inventory-buttons,
 .update-inventory-buttons,
-.add-menu-buttons {
+.add-menu-buttons,
+.remove-menu-buttons,
+.update-menu-buttons {
     display: flex;
     gap: 20px;
 }
@@ -111,6 +123,8 @@
 .add-inventory-buttons button,
 .remove-inventory-buttons button,
 .update-inventory-buttons button,
-.add-menu-buttons button {
+.add-menu-buttons button,
+.remove-menu-buttons button,
+.update-menu-buttons button {
     font-size: 18px;
 }

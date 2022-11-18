@@ -11,6 +11,8 @@ const addInv = require("./routes/addInv");
 const removeInv = require("./routes/removeInv");
 const addMenu = require("./routes/addMenu");
 const excessReport = require("./routes/excessReport");
+const removeMenu = require("./routes/removeMenu");
+const updateMenu = require("./routes/updateMenu");
 
 app.use(express.json());
 app.use("/api/order-items", orderItems);
@@ -22,6 +24,8 @@ app.use("/api/add-inv", addInv);
 app.use("/api/remove-inv", removeInv);
 app.use("/api/add-menu", addMenu);
 app.use("/api/excessReport", excessReport);
+app.use("/api/remove-menu", removeMenu);
+app.use("/api/update-menu", updateMenu);
 
 app.listen(port, () => {console.log(`Server started on port ${port}`)});
 

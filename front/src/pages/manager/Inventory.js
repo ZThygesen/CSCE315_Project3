@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+//import {Translator, Translate} from 'react-auto-translate';
 
 export default function Inventory() {
     const navigate = useNavigate();
