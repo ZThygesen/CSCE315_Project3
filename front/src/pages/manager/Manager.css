@@ -11,6 +11,7 @@
 .inventory-container,
 .menu-container,
 .excessReport-container,
+.sales-report-container,
 .manager-create-order-container {
     position: relative;
     display: flex;
@@ -22,9 +23,26 @@
     box-sizing: border-box;
 }
 
+.sales-report-date-pickers {
+    display: flex;
+    gap: 20px;
+}
+
+.sales-report-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sales-report-buttons {
+    margin-bottom: 20px;
+}
+
 .inventory-table,
 .menu-table,
-.excessReport-table {
+.excessReport-table,
+.sales-report-table {
     padding: 20px;
     background-color: var(--table-background);
     border-color: white;
@@ -44,6 +62,7 @@
 .menu-buttons button,
 .add-inventory-buttons button,
 .excess-report-buttons button,
+.sales-report-buttons button,
 .remove-inventory-buttons button,
 .update-inventory-buttons button,
 .add-menu-buttons button,
@@ -64,6 +83,7 @@
 .menu-buttons button:hover,
 .add-inventory-buttons button:hover,
 .excess-report-buttons button:hover,
+.sales-report-buttons button:hover,
 .remove-inventory-buttons button:hover,
 .update-inventory-buttons button:hover,
 .add-menu-buttons button:hover,
@@ -94,6 +114,7 @@
 .remove-inventory-form,
 .update-inventory-form,
 .expressReport-form,
+.sales-report-form,
 .add-menu-form,
 .remove-menu-form,
 .update-menu-form {

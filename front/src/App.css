@@ -25,6 +25,11 @@ body {
     justify-content: center;
 }
 
+.react-date-picker__calendar--open,
+.react-date-picker__calendar--closed {
+    position: absolute;
+}
+
 /* -------------- Home and Employee Pages -------------- */
 .home-buttons {
     display: flex;

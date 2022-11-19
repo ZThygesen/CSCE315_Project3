@@ -11,6 +11,7 @@ const addInv = require("./routes/addInv");
 const removeInv = require("./routes/removeInv");
 const addMenu = require("./routes/addMenu");
 const excessReport = require("./routes/excessReport");
+const salesReport = require("./routes/salesReport");
 const removeMenu = require("./routes/removeMenu");
 const updateMenu = require("./routes/updateMenu");
 
@@ -24,6 +25,7 @@ app.use("/api/add-inv", addInv);
 app.use("/api/remove-inv", removeInv);
 app.use("/api/add-menu", addMenu);
 app.use("/api/excessReport", excessReport);
+app.use("/api/sales-report", salesReport);
 app.use("/api/remove-menu", removeMenu);
 app.use("/api/update-menu", updateMenu);
 
