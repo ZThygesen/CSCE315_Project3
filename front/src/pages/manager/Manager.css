@@ -12,6 +12,7 @@
 .menu-container,
 .excessReport-container,
 .sales-report-container,
+.restock-report-container,
 .manager-create-order-container {
     position: relative;
     display: flex;
@@ -45,7 +46,9 @@
 .inventory-table,
 .menu-table,
 .excessReport-table,
-.sales-report-table {
+.sales-report-table,
+.restock-report-table,
+.excessReport-table {
     padding: 20px;
     background-color: var(--table-background);
     border-color: white;
@@ -66,6 +69,7 @@
 .add-inventory-buttons button,
 .excess-report-buttons button,
 .sales-report-buttons button,
+.restock-report-buttons button,
 .remove-inventory-buttons button,
 .update-inventory-buttons button,
 .add-menu-buttons button,
@@ -87,6 +91,7 @@
 .add-inventory-buttons button:hover,
 .excess-report-buttons button:hover,
 .sales-report-buttons button:hover,
+.restock-report-buttons button:hover,
 .remove-inventory-buttons button:hover,
 .update-inventory-buttons button:hover,
 .add-menu-buttons button:hover,
