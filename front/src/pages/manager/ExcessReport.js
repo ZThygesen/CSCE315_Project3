@@ -9,7 +9,7 @@ export default function ExcessReport() {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
 
-    const [items, setItems] = useState([{}]);
+    const [items, setItems] = useState([]);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -69,23 +69,24 @@ export default function ExcessReport() {
                     }}>Clear</button>
                 </div>
             </form>
-            
-            <table className="excess-report-table">
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        items.map((item, i) => (
-                            <tr key={i}>
-                                <td>{item.product_name}</td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
+            {items.length === 0 ? <div>No items in excess for the defined time period.</div> :
+                <table className="excess-report-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            items.map((item, i) => (
+                                <tr key={i}>
+                                    <td>{item.product_name}</td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </table>
+            }
         </div> 
     );
 }

@@ -21,7 +21,6 @@ export default function ServerRoutes(props) {
     const [editItem, setEditItem] = useState(undefined);
 
     const managerMode = props.manager === undefined ? false : true;
-    console.log(managerMode);
 
     useEffect(() => {
         setIsLoading(true);

@@ -9,7 +9,7 @@ export default function SalesReport() {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
 
-    const [items, setItems] = useState([{}]);
+    const [items, setItems] = useState([]);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -69,25 +69,26 @@ export default function SalesReport() {
                     }}>Clear</button>
                 </div>
             </form>
-            
-            <table className="sales-report-table">
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Total Sales</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        items.map((item, i) => (
-                            <tr key={i}>
-                                <td>{item.product_name}</td>
-                                <td>{item.total_servings}</td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
+            {items.length === 0 ? <div>No sales for the defined time period.</div> :
+                <table className="sales-report-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Total Sales</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            items.map((item, i) => (
+                                <tr key={i}>
+                                    <td>{item.product_name}</td>
+                                    <td>{item.total_servings}</td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </table>
+            }
         </div>   
     );
 }
