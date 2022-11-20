@@ -19,19 +19,24 @@ export default function SalesReport() {
             alert("Invalid Dates");
             return;
         }
-        
+
+        setItems([]);
+
         setIsLoading(true);
         fetch("/api/sales-report", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ startDate: startDate, endDate: endDate })
+            body: JSON.stringify(
+                {
+                    start: startDate,
+                    end: endDate
+                })
         })
             .then(res => res.json())
             .then(items => {
                 setIsLoading(false);
                 setItems(items.items);
-            });
-        
+            });  
     }
 
     return (
