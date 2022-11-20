@@ -1,32 +1,35 @@
 const express = require("express");
 const router = express.Router();
 const conn = require("../db");
-var excessItems = [];
+
+function pad(num) {
+    return (num < 10 ? "0" : "") + num;
+}
 
 router.post("/", async(req, res) => {
-    var start = req.body.start;
-    var end = req.body.end; 
-    console.log("START: " + req.body.start + " END: " + req.body.end);
-    const query = "SELECT inventory.product_name, COUNT(*) AS total_servings, inventory.total_quantity," + 
-    "inventory.serving_size FROM inventory, order_product, orders WHERE inventory.product_id = order_product.product_id AND orders.order_id = " +
-    "order_product.order_id AND orders.order_date BETWEEN '" + start + "' AND '" + end + 
-    "' GROUP BY inventory.product_name, inventory.total_quantity, inventory.serving_size";
-    excessReport = await conn.db.query(query);
+    const startDate = new Date(req.body.start);
+    const endDate = new Date(req.body.end);
+
+    const start = `'${startDate.getFullYear()}-${pad(startDate.getMonth() + 1)}-${pad(startDate.getDate())}'`;
+    const end = `'${endDate.getFullYear()}-${pad(endDate.getMonth() + 1)}-${pad(endDate.getDate())}'`;
+
+    const query = `SELECT inventory.product_name, COUNT(*) AS total_servings, inventory.total_quantity,
+        inventory.serving_size FROM inventory, order_product, orders WHERE inventory.product_id = order_product.product_id AND orders.order_id =
+        order_product.order_id AND orders.order_date BETWEEN ${start} AND ${end} 
+        GROUP BY inventory.product_name, inventory.total_quantity, inventory.serving_size`;
     
-    getExcess(excessReport);
-    res.json({ excessItems: excessItems});
+    items = await conn.db.query(query);
+    
+    const excessItems = getExcess(items);
+    
+    res.json({ items: excessItems});
 });
 
-function getExcess(item) {
-    excessItems = [];
-    item.map((element, i) => {
-        var numItemsSold = Number(element.total_servings) * element.serving_size;
-        if ((numItemsSold / (element.total_quantity + numItemsSold)) < 0.1) {
-            console.log("ITEM INFO: " + element.product_name + " " + (numItemsSold / (element.total_quantity + numItemsSold)));
-            excessItems.push(element);
-        }
-        return excessItems;
-    }, {});
+function getExcess(items) {
+    return items.filter(item => {
+        const numItemsSold = (Number(item.total_servings) * item.serving_size);
+        return (numItemsSold / (item.total_quantity + numItemsSold)) < 0.1
+    });
 }
 
 module.exports = router;

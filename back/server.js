@@ -24,7 +24,7 @@ app.use("/api/update-inv", updateInv);
 app.use("/api/add-inv", addInv);
 app.use("/api/remove-inv", removeInv);
 app.use("/api/add-menu", addMenu);
-app.use("/api/excessReport", excessReport);
+app.use("/api/excess-report", excessReport);
 app.use("/api/sales-report", salesReport);
 app.use("/api/remove-menu", removeMenu);
 app.use("/api/update-menu", updateMenu);

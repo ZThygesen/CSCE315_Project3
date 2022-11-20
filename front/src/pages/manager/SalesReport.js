@@ -1,6 +1,5 @@
 import { useState } from "react";
 import DatePicker from "react-date-picker";
-import "react-datepicker/dist/react-datepicker.css";
 import Modal from "../../components/Modal";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
@@ -16,7 +15,7 @@ export default function SalesReport() {
         e.preventDefault();
 
         if (startDate > endDate) {
-            alert("Invalid Dates");
+            alert("Start date cannot be after end date.");
             return;
         }
 
@@ -26,11 +25,7 @@ export default function SalesReport() {
         fetch("/api/sales-report", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(
-                {
-                    start: startDate,
-                    end: endDate
-                })
+            body: JSON.stringify({ start: startDate, end: endDate })
         })
             .then(res => res.json())
             .then(items => {
@@ -93,7 +88,6 @@ export default function SalesReport() {
                     }
                 </tbody>
             </table>
-        </div>
-        
+        </div>   
     );
 }
