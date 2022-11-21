@@ -10,6 +10,9 @@ export default function CreateOrder(props) {
     const [isLoading, setIsLoading] = useState(false);
 
     const [emptySubmission, setEmptySubmission] = useState(false);
+    const [submission, setSubmission] = useState(false);
+
+    const [submissionMsg, setSubmissionMsg] = useState("");
 
     let bowlPrice;
     let gyroPrice;
@@ -43,9 +46,8 @@ export default function CreateOrder(props) {
             .then(res => res.json())
             .then(res => {
                 setIsLoading(false);
-                alert(res);
-                props.clearOrder();
-                navigate("/");
+                setSubmissionMsg(res);
+                setSubmission(true);
             });
     }
 
@@ -69,7 +71,24 @@ export default function CreateOrder(props) {
 
     function SubmissionModal() {
         return (
-            <></>
+            <Modal isVisible={submission} full={true}
+                body={
+                    <p>{submissionMsg}</p>
+                }
+                footer={
+                    <button
+                        className="modal-close-button"
+                        onClick={() => {
+                            setSubmission(current => !current);
+                            setSubmissionMsg("");
+                            props.clearOrder();
+                            navigate("/");
+                        }}
+                    >
+                        Close
+                    </button>
+                }
+            />
         );
     }
 
@@ -77,6 +96,7 @@ export default function CreateOrder(props) {
         <>
             <Modal isVisible={isLoading} full={true} loading={<LoadingSpinner />} />
             <EmptySubmissionModal />
+            <SubmissionModal />
             <div className="create-order-container">
                 <div className="left">
                     <p className="create-order-title">Current Order</p>

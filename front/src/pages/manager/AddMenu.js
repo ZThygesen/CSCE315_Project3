@@ -9,7 +9,10 @@ export default function AddMenu() {
 
     const [isLoading, setIsLoading] = useState(false);
 
-    //What happens when the user clicks submit
+    const [submission, setSubmission] = useState(false);
+    const [submissionMsg, setSubmissionMsg] = useState("");
+
+    // What happens when the user clicks submit
     function handleSubmit(e) {
         e.preventDefault();
         
@@ -23,32 +26,52 @@ export default function AddMenu() {
         const price = document.getElementById("price").value;
         const calorie = document.getElementById("cal").value;
 
-        if(name === '' || price === '' || calorie === '' ){
-            alert("Please enter all the fields")
-        } else {
-            setIsLoading(true);
-            fetch("/api/add-menu", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name: name, id: id, type: type, price: price, cal: calorie })
-            })
-                .then(res => res.json())
-                .then(res => {
-                    setIsLoading(false);
-                    alert(res);
-                });
-        }
-    }
+        setIsLoading(true);
+        fetch("/api/add-menu", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name: name, id: id, type: type, price: price, cal: calorie })
+        })
+            .then(res => res.json())
+            .then(res => {
+                setIsLoading(false);
+                setSubmissionMsg(res);
+                setSubmission(true);
+            });
+    }   
 
+    function SubmissionModal() {
+        return (
+            <Modal isVisible={submission}
+                body={
+                    <p>{submissionMsg}</p>
+                }
+                footer={
+                    <button
+                        className="modal-close-button"
+                        onClick={() => {
+                            setSubmission(current => !current);
+                            setSubmissionMsg("");
+                            navigate(-1);
+                        }}
+                    >
+                        Close
+                    </button>
+                }
+            />
+        );
+    }
+    
     return (
         <div className="add-menu-container">
             <Modal isVisible={isLoading} loading={<LoadingSpinner />} />
+            <SubmissionModal />
             <h1>Add Menu</h1>
             {/* Where user enters information on new item */}
             <form className="add-menu-form" onSubmit={handleSubmit}>
                 <div className="add-menu-input">
                     <label htmlFor="name">Enter the new menu item name:</label>
-                    <input type="text" id="name" name="name" />
+                    <input type="text" id="name" name="name" required/>
                 </div>
 
                 <div className="add-menu-input">
@@ -56,20 +79,20 @@ export default function AddMenu() {
                         Choose a product type:
                     </label>
                     <select id="type">
-                            <option value="Type">Type</option>
-                            <option value="Side">Side</option>
-                            <option value="Extra">Extra</option>
+                        <option value="Type">Type</option>
+                        <option value="Side">Side</option>
+                        <option value="Extra">Extra</option>
                     </select>
                 </div>
 
                 <div className="add-menu-input">
                     <label htmlFor="price">Enter the menu price:</label>
-                    <input type="text" id="price" name="price" />
+                    <input type="text" id="price" name="price" required/>
                 </div>
 
                 <div className="add-menu-input">
                     <label htmlFor="cal">Enter the new menu item calorie/caloric range:</label>
-                    <input type="text" id="cal" name="cal" />
+                    <input type="text" id="cal" name="cal" required/>
                 </div>
 
                 <div className="add-menu-buttons">

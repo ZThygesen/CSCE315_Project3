@@ -9,13 +9,15 @@ export default function ExcessReport() {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
 
+    const [dateErr, setDateErr] = useState(false);
+
     const [items, setItems] = useState([]);
 
     function handleSubmit(e) {
         e.preventDefault();
 
         if (startDate > endDate) {
-            alert("Start date cannot be after end date.");
+            setDateErr(true);
             return;
         }
 
@@ -34,9 +36,30 @@ export default function ExcessReport() {
             });
     }
 
+    function DateErrModal() {
+        return (
+            <Modal isVisible={dateErr}
+                body={
+                    <p>Start date cannot be after end date</p>
+                }
+                footer={
+                    <button
+                        className="modal-close-button"
+                        onClick={() => {
+                            setDateErr(current => !current);
+                        }}
+                    >
+                        Close
+                    </button>
+                }
+            />
+        );
+    }
+
     return (
         <div className="excess-report-container">
             <Modal isVisible={isLoading} loading={<LoadingSpinner />} />
+            <DateErrModal />
             <form className="express-report-form" onSubmit={handleSubmit}>
                 <h1>Excess Report</h1>
                 <div className="excess-report-date-pickers">

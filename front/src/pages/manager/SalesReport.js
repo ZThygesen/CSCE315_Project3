@@ -9,13 +9,15 @@ export default function SalesReport() {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
 
+    const [dateErr, setDateErr] = useState(false);
+
     const [items, setItems] = useState([]);
 
     function handleSubmit(e) {
         e.preventDefault();
 
         if (startDate > endDate) {
-            alert("Start date cannot be after end date.");
+            setDateErr(true);
             return;
         }
 
@@ -34,9 +36,30 @@ export default function SalesReport() {
             });  
     }
 
+    function DateErrModal() {
+        return (
+            <Modal isVisible={dateErr}
+                body={
+                    <p>Start date cannot be after end date</p>
+                }
+                footer={
+                    <button
+                        className="modal-close-button"
+                        onClick={() => {
+                            setDateErr(current => !current);
+                        }}
+                    >
+                        Close
+                    </button>
+                }
+            />
+        );
+    }
+
     return (
         <div className="sales-report-container">
             <Modal isVisible={isLoading} loading={<LoadingSpinner />} />
+            <DateErrModal />
             <form className="sales-report-form" onSubmit={handleSubmit}>
                 <h1>Sales Report</h1>
                 <div className="sales-report-date-pickers">

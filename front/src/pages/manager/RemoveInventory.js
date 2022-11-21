@@ -8,6 +8,9 @@ export default function RemoveInventory() {
 
     const [initialLoading, setInitialLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
+    
+    const [submission, setSubmission] = useState(false);
+    const [submissionMsg, setSubmissionMsg] = useState("");
 
     const [inventory, setInventory] = useState([{}]);
 
@@ -41,13 +44,37 @@ export default function RemoveInventory() {
             .then(res => res.json())
             .then(res => {
                 setIsLoading(false);
-                alert(res);
+                setSubmissionMsg(res);
+                setSubmission(true);
             });
+    }
+
+    function SubmissionModal() {
+        return (
+            <Modal isVisible={submission}
+                body={
+                    <p>{submissionMsg}</p>
+                }
+                footer={
+                    <button
+                        className="modal-close-button"
+                        onClick={() => {
+                            setSubmission(current => !current);
+                            setSubmissionMsg("");
+                            navigate(-1);
+                        }}
+                    >
+                        Close
+                    </button>
+                }
+            />
+        );
     }
 
     return (
         <div className="remove-inventory-container">
             <Modal isVisible={isLoading} loading={<LoadingSpinner />} />
+            <SubmissionModal />
             {initialLoading ? <></> :
                 <>
                     <h1>Remove Inventory</h1>
