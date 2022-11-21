@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaLeaf } from "react-icons/fa";
 import "./Header.css";
-import { GoogleTranslate } from "./GoogleTranslate";
+import GoogleTranslate from "./GoogleTranslate";
 
 export default function Header() {
 
@@ -15,4 +15,3 @@ export default function Header() {
         </header>
     );
 }
-
