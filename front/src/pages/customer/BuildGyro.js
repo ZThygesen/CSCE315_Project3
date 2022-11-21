@@ -151,13 +151,18 @@ export default function BuildGyro(props) {
             <ExtraDressingModal />
             <div className="order-options-container">
                 <div className="order-options-title">
-                    <h1>Gyro</h1>
+                    <div>
+                        <h1>Gyro</h1>
+                        <p>Build your own gyro by selecting from the options below.</p>
+                        <p>You may select up to one protein, all toppings, and one dressing.</p>
+                    </div>
                 </div>
 
                 <form onSubmit={handleSubmit} className="order-options-form">
                     <div className="order-options">
                         <div className="order-option">
                             <p>Protein</p>
+                            <p>Select one</p>
                         </div>
                         <div className="options">
                             {
@@ -180,6 +185,7 @@ export default function BuildGyro(props) {
 
                         <div className="order-option">
                             <p>Toppings</p>
+                            <p>Select multiple</p>
                         </div>
                         <div className="options">
                             {
@@ -196,6 +202,7 @@ export default function BuildGyro(props) {
 
                         <div className="order-option">
                             <p>Dressing</p>
+                            <p>Select one</p>
                         </div>
                         <div className="options">
                             {

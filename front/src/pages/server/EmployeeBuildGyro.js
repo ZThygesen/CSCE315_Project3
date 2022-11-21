@@ -151,7 +151,9 @@ export default function EmployeeBuildGyro(props) {
             <ExtraDressingModal />
             <div className="order-options-container">
                 <div className="order-options-title">
-                    <h1>Gyro</h1>
+                    <div>
+                        <h1>Gyro</h1>
+                    </div>
                 </div>
 
                 <form onSubmit={handleSubmit} className="order-options-form">

@@ -150,7 +150,9 @@ export default function EmployeeBuildBowl(props) {
             <ExtraDressingModal />
             <div className="order-options-container">
                 <div className="order-options-title">
-                    <h1>Bowl</h1>
+                    <div>
+                        <h1>Bowl</h1>
+                    </div>
                 </div>
 
                 <form onSubmit={handleSubmit} className="order-options-form">
