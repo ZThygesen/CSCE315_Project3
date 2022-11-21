@@ -24,7 +24,7 @@ export default function Menu() {
 
     return (
         <div className="menu-container">
-            <Modal isVisible={isLoading} body={<LoadingSpinner />} />
+            <Modal isVisible={isLoading} loading={<LoadingSpinner />} />
             {isLoading ? <></> :
                 <>
                     <h1>Menu</h1>
@@ -41,7 +41,7 @@ export default function Menu() {
                                 menu.map((item, i) => (
                                     <tr key={i}>
                                         <td>{item.product_name}</td>
-                                        <td>{item.price}</td>
+                                        <td>{item.price.toFixed(2)}</td>
                                         <td>{item.calories}</td>
                                     </tr>
                                 ))

@@ -9,6 +9,9 @@ export default function AddInventory() {
 
     const [isLoading, setIsLoading] = useState(false);
 
+    const [submission, setSubmission] = useState(false);
+    const [submissionMsg, setSubmissionMsg] = useState("");
+
     //What happens when the user clicks submit
     function handleSubmit(e) {
         e.preventDefault();
@@ -24,37 +27,57 @@ export default function AddInventory() {
         const serve = document.getElementById("serve").value;
         const minimum = document.getElementById("min").value;
 
-        if(name === '' || quantity === '' || type === '' || serve === "" || minimum === '' ){
-            alert("Please enter all the fields")
-        } else {
-            setIsLoading(true);
-            fetch("/api/add-inv", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name: name, id: id, quantity: quantity, type: type, serve: serve, onhand: minimum })
-            })
-                .then(res => res.json())
-                .then(res => {
-                    setIsLoading(false);
-                    alert(res);
-                });
-        }
+        setIsLoading(true);
+        fetch("/api/add-inv", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name: name, id: id, quantity: quantity, type: type, serve: serve, onhand: minimum })
+        })
+            .then(res => res.json())
+            .then(res => {
+                setIsLoading(false);
+                setSubmissionMsg(res);
+                setSubmission(true);
+            });
+    }
+
+    function SubmissionModal() {
+        return (
+            <Modal isVisible={submission}
+                body={
+                    <p>{submissionMsg}</p>
+                }
+                footer={
+                    <button
+                        className="modal-close-button"
+                        onClick={() => {
+                            setSubmission(current => !current);
+                            setSubmissionMsg("");
+                            navigate(-1);
+                        }}
+                    >
+                        Close
+                    </button>
+                }
+            />
+        );
     }
 
     return (
         <div className="add-inventory-container">
-            <Modal isVisible={isLoading} body={<LoadingSpinner />} />
+            <Modal isVisible={isLoading} loading={<LoadingSpinner />} />
+            <SubmissionModal />
             <h1>Add Inventory</h1>
             {/* Where user enters information on new item */}
             <form className="add-inventory-form" onSubmit={handleSubmit}>
                 <div className="add-inventory-input">
                     <label htmlFor="name">Enter the new item name:</label>
-                    <input type="text" id="name" name="name" />
+                    <input type="text" id="name" name="name" required/>
                 </div>
 
                 <div className="add-inventory-input">
                     <label htmlFor="quan">Enter the quantity:</label>
-                    <input type="number" id="quan" name="quan" />
+                    <input type="number" id="quan" name="quan" required/>
                 </div>
 
                 <div className="add-inventory-input">
@@ -73,12 +96,12 @@ export default function AddInventory() {
 
                 <div className="add-inventory-input">
                     <label htmlFor="serve">Enter the serving size:</label>
-                    <input type="number" id="serve" name="serve" />
+                    <input type="number" id="serve" name="serve" required/>
                 </div>
 
                 <div className="add-inventory-input">
                     <label htmlFor="min">Enter the minimum required amount:</label>
-                    <input type="number" id="min" name="min" />
+                    <input type="number" id="min" name="min" required/>
                 </div>
 
                 <div className="add-inventory-buttons">

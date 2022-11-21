@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { v4 as uuid } from "uuid";
 import Extra from "../../components/Extra";
 import Option from "../../components/Option";
+import Modal from "../../components/Modal";
 
 export default function BuildGyro(props) {
     const pita = props.items.pita[0];
@@ -10,7 +12,10 @@ export default function BuildGyro(props) {
     const extraProtein = props.items.menuItems.filter(item => item.product_name === "Extra Protein")[0];
     const extraDressing = props.items.menuItems.filter(item => item.product_name === "Extra Dressing")[0];
 
-    const editMode = props.editItem !== undefined
+    const editMode = props.editItem !== undefined;
+
+    const [extraProteinErr, setExtraProteinErr] = useState(false);
+    const [extraDressingErr, setExtraDressingErr] = useState(false);
 
     function getSelectionObject(selectionId) {
         let selection;
@@ -82,10 +87,10 @@ export default function BuildGyro(props) {
             .map(selection => getSelectionObject(selection.id));
         
         if (checkExtraProtein(selections)) {
-            alert("Can't select extra protein with no protein selected");
+            setExtraProteinErr(true);
             return;
         } else if (checkExtraDressing(selections)) {
-            alert("Can't select extra dressing with no dressing selected");
+            setExtraDressingErr(true);
             return;
         }
 
@@ -102,20 +107,62 @@ export default function BuildGyro(props) {
                 price: price
             });
         }
-    
+    }
+
+    function ExtraProteinModal() {
+        return (
+            <Modal isVisible={extraProteinErr} full={true}
+                body={
+                    <p>Cannot select extra protein with no protein selected</p>
+                }
+                footer={ 
+                    <button
+                        className="modal-close-button"
+                        onClick={() => setExtraProteinErr(current => !current)}
+                    >
+                        Close
+                    </button>
+                }
+            />
+        );
+    }
+
+    function ExtraDressingModal() {
+        return (
+            <Modal isVisible={extraDressingErr} full={true}
+                body={
+                    <p>Cannot select extra dressing with no dressing selected</p>
+                }
+                footer={ 
+                    <button
+                        className="modal-close-button"
+                        onClick={() => setExtraDressingErr(current => !current)}
+                    >
+                        Close
+                    </button>
+                }
+            />
+        );
     }
 
     return (
         <>
+            <ExtraProteinModal />
+            <ExtraDressingModal />
             <div className="order-options-container">
                 <div className="order-options-title">
-                    <h1>Gyro</h1>
+                    <div>
+                        <h1>Gyro</h1>
+                        <p>Build your own gyro by selecting from the options below.</p>
+                        <p>You may select up to one protein, all toppings, and one dressing.</p>
+                    </div>
                 </div>
 
                 <form onSubmit={handleSubmit} className="order-options-form">
                     <div className="order-options">
                         <div className="order-option">
                             <p>Protein</p>
+                            <p>Select one</p>
                         </div>
                         <div className="options">
                             {
@@ -138,6 +185,7 @@ export default function BuildGyro(props) {
 
                         <div className="order-option">
                             <p>Toppings</p>
+                            <p>Select multiple</p>
                         </div>
                         <div className="options">
                             {
@@ -154,6 +202,7 @@ export default function BuildGyro(props) {
 
                         <div className="order-option">
                             <p>Dressing</p>
+                            <p>Select one</p>
                         </div>
                         <div className="options">
                             {

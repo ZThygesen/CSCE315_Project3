@@ -21,7 +21,7 @@ export default function RestockReport() {
 
     return (
         <div className="restock-report-container">
-            <Modal isVisible={isLoading} body={ <LoadingSpinner /> } />
+            <Modal isVisible={isLoading} loading={<LoadingSpinner />} />
             {isLoading ? <></> :
                 <>
                     <h1>Restock Report</h1>

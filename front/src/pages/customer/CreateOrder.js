@@ -9,6 +9,11 @@ export default function CreateOrder(props) {
 
     const [isLoading, setIsLoading] = useState(false);
 
+    const [emptySubmission, setEmptySubmission] = useState(false);
+    const [submission, setSubmission] = useState(false);
+
+    const [submissionMsg, setSubmissionMsg] = useState("");
+
     let bowlPrice;
     let gyroPrice;
     if (props.orderTypes !== undefined) {
@@ -28,7 +33,7 @@ export default function CreateOrder(props) {
 
     function submitOrder() {
         if (props.orderItems.length === 0) {
-            alert("Cannot submit empty order");
+            setEmptySubmission(true);
             return;
         }
 
@@ -41,15 +46,57 @@ export default function CreateOrder(props) {
             .then(res => res.json())
             .then(res => {
                 setIsLoading(false);
-                alert(res);
-                props.clearOrder();
-                navigate("/");
+                setSubmissionMsg(res);
+                setSubmission(true);
             });
+    }
+
+    function EmptySubmissionModal() {
+        return (
+            <Modal isVisible={emptySubmission} full={true}
+                body={
+                    <p>Cannot submit empty order</p>
+                }
+                footer={ 
+                    <button
+                        className="modal-close-button"
+                        onClick={() => setEmptySubmission(current => !current)}
+                    >
+                        Close
+                    </button>
+                }
+            />
+        );
+    }
+
+    function SubmissionModal() {
+        return (
+            <Modal isVisible={submission} full={true}
+                body={
+                    <p>{submissionMsg}</p>
+                }
+                footer={
+                    <button
+                        className="modal-close-button"
+                        onClick={() => {
+                            setSubmission(current => !current);
+                            setSubmissionMsg("");
+                            props.clearOrder();
+                            navigate("/");
+                        }}
+                    >
+                        Close
+                    </button>
+                }
+            />
+        );
     }
 
     return (
         <>
-            <Modal isVisible={isLoading} full={true} body={<LoadingSpinner />} />
+            <Modal isVisible={isLoading} full={true} loading={<LoadingSpinner />} />
+            <EmptySubmissionModal />
+            <SubmissionModal />
             <div className="create-order-container">
                 <div className="left">
                     <p className="create-order-title">Current Order</p>

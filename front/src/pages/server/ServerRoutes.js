@@ -99,8 +99,7 @@ export default function ServerRoutes(props) {
 
     return (
         <>
-            <Modal isVisible={isLoading} full={!managerMode} body={<LoadingSpinner />} />
-
+            <Modal isVisible={isLoading} full={!managerMode} loading={<LoadingSpinner />} />
             {isLoading ? <></> :
                 <>
                     {isMainPage &&
