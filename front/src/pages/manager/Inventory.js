@@ -24,7 +24,7 @@ export default function Inventory() {
 
     return (
         <div className="inventory-container">
-            <Modal isVisible={isLoading} body={<LoadingSpinner />} />
+            <Modal isVisible={isLoading} loading={<LoadingSpinner />} />
             {isLoading ? <></> :
                 <>
                     <h1>Inventory</h1>

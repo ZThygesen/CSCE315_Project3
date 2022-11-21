@@ -36,7 +36,7 @@ export default function SalesReport() {
 
     return (
         <div className="sales-report-container">
-            <Modal isVisible={isLoading} body={ <LoadingSpinner /> } />
+            <Modal isVisible={isLoading} loading={<LoadingSpinner />} />
             <form className="sales-report-form" onSubmit={handleSubmit}>
                 <h1>Sales Report</h1>
                 <div className="sales-report-date-pickers">

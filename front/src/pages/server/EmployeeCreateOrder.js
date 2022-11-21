@@ -41,7 +41,7 @@ export default function EmployeeCreateOrder(props) {
 
     return (
         <>
-            <Modal isVisible={isLoading} full={true} body={<LoadingSpinner />} />
+            <Modal isVisible={isLoading} full={true} loading={<LoadingSpinner />} />
             <div className="create-order-container">
                 <div className="left">
                     <p className="create-order-title">Current Order</p>

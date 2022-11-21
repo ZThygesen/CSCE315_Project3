@@ -97,8 +97,7 @@ export default function CustomerRoutes() {
 
     return (
         <>
-            <Modal isVisible={isLoading} full={true} body={<LoadingSpinner />} />
-        
+            <Modal isVisible={isLoading} full={true} loading={<LoadingSpinner />} />
             {isLoading ? <></> :   
                 <>
                     {isMainPage &&

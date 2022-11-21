@@ -9,6 +9,8 @@ export default function CreateOrder(props) {
 
     const [isLoading, setIsLoading] = useState(false);
 
+    const [emptySubmission, setEmptySubmission] = useState(false);
+
     let bowlPrice;
     let gyroPrice;
     if (props.orderTypes !== undefined) {
@@ -28,7 +30,7 @@ export default function CreateOrder(props) {
 
     function submitOrder() {
         if (props.orderItems.length === 0) {
-            alert("Cannot submit empty order");
+            setEmptySubmission(true);
             return;
         }
 
@@ -47,9 +49,34 @@ export default function CreateOrder(props) {
             });
     }
 
+    function EmptySubmissionModal() {
+        return (
+            <Modal isVisible={emptySubmission} full={true}
+                body={
+                    <p>Cannot submit empty order</p>
+                }
+                footer={ 
+                    <button
+                        className="modal-close-button"
+                        onClick={() => setEmptySubmission(current => !current)}
+                    >
+                        Close
+                    </button>
+                }
+            />
+        );
+    }
+
+    function SubmissionModal() {
+        return (
+            <></>
+        );
+    }
+
     return (
         <>
-            <Modal isVisible={isLoading} full={true} body={<LoadingSpinner />} />
+            <Modal isVisible={isLoading} full={true} loading={<LoadingSpinner />} />
+            <EmptySubmissionModal />
             <div className="create-order-container">
                 <div className="left">
                     <p className="create-order-title">Current Order</p>

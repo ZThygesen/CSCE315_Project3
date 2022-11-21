@@ -52,7 +52,7 @@ export default function UpdateMenu() {
 
     return (
         <div className="update-menu-container">
-            <Modal isVisible={isLoading} body={<LoadingSpinner />} />
+            <Modal isVisible={isLoading} loading={<LoadingSpinner />} />
             {initialLoading ? <></> :
                 <>
                     <h1>Update Inventory</h1>

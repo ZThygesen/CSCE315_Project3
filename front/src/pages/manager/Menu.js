@@ -24,7 +24,7 @@ export default function Menu() {
 
     return (
         <div className="menu-container">
-            <Modal isVisible={isLoading} body={<LoadingSpinner />} />
+            <Modal isVisible={isLoading} loading={<LoadingSpinner />} />
             {isLoading ? <></> :
                 <>
                     <h1>Menu</h1>

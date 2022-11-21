@@ -38,7 +38,8 @@ body {
 }
 
 .home-buttons button,
-.employee-login-container button {
+.employee-login-container button,
+.modal-close-button {
     border-style: none;
     background-color: var(--secondary-color);
     color: var(--primary-color);
@@ -50,7 +51,8 @@ body {
 }
 
 .home-buttons button:hover,
-.employee-login-container button:hover {
+.employee-login-container button:hover,
+.modal-close-button:hover {
     cursor: pointer;
     background-color: var(--primary-color);
     color: var(--font-color);

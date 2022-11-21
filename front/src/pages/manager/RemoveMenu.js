@@ -47,7 +47,7 @@ export default function RemoveMenu() {
 
     return (
         <div className="remove-menu-container">
-            <Modal isVisible={isLoading} body={<LoadingSpinner />} />
+            <Modal isVisible={isLoading} loading={<LoadingSpinner />} />
             {initialLoading ? <></> :
                 <>
                     <h1>Remove Menu</h1>

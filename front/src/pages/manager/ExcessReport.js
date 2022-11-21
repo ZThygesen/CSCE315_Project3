@@ -36,7 +36,7 @@ export default function ExcessReport() {
 
     return (
         <div className="excess-report-container">
-            <Modal isVisible={isLoading} body={ <LoadingSpinner /> } />
+            <Modal isVisible={isLoading} loading={<LoadingSpinner />} />
             <form className="express-report-form" onSubmit={handleSubmit}>
                 <h1>Excess Report</h1>
                 <div className="excess-report-date-pickers">
