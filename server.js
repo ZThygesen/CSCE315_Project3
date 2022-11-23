@@ -36,5 +36,5 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "front/build/index.html"));
 })
 
-app.listen(port, () => {console.log(`Server started on port ${port}`)});
+app.listen(process.env.PORT || port, () => {console.log(`Server started on port ${port}`)});
 
