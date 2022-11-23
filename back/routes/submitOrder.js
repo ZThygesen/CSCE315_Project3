@@ -52,6 +52,8 @@ async function createAndInsertOrderProducts(orderId, orderItems) {
     // convert orderItems into an array, where each element is 
     // another array of items (i.e. a bowl, a gyro, or a side) belonging to an order
     const items = orderItems.map(item => item.items);
+
+    const containsInvItems = false;
     
     // for each individual item in an order, add it to the database
     items.forEach(item => {
@@ -64,6 +66,7 @@ async function createAndInsertOrderProducts(orderId, orderItems) {
             // check to make sure the item does not belong in the menu table;
             // we don't want to add those to the order_product table
             if (product.product_type !== "Extra" && product.product_type !== "Side") {
+                containsInvItems = true;
                 let servings = 1
                 // if the bowl or gyro contained extra, reflect that here
                 if ((product.product_type === "Protein" && hasExtraProtein) ||
@@ -81,7 +84,9 @@ async function createAndInsertOrderProducts(orderId, orderItems) {
     // remove the extra comma at the end of the query string
     query = query.slice(0, -1);
     
-    await conn.db.query(query);
+    if (containsInvItems) {
+        await conn.db.query(query);
+    }
 } 
 
 router.post("/", async (req, res) => {
