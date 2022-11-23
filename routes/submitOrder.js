@@ -53,7 +53,7 @@ async function createAndInsertOrderProducts(orderId, orderItems) {
     // another array of items (i.e. a bowl, a gyro, or a side) belonging to an order
     const items = orderItems.map(item => item.items);
 
-    const containsInvItems = false;
+    let containsInvItems = false;
     
     // for each individual item in an order, add it to the database
     items.forEach(item => {
