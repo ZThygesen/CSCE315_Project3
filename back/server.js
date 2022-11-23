@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 
 const app = express();
 const port = 5000;
@@ -28,6 +29,12 @@ app.use("/api/excess-report", excessReport);
 app.use("/api/sales-report", salesReport);
 app.use("/api/remove-menu", removeMenu);
 app.use("/api/update-menu", updateMenu);
+
+app.use(express.static(path.join(__dirname, "../front/build")));
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../front/build/index.html"));
+})
 
 app.listen(port, () => {console.log(`Server started on port ${port}`)});
 
