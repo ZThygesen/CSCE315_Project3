@@ -3,6 +3,10 @@ import { FaLeaf } from "react-icons/fa";
 import "./Header.css";
 import GoogleTranslate from "./GoogleTranslate";
 
+/**
+ * Header
+ * @returns header
+ */
 export default function Header() {
 
     return (
