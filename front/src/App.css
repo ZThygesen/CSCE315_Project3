@@ -8,6 +8,7 @@
 
 body {
     margin: 0;
+    font-family: 'Poppins';font-size: 22px;
 }
 
 #root {
@@ -48,6 +49,8 @@ body {
     padding: 10px 20px;
     font-size: 28px;
     transition: all 0.1s;
+    font-family: 'Poppins';font-size: 22px;
+    
 }
 
 .home-buttons button:hover,

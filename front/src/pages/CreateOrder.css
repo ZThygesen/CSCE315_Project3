@@ -29,6 +29,7 @@
     height: 60px;
     font-size: 28px;
     transition: all 0.15s;
+    font-family: 'Poppins';font-size: 22px;
 }
 
 .create-order-container button:hover {
@@ -147,6 +148,7 @@
 .order-buttons-container button {
     font-size: 24px;
     width: 130px;
+    font-family: 'Poppins';font-size: 22px;
 }
 
 /* ----------- Add Items Section ----------- */
@@ -219,6 +221,7 @@
 
 .order-option p {
     margin: 0;
+    border-radius: 25px;
 }
 
 .options {
@@ -269,6 +272,7 @@
     padding: 10px 20px;
     font-size: 28px;
     transition: all 0.15s;
+    font-family: 'Poppins';font-size: 22px;
 }
 
 .order-option-button:hover {
@@ -284,6 +288,7 @@
     align-items: center;
     width: 200px;
     justify-content: center;
+    font-family: 'Poppins';font-size: 22px;
 }
 
 .bowl-price,

@@ -5,14 +5,15 @@
     width: 100%;
     height: 100%;
     background-color: var(--navbar-color);
+    font-family: 'Poppins';font-size: 22px;
 }
 
 .manager-nav button {
     border-style: none;
     background-color: var(--navbar-color);
-    font-size: 22px;
+    font-family: 'Poppins';font-size: 30px;
     font-weight: 600;
-    padding: 25px 0;
+    padding: 45px 0;
     transition: all 0.1s;
 }
 

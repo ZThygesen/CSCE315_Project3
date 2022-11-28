@@ -182,7 +182,7 @@ export default function EmployeeBuildGyro(props) {
                         <div className="order-option">
                             <p>Toppings</p>
                         </div>
-                        <div className="options">
+                        <div className="toppings_options">
                             {
                                 toppings.map((item, i) =>
                                     <Option

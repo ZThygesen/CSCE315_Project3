@@ -64,7 +64,7 @@
 .menu-buttons {
     display: flex;
     gap: 20px;
-    margin-top: 20px;
+    margin-top: 100px;
 }
 
 .inventory-buttons button,
@@ -84,9 +84,9 @@
     border: 2px solid var(--primary-color);
     border-radius: 20px;
     padding: 5px 10px;
-    font-size: 22px;
     transition: all 0.1s;
     margin-inline: 20px;
+    font-family: 'Poppins';font-size: 30px;
 }
 
 .inventory-buttons button:hover,
@@ -162,5 +162,5 @@
 .add-menu-buttons button,
 .remove-menu-buttons button,
 .update-menu-buttons button {
-    font-size: 18px;
+    font-family: 'Poppins';font-size: 30px;
 }
