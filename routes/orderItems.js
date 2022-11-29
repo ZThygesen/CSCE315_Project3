@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const conn = require("../db");
-
+/**
+ * 
+ * @param {*} items 
+ * @returns items list
+ */
 function getItemsByType(items) {
     bases = items.filter(item => item.product_type === "Rice");
     proteins = items.filter(item => item.product_type === "Protein");

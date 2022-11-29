@@ -2,7 +2,7 @@
     "plugins": ["plugins/markdown"],
     "recurseDepth": 10,
     "source": {
-      "include": ["front/src"],
+      "include": ["front/src","routes/"],
       "includePattern": ".js$",
       "excludePattern": "(node_modules/|docs)"
     },
