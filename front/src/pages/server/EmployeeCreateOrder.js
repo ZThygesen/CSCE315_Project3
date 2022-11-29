@@ -4,6 +4,11 @@ import OrderItem from "../../components/OrderItem.js";
 import Modal from "../../components/Modal.js";
 import LoadingSpinner from "../../components/LoadingSpinner.js";
 
+/**
+ * Create order page for employee-side interface
+ * @param {*} props 
+ * @returns null
+ */
 export default function EmployeeCreateOrder(props) {
     const navigate = useNavigate();
 

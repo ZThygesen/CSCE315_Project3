@@ -4,6 +4,11 @@ import OrderItem from "../../components/OrderItem.js";
 import Modal from "../../components/Modal";
 import LoadingSpinner from "../../components/LoadingSpinner.js";
 
+/**
+ * Create order page for customer-side interface
+ * @param {*} props 
+ * @returns null
+ */
 export default function CreateOrder(props) {
     const navigate = useNavigate();
 
@@ -21,6 +26,11 @@ export default function CreateOrder(props) {
         gyroPrice = props.orderTypes.filter(item => item.product_name === "Gyro")[0].price;
     }
 
+    /**
+     * Calculates price of items and fixes 
+     * the value to 2 decimal values
+     * @returns price
+     */
     function calculatePrice() {
         let price = 0;
 
@@ -31,6 +41,10 @@ export default function CreateOrder(props) {
         return price.toFixed(2);
     }
 
+    /**
+     * Handles submitting an order by passing information to the backend
+     * @returns null
+     */
     function submitOrder() {
         if (props.orderItems.length === 0) {
             setEmptySubmission(true);
@@ -51,6 +65,10 @@ export default function CreateOrder(props) {
             });
     }
 
+    /**
+     * Prevents user from submitting an empty order
+     * @returns null
+     */
     function EmptySubmissionModal() {
         return (
             <Modal isVisible={emptySubmission} full={true}
@@ -69,6 +87,12 @@ export default function CreateOrder(props) {
         );
     }
 
+    /**
+     * Provides submission display message to prevent user
+     * from spamming the submit button
+     * 
+     * @returns null
+     */
     function SubmissionModal() {
         return (
             <Modal isVisible={submission} full={true}
