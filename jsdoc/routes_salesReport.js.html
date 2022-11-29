@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: front/src/components/LoadingSpinner.js</title>
+    <title>JSDoc: Source: routes/salesReport.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: front/src/components/LoadingSpinner.js</h1>
+    <h1 class="page-title">Source: routes/salesReport.js</h1>
 
     
 
@@ -26,21 +26,36 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import "./LoadingSpinner.css";
+            <pre class="prettyprint source linenums"><code>const express = require("express");
+const router = express.Router();
+const conn = require("../db");
 
 /**
- * Displays loading spinner image before data is grabbed 
- * from the database or a query is successfully ran
  * 
- * @returns spinner
+ * @param {*} num 
+ * @returns num &lt; 10 ? "0" : "") + num
  */
-export default function LoadingSpinner() {
-    return (
-        &lt;div className="spinner-container">
-            &lt;div className="loading-spinner">&lt;/div>
-        &lt;/div>
-    );
+function pad(num) {
+    return (num &lt; 10 ? "0" : "") + num;
 }
+
+router.post("/", async (req, res) => {
+    const startDate = new Date(req.body.start);
+    const endDate = new Date(req.body.end);
+
+    const start = `'${startDate.getFullYear()}-${pad(startDate.getMonth() + 1)}-${pad(startDate.getDate())}'`;
+    const end = `'${endDate.getFullYear()}-${pad(endDate.getMonth() + 1)}-${pad(endDate.getDate())}'`;
+
+    const query = `SELECT inventory.product_name, COUNT(*) AS total_servings FROM inventory, order_product, orders
+        WHERE inventory.product_id = order_product.product_id AND orders.order_id = order_product.order_id AND orders.order_date BETWEEN
+        ${start} AND ${end} GROUP BY inventory.product_name, order_product.product_id`;
+    
+    items = await conn.db.query(query);
+
+    res.json({ items: items});
+});
+
+module.exports = router;
 </code></pre>
         </article>
     </section>

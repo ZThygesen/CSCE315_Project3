@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const conn = require("../db");
 /**
- * 
+ * Grabs items from database and filters them by type
+ * into respective type lists
  * @param {*} items 
  * @returns items list
  */
