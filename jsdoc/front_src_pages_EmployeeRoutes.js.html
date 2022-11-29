@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: front/src/components/Header.js</title>
+    <title>JSDoc: Source: front/src/pages/EmployeeRoutes.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: front/src/components/Header.js</h1>
+    <h1 class="page-title">Source: front/src/pages/EmployeeRoutes.js</h1>
 
     
 
@@ -26,25 +26,24 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { Link } from "react-router-dom";
-import { FaLeaf } from "react-icons/fa";
-import "./Header.css";
-import GoogleTranslate from "./GoogleTranslate";
+            <pre class="prettyprint source linenums"><code>import { Routes, Route } from "react-router-dom";
+import EmployeeLogin from "./EmployeeLogin";
+import ManagerRoutes from "./manager/ManagerRoutes";
+import ServerRoutes from "./server/ServerRoutes";
 
 /**
- * Displays Pom and Honey header on application
- * @returns header
+ * Routes for manager and server interfaces
+ * @returns null
  */
-export default function Header() {
-
+export default function EmployeeRoutes() {
     return (
-        &lt;header>
-            &lt;Link to="/" id="site-title">
-                &lt;h1>&lt;FaLeaf id="leaf-icon" />Pom &amp; Honey&lt;/h1>
-            &lt;/Link>
-            &lt;GoogleTranslate/>
-            
-        &lt;/header>
+        &lt;>
+            &lt;Routes>
+                &lt;Route index element={&lt;EmployeeLogin />} />
+                &lt;Route path="manager/*" element={&lt;ManagerRoutes />} />
+                &lt;Route path="server/*" element={&lt;ServerRoutes />} />
+            &lt;/Routes>
+        &lt;/>
     );
 }
 </code></pre>

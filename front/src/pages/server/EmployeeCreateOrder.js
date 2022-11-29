@@ -14,6 +14,11 @@ export default function EmployeeCreateOrder(props) {
 
     const [submissionMsg, setSubmissionMsg] = useState("");
 
+    /**
+     * Calculates price of items and fixes 
+     * the value to 2 decimal values
+     * @returns price
+     */
     function calculatePrice() {
         let price = 0;
 
@@ -24,6 +29,10 @@ export default function EmployeeCreateOrder(props) {
         return price.toFixed(2);
     }
 
+    /**
+     * Handles submitting an order by passing information to the backend
+     * @returns null
+     */
     function submitOrder() {
         if (props.orderItems.length === 0) {
             setEmptySubmission(true);
@@ -44,7 +53,11 @@ export default function EmployeeCreateOrder(props) {
             });
     }
 
-        function EmptySubmissionModal() {
+    /**
+     * Prevents user from submitting an empty order
+     * @returns null
+     */
+    function EmptySubmissionModal() {
         return (
             <Modal isVisible={emptySubmission} full={true}
                 body={
@@ -62,6 +75,12 @@ export default function EmployeeCreateOrder(props) {
         );
     }
 
+    /**
+     * Provides submission display message to prevent user
+     * from spamming the submit button
+     * 
+     * @returns null
+     */
     function SubmissionModal() {
         return (
             <Modal isVisible={submission} full={true}

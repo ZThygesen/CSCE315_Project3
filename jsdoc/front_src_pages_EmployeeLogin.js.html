@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: front/src/components/ManagerNav.js</title>
+    <title>JSDoc: Source: front/src/pages/EmployeeLogin.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: front/src/components/ManagerNav.js</h1>
+    <h1 class="page-title">Source: front/src/pages/EmployeeLogin.js</h1>
 
     
 
@@ -27,26 +27,28 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import { useNavigate } from "react-router-dom";
-import "./ManagerNav.css";
 
 /**
- * This function creates a navigation bar to be used by managers
- * @returns Manager Navigation Bar
+ * Space for employee to select if they are a manager or server.
+ * Selecting either option will take the user to the respective interface.
+ * 
+ * @returns null
  */
-export default function ManagerNav() {
-
+export default function EmployeeLogin() {
     const navigate = useNavigate();
 
     return (
-        &lt;div className="manager-nav">
-            &lt;button onClick={() => navigate("inventory")}>Inventory&lt;/button>
-            &lt;button onClick={() => navigate("menu")}>Menu&lt;/button>
-            &lt;button onClick={() => navigate("sales-report")}>Sales Report&lt;/button>
-            &lt;button onClick={() => navigate("excess-report")}>Excess Report&lt;/button>
-            &lt;button onClick={() => navigate("restock-report")}>Restock Report&lt;/button>
-            &lt;button onClick={() => navigate("create-order")}>Create Order&lt;/button>
-            &lt;button onClick={() => navigate("/")}>Logout&lt;/button>
-        &lt;/div>
+        &lt;>
+            {/** TODO: IMPLEMENT OAUTH LOGIN */}
+            &lt;h1>Employee Login&lt;/h1>
+            &lt;div className="employee-login-container">
+                &lt;div className="login-buttons">
+                    &lt;button onClick={() => navigate("manager")}>Manager&lt;/button>
+                    &lt;button onClick={() => navigate("server", { state: {} })}>Server&lt;/button>
+                &lt;/div>
+                &lt;button onClick={() => navigate(-1)}>Cancel&lt;/button>
+            &lt;/div>
+        &lt;/>
     );
 }
 </code></pre>

@@ -1,4 +1,32 @@
-import { useState } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: front/src/pages/server/EmployeeBuildBowl.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: front/src/pages/server/EmployeeBuildBowl.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useState } from "react";
 import { v4 as uuid } from "uuid";
 import Extra from "../../components/Extra";
 import Option from "../../components/Option";
@@ -30,7 +58,7 @@ export default function EmployeeBuildBowl(props) {
     function getSelectionObject(selectionId) {
         let selection;
         for (let key in props.items) {
-            for (let i = 0; i < props.items[key].length; i++) {
+            for (let i = 0; i &lt; props.items[key].length; i++) {
                 if (props.items[key][i].product_id === selectionId) {
                     selection = props.items[key][i];
                     break;
@@ -59,7 +87,7 @@ export default function EmployeeBuildBowl(props) {
             selection.product_type === "Protein"
         )).length > 0;
 
-        if (hasExtraProtein && !hasProtein) {
+        if (hasExtraProtein &amp;&amp; !hasProtein) {
             return true;
         }
 
@@ -80,7 +108,7 @@ export default function EmployeeBuildBowl(props) {
             selection.product_type === "Dressing"
         )).length > 0;
 
-        if (hasExtraDressing && !hasDressing) {
+        if (hasExtraDressing &amp;&amp; !hasDressing) {
             return true;
         }
 
@@ -144,17 +172,17 @@ export default function EmployeeBuildBowl(props) {
      */
     function ExtraProteinModal() {
         return (
-            <Modal isVisible={extraProteinErr} full={true}
+            &lt;Modal isVisible={extraProteinErr} full={true}
                 body={
-                    <p>Cannot select extra protein with no protein selected</p>
+                    &lt;p>Cannot select extra protein with no protein selected&lt;/p>
                 }
                 footer={ 
-                    <button
+                    &lt;button
                         className="modal-close-button"
                         onClick={() => setExtraProteinErr(current => !current)}
                     >
                         Close
-                    </button>
+                    &lt;/button>
                 }
             />
         );
@@ -166,42 +194,42 @@ export default function EmployeeBuildBowl(props) {
      */
     function ExtraDressingModal() {
         return (
-            <Modal isVisible={extraDressingErr} full={true}
+            &lt;Modal isVisible={extraDressingErr} full={true}
                 body={
-                    <p>Cannot select extra dressing with no dressing selected</p>
+                    &lt;p>Cannot select extra dressing with no dressing selected&lt;/p>
                 }
                 footer={ 
-                    <button
+                    &lt;button
                         className="modal-close-button"
                         onClick={() => setExtraDressingErr(current => !current)}
                     >
                         Close
-                    </button>
+                    &lt;/button>
                 }
             />
         );
     }
 
     return (
-        <>
-            <ExtraProteinModal />
-            <ExtraDressingModal />
-            <div className="order-options-container">
-                <div className="order-options-title">
-                    <div>
-                        <h1>Bowl</h1>
-                    </div>
-                </div>
+        &lt;>
+            &lt;ExtraProteinModal />
+            &lt;ExtraDressingModal />
+            &lt;div className="order-options-container">
+                &lt;div className="order-options-title">
+                    &lt;div>
+                        &lt;h1>Bowl&lt;/h1>
+                    &lt;/div>
+                &lt;/div>
 
-                <form onSubmit={handleSubmit} className="order-options-form">
-                    <div className="order-options">
-                        <div className="order-option">
-                            <p>Base</p>
-                        </div>
-                        <div className="options">
+                &lt;form onSubmit={handleSubmit} className="order-options-form">
+                    &lt;div className="order-options">
+                        &lt;div className="order-option">
+                            &lt;p>Base&lt;/p>
+                        &lt;/div>
+                        &lt;div className="options">
                             {
                                 bases.map((item, i) =>
-                                    <Option
+                                    &lt;Option
                                         key={i}
                                         data={item}
                                         buttonType="radio"
@@ -209,15 +237,15 @@ export default function EmployeeBuildBowl(props) {
                                     />
                                 )
                             }
-                        </div>
+                        &lt;/div>
 
-                        <div className="order-option">
-                            <p>Protein</p>
-                        </div>
-                        <div className="options">
+                        &lt;div className="order-option">
+                            &lt;p>Protein&lt;/p>
+                        &lt;/div>
+                        &lt;div className="options">
                             {
                                 proteins.map((item, i) =>
-                                    <Option
+                                    &lt;Option
                                         key={i}
                                         data={item}
                                         buttonType="radio"
@@ -225,20 +253,20 @@ export default function EmployeeBuildBowl(props) {
                                     />
                                 )
                             }
-                            <Extra
+                            &lt;Extra
                                 data={extraProtein}
                                 type="Protein"
                                 checked={editMode ? props.editItem.items.includes(extraProtein) : false}
                             />
-                        </div>
+                        &lt;/div>
 
-                        <div className="order-option">
-                            <p>Toppings</p>
-                        </div>
-                        <div className="options">
+                        &lt;div className="order-option">
+                            &lt;p>Toppings&lt;/p>
+                        &lt;/div>
+                        &lt;div className="options">
                             {
                                 toppings.map((item, i) =>
-                                    <Option
+                                    &lt;Option
                                         key={i}
                                         data={item}
                                         buttonType="checkbox"
@@ -246,15 +274,15 @@ export default function EmployeeBuildBowl(props) {
                                     />
                                 )
                             }
-                        </div>
+                        &lt;/div>
 
-                        <div className="order-option">
-                            <p>Dressing</p>
-                        </div>
-                        <div className="options">
+                        &lt;div className="order-option">
+                            &lt;p>Dressing&lt;/p>
+                        &lt;/div>
+                        &lt;div className="options">
                             {
                                 dressings.map((item, i) =>
-                                    <Option
+                                    &lt;Option
                                         key={i}
                                         data={item}
                                         buttonType="radio"
@@ -262,21 +290,44 @@ export default function EmployeeBuildBowl(props) {
                                     />
                                 )
                             }
-                            <Extra
+                            &lt;Extra
                                 data={extraDressing}
                                 type="Dressing"
                                 checked={editMode ? props.editItem.items.includes(extraDressing) : false}
                             />
-                        </div>
-                    </div>
-                    <div className="order-options-button-container">
-                        <div className="order-option-buttons">
-                            <button type="button" className="order-option-button" onClick={() => props.addBowl()}>Cancel</button>
-                            <button type="submit" className="order-option-button">Add to Order</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </>
+                        &lt;/div>
+                    &lt;/div>
+                    &lt;div className="order-options-button-container">
+                        &lt;div className="order-option-buttons">
+                            &lt;button type="button" className="order-option-button" onClick={() => props.addBowl()}>Cancel&lt;/button>
+                            &lt;button type="submit" className="order-option-button">Add to Order&lt;/button>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/form>
+            &lt;/div>
+        &lt;/>
     );
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Map">Map</a></li><li><a href="global.html#getItemsByType">getItemsByType</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Mon Nov 28 2022 19:31:22 GMT-0600 (Central Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

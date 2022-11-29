@@ -1,5 +1,11 @@
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Space for employee to select if they are a manager or server.
+ * Selecting either option will take the user to the respective interface.
+ * 
+ * @returns null
+ */
 export default function EmployeeLogin() {
     const navigate = useNavigate();
 
