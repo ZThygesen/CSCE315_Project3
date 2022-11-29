@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const conn = require("../db");
+
 /**
  * Grabs items from database and filters them by type
  * into respective type lists
@@ -17,6 +18,10 @@ function getItemsByType(items) {
     return [bases, proteins, toppings, dressings, pita];
 }
 
+/**
+ * Retrieves inventory and menu items from database 
+ * to display on interface tables.
+ */
 router.get("/", async (req, res) => {
     const queries = [
         { query: "SELECT product_id, product_name, product_type, serving_size FROM inventory" },

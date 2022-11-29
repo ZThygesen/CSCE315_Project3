@@ -11,6 +11,10 @@ function pad(num) {
     return (num < 10 ? "0" : "") + num;
 }
 
+/**
+ * Retrieves sales report query information from database
+ * and calculates total profit given a price range.
+ */
 router.post("/", async (req, res) => {
     const startDate = new Date(req.body.start);
     const endDate = new Date(req.body.end);
@@ -19,17 +23,16 @@ router.post("/", async (req, res) => {
     const end = `'${endDate.getFullYear()}-${pad(endDate.getMonth() + 1)}-${pad(endDate.getDate())}'`;
 
     const queries = [
-        { query: 'SELECT inventory.product_name, COUNT(*) AS total_servings FROM inventory, order_product, orders WHERE inventory.product_id = order_product.product_id AND orders.order_id = order_product.order_id AND orders.order_date BETWEEN ${start} AND ${end} GROUP BY inventory.product_name, order_product.product_id' },
-        { query: 'SELECT SUM(total_price) from orders WHERE order_date BETWEEN ${start} AND ${end}' }
+        { query: 'SELECT inventory.product_name, COUNT(*) AS total_servings FROM inventory, order_product, orders WHERE inventory.product_id = order_product.product_id AND orders.order_id = order_product.order_id AND orders.order_date BETWEEN $1 AND $2 GROUP BY inventory.product_name, order_product.product_id', values: [start, end] },
+        { query: 'SELECT SUM(total_price) from orders WHERE order_date BETWEEN $1 AND $2', values: [start, end] }
     ];
-
+    console.log(queries);
     const sql = conn.pgp.helpers.concat(queries);
-    const [Items, Total] = await conn.db.multi(sql);
+    const [items, Total] = await conn.db.multi(sql);
 
-    items = await conn.db.query(query);
     res.json({ 
-        items: Items,
-        total: Total
+        items: items,
+        Total: Total
     });
 });
 

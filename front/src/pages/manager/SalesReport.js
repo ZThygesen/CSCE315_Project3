@@ -17,7 +17,6 @@ export default function SalesReport() {
     const [dateErr, setDateErr] = useState(false);
 
     const [items, setItems] = useState([]);
-    const [total, setTotal] = useState([]);
 
     /**
      * This gets the start and end dates specified by the user and sends it to the server when the user presses the submit button. 
@@ -33,7 +32,6 @@ export default function SalesReport() {
         }
 
         setItems([]);
-        setTotal([]);
 
         setIsLoading(true);
         fetch("/api/sales-report", {
@@ -41,15 +39,11 @@ export default function SalesReport() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ start: startDate, end: endDate })
         })
-            // .then(res => res.json())
-            // .then(items => {
-            //     setIsLoading(false);
-            //     setItems(items.items);
-            // })
-            // .then(total => {
-            //     setIsLoading(false);
-            //     setTotal(total.total);
-            // });  
+            .then(res => res.json())
+            .then(items => {
+                setIsLoading(false);
+                setItems(items);
+            })
     }
 
     /**
@@ -109,7 +103,6 @@ export default function SalesReport() {
                     <button type= "submit">Generate Report</button>
                     <button type="button" onClick={() => {
                         setItems([])
-                        setTotal([])
                     }}>Clear</button>
                 </div>
             </form>
@@ -128,7 +121,6 @@ export default function SalesReport() {
                                 <tr key={i}>
                                     <td>{item.product_name}</td>
                                     <td>{item.total_servings}</td>
-                                    <td>{total.total}</td>
                                 </tr>
                             ))
                             
