@@ -79,3 +79,35 @@ body {
     text-decoration: underline;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.home-img {
+    max-height: 400px;
+}
+
+/* Store Hours */
+.table-bg {
+    width: 100%;
+    background-color: var(--secondary-color);
+}
+
+.day{
+    text-align: left;
+}
+
+.hour{
+    text-align: center;
+    padding-left: 10px;
+}
+
+.table-row {
+    font-size: 20px;
+}
+
+.store-hours {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--secondary-color);
+    align-items: center;
+    text-align: center;
+    border-spacing: 5px;
+}
