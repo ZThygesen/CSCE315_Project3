@@ -1,6 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import "./ManagerNav.css";
 
+/**
+ * This function creates a navigation bar to be used by managers
+ * @returns Manager Navigation Bar
+ */
 export default function ManagerNav() {
 
     const navigate = useNavigate();

@@ -1,5 +1,10 @@
 import { useState } from "react";
 
+/**
+ * 
+ * @param {*} props 
+ * 
+ */
 export default function Extra(props) {
     const id = props.data.product_id;
     const name = props.data.product_name;

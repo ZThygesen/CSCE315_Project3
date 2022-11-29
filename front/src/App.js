@@ -4,7 +4,10 @@ import Home from "./pages/Home";
 import CustomerRoutes from "./pages/customer/CustomerRoutes";
 import EmployeeRoutes from "./pages/EmployeeRoutes";
 import "./App.css";
-
+/**
+ * @author Zach Thygesen
+ * @returns null
+ */
 export default function App() {
     return (
         <>

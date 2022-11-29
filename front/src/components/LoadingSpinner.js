@@ -1,5 +1,9 @@
 import "./LoadingSpinner.css";
 
+/**
+ * 
+ * @returns spinner
+ */
 export default function LoadingSpinner() {
     return (
         <div className="spinner-container">
