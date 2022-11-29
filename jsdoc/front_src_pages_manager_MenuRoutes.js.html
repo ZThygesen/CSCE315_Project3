@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: front/src/App.js</title>
+    <title>JSDoc: Source: front/src/pages/manager/MenuRoutes.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: front/src/App.js</h1>
+    <h1 class="page-title">Source: front/src/pages/manager/MenuRoutes.js</h1>
 
     
 
@@ -26,27 +26,26 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Home from "./pages/Home";
-import CustomerRoutes from "./pages/customer/CustomerRoutes";
-import EmployeeRoutes from "./pages/EmployeeRoutes";
-import "./App.css";
+            <pre class="prettyprint source linenums"><code>import { Route, Routes } from "react-router-dom";
+import Menu from "./Menu";
+import AddMenu from "./AddMenu";
+import RemoveMenu from "./RemoveMenu";
+import UpdateMenu  from "./UpdateMenu";
+
 /**
- * @author Zach Thygesen
- * @returns null
+ * This the handles the routes for the manager to access the add, remove, and update menu items pages
+ * @author Zach
+ * @returns Routes for Menu
  */
-export default function App() {
+export default function MenuRoutes() {
     return (
         &lt;>
-            &lt;Header />
-            &lt;div id="main-content">
-                &lt;Routes>
-                    &lt;Route index element={&lt;Home />} />
-                    &lt;Route path="create-order/*" element={&lt;CustomerRoutes />} />
-                    &lt;Route path="employee/*" element={&lt;EmployeeRoutes />} />
-                &lt;/Routes>
-            &lt;/div>
+            &lt;Routes>
+                &lt;Route index element={&lt;Menu />} />
+                &lt;Route path="add-menu-item" element={&lt;AddMenu />} />
+                &lt;Route path="remove-menu-item" element={&lt;RemoveMenu />} />
+                &lt;Route path="update-menu-item" element={&lt;UpdateMenu />} />
+            &lt;/Routes>
         &lt;/>
     );
 }

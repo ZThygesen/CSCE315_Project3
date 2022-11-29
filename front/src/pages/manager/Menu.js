@@ -3,6 +3,12 @@ import { useNavigate } from "react-router-dom";
 import Modal from "../../components/Modal";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
+/**
+ * This displays the current menu items to the manager and allows them to access the add, remove, and update menu
+ * item pages
+ * @author Zach
+ * @returns Menu page
+ */
 export default function Menu() {
     const navigate = useNavigate();
 

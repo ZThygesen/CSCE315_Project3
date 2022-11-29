@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: front/src/pages/manager/AddInventory.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: front/src/pages/manager/AddInventory.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import uuid from 'react-uuid';
+import Modal from "../../components/Modal";
+import LoadingSpinner from "../../components/LoadingSpinner";
+
+/**
+ * This provides the manager the ability to add an item to the inventory
+ * @author Zach, Ardian
+ * @returns Add Inventory Page
+ */
+export default function AddInventory() {
+    const navigate = useNavigate();
+
+    const [isLoading, setIsLoading] = useState(false);
+
+    const [submission, setSubmission] = useState(false);
+    const [submissionMsg, setSubmissionMsg] = useState("");
+
+    /**
+     * This handles the functionality for when the user presses the submit button and will send the information for 
+     * the new item to the server. It then gets the confirmation from the server to display to the user
+     * @param {*} e 
+     */
+    function handleSubmit(e) {
+        e.preventDefault();
+        
+        const temp = uuid();
+        const id = temp.toString();
+
+        var selection = document.getElementById("type");
+        const type = selection.options[selection.selectedIndex].value;
+
+        const name = document.getElementById("name").value;
+        const quantity = document.getElementById("quan").value;
+        const serve = document.getElementById("serve").value;
+        const minimum = document.getElementById("min").value;
+
+        setIsLoading(true);
+        fetch("/api/add-inv", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name: name, id: id, quantity: quantity, type: type, serve: serve, onhand: minimum })
+        })
+            .then(res => res.json())
+            .then(res => {
+                setIsLoading(false);
+                setSubmissionMsg(res);
+                setSubmission(true);
+            });
+    }
+
+    /**
+     * This handles the modal that appears when the user presses submit, confirming that the
+     * action worked
+     * @returns Submission Modal
+     */
+    function SubmissionModal() {
+        return (
+            &lt;Modal isVisible={submission}
+                body={
+                    &lt;p>{submissionMsg}&lt;/p>
+                }
+                footer={
+                    &lt;button
+                        className="modal-close-button"
+                        onClick={() => {
+                            setSubmission(current => !current);
+                            setSubmissionMsg("");
+                            navigate(-1);
+                        }}
+                    >
+                        Close
+                    &lt;/button>
+                }
+            />
+        );
+    }
+
+    return (
+        &lt;div className="add-inventory-container">
+            &lt;Modal isVisible={isLoading} loading={&lt;LoadingSpinner />} />
+            &lt;SubmissionModal />
+            &lt;h1>Add Inventory&lt;/h1>
+            {/* Where user enters information on new item */}
+            &lt;form className="add-inventory-form" onSubmit={handleSubmit}>
+                &lt;div className="add-inventory-input">
+                    &lt;label htmlFor="name">Enter the new item name:&lt;/label>
+                    &lt;input type="text" id="name" name="name" required/>
+                &lt;/div>
+
+                &lt;div className="add-inventory-input">
+                    &lt;label htmlFor="quan">Enter the quantity:&lt;/label>
+                    &lt;input type="number" id="quan" name="quan" required/>
+                &lt;/div>
+
+                &lt;div className="add-inventory-input">
+                    &lt;label htmlFor="type">
+                        Choose a product type:
+                    &lt;/label>
+                    &lt;select id="type">
+                        &lt;option value="Pita">Pita&lt;/option>
+                        &lt;option value="Rice">Rice&lt;/option>
+                        &lt;option value="Protein">Protein&lt;/option>
+                        &lt;option value="Topping">Topping&lt;/option>
+                        &lt;option value="Dressing">Dressing&lt;/option>
+                        &lt;option value="Side">Side&lt;/option>
+                    &lt;/select>
+                &lt;/div>
+
+                &lt;div className="add-inventory-input">
+                    &lt;label htmlFor="serve">Enter the serving size:&lt;/label>
+                    &lt;input type="number" id="serve" name="serve" required/>
+                &lt;/div>
+
+                &lt;div className="add-inventory-input">
+                    &lt;label htmlFor="min">Enter the minimum required amount:&lt;/label>
+                    &lt;input type="number" id="min" name="min" required/>
+                &lt;/div>
+
+                &lt;div className="add-inventory-buttons">
+                    &lt;button type="button" onClick={() => navigate(-1)}>Back&lt;/button>
+                    &lt;button type="submit" value="Submit">Add Item&lt;/button>
+                &lt;/div>
+            &lt;/form>
+        &lt;/div>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#getItemsByType">getItemsByType</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Mon Nov 28 2022 19:51:01 GMT-0600 (Central Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

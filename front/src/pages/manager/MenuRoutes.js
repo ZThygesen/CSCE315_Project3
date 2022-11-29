@@ -4,6 +4,11 @@ import AddMenu from "./AddMenu";
 import RemoveMenu from "./RemoveMenu";
 import UpdateMenu  from "./UpdateMenu";
 
+/**
+ * This the handles the routes for the manager to access the add, remove, and update menu items pages
+ * @author Zach
+ * @returns Routes for Menu
+ */
 export default function MenuRoutes() {
     return (
         <>

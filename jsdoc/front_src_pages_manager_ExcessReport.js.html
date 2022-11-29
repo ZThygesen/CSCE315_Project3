@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: front/src/pages/manager/ExcessReport.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: front/src/pages/manager/ExcessReport.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useState } from "react";
+import DatePicker from "react-date-picker";
+import Modal from "../../components/Modal";
+import LoadingSpinner from "../../components/LoadingSpinner";
+
+/**
+ * This provides a report of items that have sold less than 10% of its inventory within a time frame
+ * @author Justin
+ * @returns Excess Report Page
+ */
+export default function ExcessReport() {
+    const [isLoading, setIsLoading] = useState(false);
+
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+
+    const [dateErr, setDateErr] = useState(false);
+
+    const [items, setItems] = useState([]);
+
+    /**
+     * This gets the start and end dates specified by the user and sends it to the server when the user presses the submit button.
+     * It then gets the items and other information from the server to display to the user
+     * @param {*} e 
+     */
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        if (startDate > endDate) {
+            setDateErr(true);
+            return;
+        }
+
+        setItems([]);
+
+        setIsLoading(true);
+        fetch("/api/excess-report", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ start: startDate, end: endDate })
+        })
+            .then(res => res.json())
+            .then(items => {
+                setIsLoading(false);
+                setItems(items.items);
+            });
+    }
+
+    /**
+     * This function handles the situation where the user enters a start date that comes after the end date
+     * @returns Data Error Modal
+     */
+    function DateErrModal() {
+        return (
+            &lt;Modal isVisible={dateErr}
+                body={
+                    &lt;p>Start date cannot be after end date&lt;/p>
+                }
+                footer={
+                    &lt;button
+                        className="modal-close-button"
+                        onClick={() => {
+                            setDateErr(current => !current);
+                        }}
+                    >
+                        Close
+                    &lt;/button>
+                }
+            />
+        );
+    }
+
+    return (
+        &lt;div className="excess-report-container">
+            &lt;Modal isVisible={isLoading} loading={&lt;LoadingSpinner />} />
+            &lt;DateErrModal />
+            &lt;form className="express-report-form" onSubmit={handleSubmit}>
+                &lt;h1>Excess Report&lt;/h1>
+                &lt;div className="excess-report-date-pickers">
+                    &lt;div className="excess-report-input">
+                        &lt;div className="start-date">
+                            Start Date
+                        &lt;/div>
+                        &lt;DatePicker
+                            value={startDate}
+                            onChange={date => setStartDate(date)}
+                            clearIcon={null}
+                        />
+                    &lt;/div>
+                    &lt;div className="excess-report-input">
+                        &lt;div className="end-date">
+                            End Date
+                        &lt;/div>
+                        &lt;DatePicker
+                            value={endDate}
+                            onChange={date => setEndDate(date)}
+                            clearIcon={null}
+                        />
+                    &lt;/div>
+                &lt;/div>
+
+                &lt;div className="excess-report-buttons">
+                    &lt;button type="submit">Generate Report&lt;/button>
+                    &lt;button type="button" onClick={() => {
+                        setItems([])
+                    }}>Clear&lt;/button>
+                &lt;/div>
+            &lt;/form>
+            {items.length === 0 ? &lt;div>No items in excess for the defined time period.&lt;/div> :
+                &lt;table className="excess-report-table">
+                    &lt;thead>
+                        &lt;tr>
+                            &lt;th>Item&lt;/th>
+                        &lt;/tr>
+                    &lt;/thead>
+                    &lt;tbody>
+                        {
+                            items.map((item, i) => (
+                                &lt;tr key={i}>
+                                    &lt;td>{item.product_name}&lt;/td>
+                                &lt;/tr>
+                            ))
+                        }
+                    &lt;/tbody>
+                &lt;/table>
+            }
+        &lt;/div> 
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#getItemsByType">getItemsByType</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Mon Nov 28 2022 19:51:01 GMT-0600 (Central Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

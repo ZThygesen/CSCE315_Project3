@@ -3,6 +3,11 @@ import { useNavigate } from "react-router-dom";
 import Modal from "../../components/Modal";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
+/**
+ * This displays the inventory, including item names, product type, quantity, on-hand amount, and serving size 
+ * @author Zach, Ardian
+ * @returns Inventory Page
+ */
 export default function Inventory() {
     const navigate = useNavigate();
 

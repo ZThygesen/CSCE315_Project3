@@ -4,6 +4,12 @@ import AddInventory from "./AddInventory";
 import RemoveInventory from "./RemoveInventory";
 import UpdateInventory from "./UpdateInventory";
 
+/**
+ * This handles the routes from the Inventory page to the add, remove, and update inventory pages for the user
+ * to access them
+ * @author Zach
+ * @returns Routes
+ */
 export default function InventoryRoutes() {
     return (
         <>

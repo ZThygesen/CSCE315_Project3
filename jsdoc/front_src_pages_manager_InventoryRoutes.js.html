@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: front/src/App.js</title>
+    <title>JSDoc: Source: front/src/pages/manager/InventoryRoutes.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: front/src/App.js</h1>
+    <h1 class="page-title">Source: front/src/pages/manager/InventoryRoutes.js</h1>
 
     
 
@@ -27,26 +27,26 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Home from "./pages/Home";
-import CustomerRoutes from "./pages/customer/CustomerRoutes";
-import EmployeeRoutes from "./pages/EmployeeRoutes";
-import "./App.css";
+import Inventory from "./Inventory";
+import AddInventory from "./AddInventory";
+import RemoveInventory from "./RemoveInventory";
+import UpdateInventory from "./UpdateInventory";
+
 /**
- * @author Zach Thygesen
- * @returns null
+ * This handles the routes from the Inventory page to the add, remove, and update inventory pages for the user
+ * to access them
+ * @author Zach
+ * @returns Routes
  */
-export default function App() {
+export default function InventoryRoutes() {
     return (
         &lt;>
-            &lt;Header />
-            &lt;div id="main-content">
-                &lt;Routes>
-                    &lt;Route index element={&lt;Home />} />
-                    &lt;Route path="create-order/*" element={&lt;CustomerRoutes />} />
-                    &lt;Route path="employee/*" element={&lt;EmployeeRoutes />} />
-                &lt;/Routes>
-            &lt;/div>
+            &lt;Routes>
+                &lt;Route index element={&lt;Inventory />} />
+                &lt;Route path="add-inventory" element={&lt;AddInventory />} />
+                &lt;Route path="remove-inventory" element={&lt;RemoveInventory />} />
+                &lt;Route path="update-inventory" element={&lt;UpdateInventory />} />
+            &lt;/Routes>
         &lt;/>
     );
 }

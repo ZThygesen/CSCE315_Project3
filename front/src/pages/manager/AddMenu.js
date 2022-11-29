@@ -4,6 +4,11 @@ import uuid from 'react-uuid';
 import Modal from "../../components/Modal";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
+/**
+ * This provides the manager the ability to add an item to the menu
+ * @author Zach, Ardian
+ * @returns Add Menu Page
+ */
 export default function AddMenu() {
     const navigate = useNavigate();
 
@@ -12,7 +17,11 @@ export default function AddMenu() {
     const [submission, setSubmission] = useState(false);
     const [submissionMsg, setSubmissionMsg] = useState("");
 
-    // What happens when the user clicks submit
+    /**
+     * This handles the functionality for when the user presses the submit button and will send the information for 
+     * the new item to the server. It then gets the confirmation from the server to display to the user
+     * @param {*} e 
+     */
     function handleSubmit(e) {
         e.preventDefault();
         
@@ -40,6 +49,11 @@ export default function AddMenu() {
             });
     }   
 
+    /**
+     * This handles the modal that appears when the user presses submit, confirming that the
+     * action worked
+     * @returns Submission Modal
+     */
     function SubmissionModal() {
         return (
             <Modal isVisible={submission}

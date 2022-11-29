@@ -3,6 +3,11 @@ import { useEffect, useState } from "react";
 import Modal from "../../components/Modal";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
+/**
+ * This allows the manager the ability to update an item in the menu
+ * @author Zach, Ardian
+ * @returns Update Menu Page
+ */
 export default function UpdateMenu() {
     const navigate = useNavigate();
 
@@ -29,7 +34,11 @@ export default function UpdateMenu() {
     }, []);
 
 
-    //What happens when the user clicks submit
+    /**
+     * This will get the the item selected and the new information from the user and sends it to the server when the
+     * user presses the submit button. It then gets the confirmation from the server to display to the user
+     * @param {*} e 
+     */
     function handleSubmit(e) {
         e.preventDefault();
         
@@ -54,6 +63,11 @@ export default function UpdateMenu() {
             });
     }
 
+    /**
+     * This handles the modal that appears when the user presses submit, confirming that the
+     * action worked
+     * @returns Submission Modal
+     */
     function SubmissionModal() {
         return (
             <Modal isVisible={submission}

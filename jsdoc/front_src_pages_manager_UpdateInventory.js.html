@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: front/src/pages/manager/UpdateInventory.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: front/src/pages/manager/UpdateInventory.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Modal from "../../components/Modal";
+import LoadingSpinner from "../../components/LoadingSpinner";
+
+/**
+ * This allows the manager the ability to update the information of an item in the inventory
+ * @author Zach, Ardian
+ * @returns Update Inventory Page
+ */
+export default function UpdateInventory() {
+    const navigate = useNavigate();
+
+    const [initialLoading, setInitialLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const [submission, setSubmission] = useState(false);
+    const [submissionMsg, setSubmissionMsg] = useState("");
+
+    const [inventory, setInventory] = useState([{}]);
+
+    useEffect(() => {
+        setInitialLoading(true);
+        setIsLoading(true);
+        fetch("/api/inventory")
+            .then(res => res.json())
+            .then(inventory => {
+                setTimeout(() => {
+                    setInventory(inventory.inventory);
+                    setInitialLoading(false);
+                    setIsLoading(false);
+                }, 250);
+            });
+    }, []);
+
+    /**
+     * This will get the the item selected and the new information from the user and sends it to the server when the
+     * user presses the submit button. It then gets the confirmation from the server to display to the user
+     * @param {*} e 
+     */
+    function handleSubmit(e) {
+        e.preventDefault();
+        
+        var selection = document.getElementById("item");
+        const id = selection.options[selection.selectedIndex].value;
+
+        const quantity = document.getElementById("quan").value;
+        const type = document.getElementById("type").value;
+        const serve = document.getElementById("serve").value;
+        const minimum = document.getElementById("min").value;
+
+        setIsLoading(true);
+        fetch("/api/update-inv", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id: id, quantity: quantity, type: type, serve: serve, onhand: minimum })
+        })
+            .then(res => res.json())
+            .then(res => {
+                setIsLoading(false);
+                setSubmissionMsg(res);
+                setSubmission(true);
+            });
+    }
+
+    /**
+     * This handles the modal that appears when the user presses submit, confirming that the
+     * action worked
+     * @returns Submission Modal
+     */
+    function SubmissionModal() {
+        return (
+            &lt;Modal isVisible={submission}
+                body={
+                    &lt;p>{submissionMsg}&lt;/p>
+                }
+                footer={
+                    &lt;button
+                        className="modal-close-button"
+                        onClick={() => {
+                            setSubmission(current => !current);
+                            setSubmissionMsg("");
+                            navigate(-1);
+                        }}
+                    >
+                        Close
+                    &lt;/button>
+                }
+            />
+        );
+    }
+
+    return (
+        &lt;div className="update-inventory-container">
+            &lt;Modal isVisible={isLoading} loading={&lt;LoadingSpinner />} />
+            &lt;SubmissionModal />
+            {initialLoading ? &lt;>&lt;/> :
+                &lt;>
+                    &lt;h1>Update Inventory&lt;/h1>
+
+                    {/* Where the user enters the information */}
+                    &lt;form className="update-inventory-form" onSubmit={handleSubmit}>
+                        
+                        {/* Lists the items currently in the inventory */}
+                        &lt;div className="update-inventory-input">
+                            &lt;label htmlFor="item">
+                                Choose an item to update:
+                            &lt;/label>
+                            &lt;select id="item">
+                                {
+                                    inventory.map((item,i) =>
+                                        &lt;option key={i} value={item.product_id} name={item.product_name}>{item.product_name}&lt;/option>
+                                    )
+                                }
+                            &lt;/select>
+                        &lt;/div>
+
+                        &lt;div className="update-inventory-input">
+                            &lt;label htmlFor="quan">Enter the quantity:&lt;/label>
+                            &lt;input type="text" id="quan" name="quan" />
+                        &lt;/div>
+
+                        &lt;div className="update-inventory-input">
+                            &lt;label htmlFor="type">Enter the product type:&lt;/label>
+                            &lt;input type="text" id="type" name="type" />
+                        &lt;/div>
+
+                        &lt;div className="update-inventory-input">
+                            &lt;label htmlFor="serve">Enter the serving size:&lt;/label>
+                            &lt;input type="text" id="serve" name="serve" />
+                        &lt;/div>
+
+                        &lt;div className="update-inventory-input">
+                            &lt;label htmlFor="min">Enter the minimum required amount:&lt;/label>
+                            &lt;input type="text" id="min" name="min" />
+                        &lt;/div>
+
+                        &lt;div className="update-inventory-buttons">
+                            &lt;button type="button" onClick={() => navigate(-1)}>Back&lt;/button>
+                            &lt;button type="submit" value="Submit">Update Item&lt;/button>
+                        &lt;/div>
+                    &lt;/form>
+                &lt;/>
+            }
+        &lt;/div>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#getItemsByType">getItemsByType</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Mon Nov 28 2022 19:51:01 GMT-0600 (Central Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

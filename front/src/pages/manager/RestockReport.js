@@ -2,6 +2,11 @@ import { useEffect, useState } from "react";
 import Modal from "../../components/Modal";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
+/**
+ * This displays the items whose quantity is below their on-hand amount
+ * @author Ardian
+ * @returns Restock Report Page
+ */
 export default function RestockReport() {
     const [isLoading, setIsLoading] = useState(true);
 

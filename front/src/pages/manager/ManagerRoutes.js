@@ -8,6 +8,12 @@ import RestockReport from "./RestockReport";
 import ServerRoutes from "../server/ServerRoutes";
 import "./Manager.css";
 
+/**
+ * This handles the manager pages' side navigation bar for the user to access the inventory, menu, reports, and
+ * the create order screen
+ * @author Zach
+ * @returns Side Navigation Bar
+ */
 export default function ManagerRoutes() {
     return (
         <div className="manager-container">

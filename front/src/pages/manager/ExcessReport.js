@@ -3,6 +3,11 @@ import DatePicker from "react-date-picker";
 import Modal from "../../components/Modal";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
+/**
+ * This provides a report of items that have sold less than 10% of its inventory within a time frame
+ * @author Justin
+ * @returns Excess Report Page
+ */
 export default function ExcessReport() {
     const [isLoading, setIsLoading] = useState(false);
 
@@ -13,6 +18,11 @@ export default function ExcessReport() {
 
     const [items, setItems] = useState([]);
 
+    /**
+     * This gets the start and end dates specified by the user and sends it to the server when the user presses the submit button.
+     * It then gets the items and other information from the server to display to the user
+     * @param {*} e 
+     */
     function handleSubmit(e) {
         e.preventDefault();
 
@@ -36,6 +46,10 @@ export default function ExcessReport() {
             });
     }
 
+    /**
+     * This function handles the situation where the user enters a start date that comes after the end date
+     * @returns Data Error Modal
+     */
     function DateErrModal() {
         return (
             <Modal isVisible={dateErr}
