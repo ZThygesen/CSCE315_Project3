@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: front/src/App.js</title>
+    <title>JSDoc: Source: front/src/components/Modal.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: front/src/App.js</h1>
+    <h1 class="page-title">Source: front/src/components/Modal.js</h1>
 
     
 
@@ -26,28 +26,30 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Home from "./pages/Home";
-import CustomerRoutes from "./pages/customer/CustomerRoutes";
-import EmployeeRoutes from "./pages/EmployeeRoutes";
-import "./App.css";
+            <pre class="prettyprint source linenums"><code>import "./Modal.css";
+
 /**
- * @author Zach Thygesen
- * @returns null
+ * 
+ * @param {*} props 
+ * @returns modal
  */
-export default function App() {
+export default function Modal(props) {
     return (
-        &lt;>
-            &lt;Header />
-            &lt;div id="main-content">
-                &lt;Routes>
-                    &lt;Route index element={&lt;Home />} />
-                    &lt;Route path="create-order/*" element={&lt;CustomerRoutes />} />
-                    &lt;Route path="employee/*" element={&lt;EmployeeRoutes />} />
-                &lt;/Routes>
-            &lt;/div>
-        &lt;/>
+        &lt;div className={`modal ${props.full ? "full" : ""} ${props.isVisible ? "" : "fade-out"}`}>
+            {props.loading !== undefined ? &lt;>{props.loading}&lt;/> :
+                &lt;div className={`modal-content ${props.isVisible ? "" : "hidden"}`}>
+                    &lt;div className="modal-header">
+                        
+                    &lt;/div>
+                    &lt;div className="modal-body">
+                        {props.body}
+                    &lt;/div>
+                    &lt;div className="modal-footer">
+                        {props.footer}
+                    &lt;/div>
+                &lt;/div>
+            }
+        &lt;/div>
     );
 }
 </code></pre>

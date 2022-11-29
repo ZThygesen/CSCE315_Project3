@@ -1,5 +1,10 @@
 import "./Modal.css";
 
+/**
+ * 
+ * @param {*} props 
+ * @returns modal
+ */
 export default function Modal(props) {
     return (
         <div className={`modal ${props.full ? "full" : ""} ${props.isVisible ? "" : "fade-out"}`}>

@@ -1,6 +1,11 @@
 import { useState } from "react";
 import "./Option.css";
 
+/**
+ * Creates options button to be used on create order screen
+ * @param {*} props 
+ * @returns option button
+ */
 export default function OptionButton(props) {
     const id = props.data.product_id;
     const name = props.data.product_name;
