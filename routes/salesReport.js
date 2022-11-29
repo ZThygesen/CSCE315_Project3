@@ -18,13 +18,19 @@ router.post("/", async (req, res) => {
     const start = `'${startDate.getFullYear()}-${pad(startDate.getMonth() + 1)}-${pad(startDate.getDate())}'`;
     const end = `'${endDate.getFullYear()}-${pad(endDate.getMonth() + 1)}-${pad(endDate.getDate())}'`;
 
-    const query = `SELECT inventory.product_name, COUNT(*) AS total_servings FROM inventory, order_product, orders
-        WHERE inventory.product_id = order_product.product_id AND orders.order_id = order_product.order_id AND orders.order_date BETWEEN
-        ${start} AND ${end} GROUP BY inventory.product_name, order_product.product_id`;
-    
-    items = await conn.db.query(query);
+    const queries = [
+        { query: 'SELECT inventory.product_name, COUNT(*) AS total_servings FROM inventory, order_product, orders WHERE inventory.product_id = order_product.product_id AND orders.order_id = order_product.order_id AND orders.order_date BETWEEN ${start} AND ${end} GROUP BY inventory.product_name, order_product.product_id' },
+        { query: 'SELECT SUM(total_price) from orders WHERE order_date BETWEEN ${start} AND ${end}' }
+    ];
 
-    res.json({ items: items});
+    const sql = conn.pgp.helpers.concat(queries);
+    const [Items, Total] = await conn.db.multi(sql);
+
+    items = await conn.db.query(query);
+    res.json({ 
+        items: Items,
+        total: Total
+    });
 });
 
 module.exports = router;
