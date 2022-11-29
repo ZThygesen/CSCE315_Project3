@@ -2,6 +2,11 @@ const express = require("express");
 const router = express.Router();
 const conn = require("../db");
 
+/**
+ * 
+ * @param {*} num 
+ * @returns num < 10 ? "0" : "") + num
+ */
 function pad(num) {
     return (num < 10 ? "0" : "") + num;
 }

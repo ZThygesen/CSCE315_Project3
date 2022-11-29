@@ -5,7 +5,9 @@ import CustomerRoutes from "./pages/customer/CustomerRoutes";
 import EmployeeRoutes from "./pages/EmployeeRoutes";
 import "./App.css";
 /**
- * @author Zach Thygesen
+ * Creates routes for creating an order (Customer-side) and employee side
+ * 
+ * @author Zach
  * @returns null
  */
 export default function App() {

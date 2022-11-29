@@ -14,7 +14,7 @@ const GoogleTranslate = () => {
       );
   };
 
-  var duplicate_google_translate_counter = 0;//this stops google adding button multiple times
+  var duplicate_google_translate_counter = 0; // this stops google adding button multiple times
 
   useEffect(() => {
     const addScript = document.createElement('script');

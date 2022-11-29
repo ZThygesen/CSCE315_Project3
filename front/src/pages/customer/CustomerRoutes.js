@@ -7,6 +7,10 @@ import Modal from "../../components/Modal";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import "../CreateOrder.css";
 
+/**
+ * Displays page for customer to create order
+ * @returns null
+ */
 export default function CustomerRoutes() {
     const [isLoading, setIsLoading] = useState(true);
 
@@ -32,6 +36,10 @@ export default function CustomerRoutes() {
             });
     }, []);
 
+    /**
+     * Adds item to order
+     * @param {*} item 
+     */
     function addOrderItem(item) {
         if (item !== undefined) {
             if (editItem !== undefined) {
@@ -51,11 +59,19 @@ export default function CustomerRoutes() {
         changePage("Main");
     }
 
+    /**
+     * Edit one of the items on the order
+     * @param {*} item 
+     */
     function editOrderItem(item) {
         setEditItem(item);
         changePage(item.type);
     }
 
+    /**
+     * Remove item from current order
+     * @param {*} item 
+     */
     function removeOrderItem(item) {
         const index = orderItems.indexOf(item);
  
@@ -65,12 +81,19 @@ export default function CustomerRoutes() {
         setOrderItems(newOrderItems);
     }
 
+    /**
+     * Clear entire order
+     */
     function clearOrder() {
         setOrderItems([]);
         setEditItem(undefined);
         changePage("Main");
     }
 
+    /**
+     * Changes page according to current page
+     * @param {*} page 
+     */
     function changePage(page) {
         setIsMainPage(false);
         setIsBowlPage(false);

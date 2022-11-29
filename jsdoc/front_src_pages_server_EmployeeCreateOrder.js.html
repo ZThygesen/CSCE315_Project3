@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: front/src/pages/server/EmployeeCreateOrder.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: front/src/pages/server/EmployeeCreateOrder.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import OrderItem from "../../components/OrderItem.js";
+import Modal from "../../components/Modal.js";
+import LoadingSpinner from "../../components/LoadingSpinner.js";
+
+export default function EmployeeCreateOrder(props) {
+    const navigate = useNavigate();
+
+    const [isLoading, setIsLoading] = useState(false);
+
+    const [emptySubmission, setEmptySubmission] = useState(false);
+    const [submission, setSubmission] = useState(false);
+
+    const [submissionMsg, setSubmissionMsg] = useState("");
+
+    /**
+     * Calculates price of items and fixes 
+     * the value to 2 decimal values
+     * @returns price
+     */
+    function calculatePrice() {
+        let price = 0;
+
+        props.orderItems.forEach(item => {
+            price += item.price;
+        });
+
+        return price.toFixed(2);
+    }
+
+    /**
+     * Handles submitting an order by passing information to the backend
+     * @returns null
+     */
+    function submitOrder() {
+        if (props.orderItems.length === 0) {
+            setEmptySubmission(true);
+            return;
+        }
+
+        setIsLoading(true);
+        fetch("/api/submit-order", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ items: props.orderItems, price: calculatePrice() })
+        })
+            .then(res => res.json())
+            .then(res => {
+                setIsLoading(false);
+                setSubmissionMsg(res);
+                setSubmission(true);
+            });
+    }
+
+    /**
+     * Prevents user from submitting an empty order
+     * @returns null
+     */
+    function EmptySubmissionModal() {
+        return (
+            &lt;Modal isVisible={emptySubmission} full={true}
+                body={
+                    &lt;p>Cannot submit empty order&lt;/p>
+                }
+                footer={ 
+                    &lt;button
+                        className="modal-close-button"
+                        onClick={() => setEmptySubmission(current => !current)}
+                    >
+                        Close
+                    &lt;/button>
+                }
+            />
+        );
+    }
+
+    /**
+     * Provides submission display message to prevent user
+     * from spamming the submit button
+     * 
+     * @returns null
+     */
+    function SubmissionModal() {
+        return (
+            &lt;Modal isVisible={submission} full={true}
+                body={
+                    &lt;p>{submissionMsg}&lt;/p>
+                }
+                footer={
+                    &lt;button
+                        className="modal-close-button"
+                        onClick={() => {
+                            setSubmission(current => !current);
+                            setSubmissionMsg("");
+                            props.clearOrder();
+                        }}
+                    >
+                        Close
+                    &lt;/button>
+                }
+            />
+        );
+    }
+
+    return (
+        &lt;>
+            &lt;Modal isVisible={isLoading} full={true} loading={&lt;LoadingSpinner />} />
+            &lt;EmptySubmissionModal />
+            &lt;SubmissionModal />
+            &lt;div className="create-order-container">
+                &lt;div className="left">
+                    &lt;p className="create-order-title">Current Order&lt;/p>
+                    &lt;div className="current-order-container">
+                        &lt;div className="current-order-labels">
+                            &lt;p className="order-item-label">Item&lt;/p>
+                            &lt;p>Price&lt;/p>
+                        &lt;/div>
+                        &lt;div className="current-order-items-container">
+                            {
+                                props.orderItems.map((item, i) => (
+                                    &lt;OrderItem
+                                        key={i}
+                                        item={item}
+                                        editOrderItem={props.editOrderItem}
+                                        removeOrderItem={props.removeOrderItem}
+                                    />
+                                ))
+                            }
+                        &lt;/div>
+                        &lt;div className="current-order-price">
+                            Total: ${calculatePrice()}
+                        &lt;/div>
+                    &lt;/div>
+                    &lt;div className="order-buttons-container">
+                        &lt;button onClick={() => navigate("/")}>Logout&lt;/button>
+                        &lt;button onClick={props.clearOrder}>Cancel&lt;/button>
+                        &lt;button onClick={submitOrder}>Submit&lt;/button>
+                    &lt;/div>
+                &lt;/div>
+                &lt;div className="right">
+                    &lt;p className="create-order-title">Add Items&lt;/p>
+                    &lt;div className="add-items-container">
+                        &lt;button onClick={() => props.changePage("Bowl")}>Bowl&lt;/button>
+                        &lt;button onClick={() => props.changePage("Gyro")}>Gyro&lt;/button>
+                        &lt;button onClick={() => props.changePage("Side")}>Sides&lt;/button>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+        &lt;/>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Map">Map</a></li><li><a href="global.html#containsExtra">containsExtra</a></li><li><a href="global.html#createAndInsertCustomer">createAndInsertCustomer</a></li><li><a href="global.html#createAndInsertOrder">createAndInsertOrder</a></li><li><a href="global.html#createAndInsertOrderProducts">createAndInsertOrderProducts</a></li><li><a href="global.html#getEmployeeId">getEmployeeId</a></li><li><a href="global.html#getExcess">getExcess</a></li><li><a href="global.html#getItemsByType">getItemsByType</a></li><li><a href="global.html#pad">pad</a></li><li><a href="global.html#subtractFromInventory">subtractFromInventory</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Mon Nov 28 2022 19:40:20 GMT-0600 (Central Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -4,6 +4,11 @@ import Extra from "../../components/Extra";
 import Option from "../../components/Option";
 import Modal from "../../components/Modal";
 
+/**
+ * Creates interface for building a bowl on the employee-side interface
+ * @param {*} props 
+ * @returns null
+ */
 export default function EmployeeBuildBowl(props) {
     const bases = props.items.bases;
     const proteins = props.items.proteins;
@@ -17,6 +22,11 @@ export default function EmployeeBuildBowl(props) {
     const [extraProteinErr, setExtraProteinErr] = useState(false);
     const [extraDressingErr, setExtraDressingErr] = useState(false);
 
+    /**
+     * Gets item corresponding to given id
+     * @param {*} selectionId 
+     * @returns selection
+     */
     function getSelectionObject(selectionId) {
         let selection;
         for (let key in props.items) {
@@ -35,6 +45,11 @@ export default function EmployeeBuildBowl(props) {
         return selection
     }
 
+    /**
+     * Checks if selection contains extra protein or a regular amount of protein
+     * @param {*} selections 
+     * @returns boolean
+     */
     function checkExtraProtein(selections) {
         const hasExtraProtein = selections.filter(selection => (
             selection.product_name === "Extra Protein"
@@ -51,6 +66,11 @@ export default function EmployeeBuildBowl(props) {
         return false;
     }
 
+    /**
+     * Checks if selection contains extra dressing or a regular amount of dressing
+     * @param {*} selections 
+     * @returns boolean
+     */
     function checkExtraDressing(selections) {
         const hasExtraDressing = selections.filter(selection => (
             selection.product_name === "Extra Dressing"
@@ -67,6 +87,11 @@ export default function EmployeeBuildBowl(props) {
         return false;
     }
 
+    /**
+     * Calculates the price of the order based on the selected items
+     * @param {*} selections 
+     * @returns price
+     */
     function calculatePrice(selections) {
         // start with base price of a bowl
         let price = props.items.menuItems.filter(item => item.product_name === "Bowl")[0].price;
@@ -79,6 +104,11 @@ export default function EmployeeBuildBowl(props) {
         return price;
     }
 
+    /**
+     * Processes order when user clicks submit order button.
+     * @param {*} e 
+     * @returns null
+     */
     function handleSubmit(e) {
         e.preventDefault();
 
@@ -108,6 +138,10 @@ export default function EmployeeBuildBowl(props) {
         }
     }
 
+    /**
+     * Displays message if extra protein is added but no protein is selected
+     * @returns null
+     */
     function ExtraProteinModal() {
         return (
             <Modal isVisible={extraProteinErr} full={true}
@@ -126,6 +160,10 @@ export default function EmployeeBuildBowl(props) {
         );
     }
 
+    /**
+     * Displays message if extra dressing is added but no dressing is selected
+     * @returns null
+     */
     function ExtraDressingModal() {
         return (
             <Modal isVisible={extraDressingErr} full={true}

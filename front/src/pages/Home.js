@@ -2,6 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import { useMemo } from "react";
 
+/**
+ * @author Justin, Zach
+ * Displays main home page for application
+ * @returns null
+ */
 export default function Home() {
     const navigate = useNavigate();
     const { isLoaded } = useLoadScript({
@@ -24,7 +29,13 @@ export default function Home() {
         
     );
 }
-
+/**
+ * @author Justin
+ * 
+ * Creates map React object to be displayed on home page.
+ * Map contains the location of the restaurant
+ * @returns null
+ */
 function Map() {
     const center = useMemo(() => ({lat: 30.61227281695433, lng: -96.34128581712766}), []); 
 

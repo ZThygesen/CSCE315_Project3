@@ -2,6 +2,12 @@ import { useState } from "react";
 import { TfiAngleDoubleDown, TfiAngleDoubleUp, TfiPencil, TfiTrash } from "react-icons/tfi";
 import "./OrderItem.css"
 
+/**
+ * Displays screen with order on it. Contains options to remove,
+ * edit, and view details on current order
+ * @param {*} props 
+ * @returns order page
+ */
 export default function OrderChoice(props) {
     const isSide = props.item.type === "Side";
     const [isExtended, setIsExtended] = useState(false);

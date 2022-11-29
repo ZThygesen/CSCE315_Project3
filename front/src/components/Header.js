@@ -4,7 +4,7 @@ import "./Header.css";
 import GoogleTranslate from "./GoogleTranslate";
 
 /**
- * Header
+ * Displays Pom and Honey header on application
  * @returns header
  */
 export default function Header() {

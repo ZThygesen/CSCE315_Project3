@@ -1,11 +1,22 @@
 import { v4 as uuid } from "uuid";
 import Option from "../../components/Option";
 
+/**
+ * Creates sides options for employee-side
+ * of the interface
+ * @param {*} props 
+ * @returns null
+ */
 export default function EmployeeSides(props) {
     const sides = props.items;
 
     const editMode = props.editItem !== undefined
 
+    /**
+     * Gets item corresponding to given id
+     * @param {*} selectionId 
+     * @returns selection
+     */
     function getSelectionObject(selectionId) {
         let selection;
         
@@ -20,6 +31,11 @@ export default function EmployeeSides(props) {
         return selection
     }
 
+    /**
+     * Adds sides selected by employee to selection array.
+     * Selection array displayed on order item screen
+     * @param {*} e 
+     */
     function handleSubmit(e) {
         e.preventDefault();
 

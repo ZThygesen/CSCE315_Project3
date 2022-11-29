@@ -24,6 +24,14 @@ router.post("/", async(req, res) => {
     
     res.json({ items: excessItems});
 });
+/**
+ * @author Justin
+ * Takes items from given database query and determines if 
+ * they belong in the excess report
+ * 
+ * @param {*} items 
+ * @returns items that match filter
+ */
 
 function getExcess(items) {
     return items.filter(item => {

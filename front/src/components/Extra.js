@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 /**
- * 
+ * Creates component to be used for extras button when creating an order
  * @param {*} props 
- * 
+ *  
  */
 export default function Extra(props) {
     const id = props.data.product_id;

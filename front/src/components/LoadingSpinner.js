@@ -1,6 +1,8 @@
 import "./LoadingSpinner.css";
 
 /**
+ * Displays loading spinner image before data is grabbed 
+ * from the database or a query is successfully ran
  * 
  * @returns spinner
  */
