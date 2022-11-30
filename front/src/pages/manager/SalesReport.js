@@ -17,6 +17,7 @@ export default function SalesReport() {
     const [dateErr, setDateErr] = useState(false);
 
     const [items, setItems] = useState([]);
+    const [Total, setTotal] = useState(0.0);
 
     /**
      * This gets the start and end dates specified by the user and sends it to the server when the user presses the submit button. 
@@ -41,8 +42,10 @@ export default function SalesReport() {
         })
             .then(res => res.json())
             .then(items => {
+                console.log(items);
                 setIsLoading(false);
-                setItems(items);
+                setItems(items.items);
+                setTotal(items.Total[0].sum === null ? 0 : items.Total[0].sum);
             })
     }
 
@@ -103,6 +106,7 @@ export default function SalesReport() {
                     <button type= "submit">Generate Report</button>
                     <button type="button" onClick={() => {
                         setItems([])
+                        setTotal(0)
                     }}>Clear</button>
                 </div>
             </form>
@@ -112,7 +116,6 @@ export default function SalesReport() {
                         <tr>
                             <th>Item</th>
                             <th>Total Sales</th>
-                            <th>Total</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -127,8 +130,8 @@ export default function SalesReport() {
                         }
                     </tbody>
                 </table>
-                
             }
+            {`Total: $${Total.toFixed(2)}`}
         </div>   
     );
 }

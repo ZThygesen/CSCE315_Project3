@@ -29,6 +29,7 @@ router.post("/", async (req, res) => {
     console.log(queries);
     const sql = conn.pgp.helpers.concat(queries);
     const [items, Total] = await conn.db.multi(sql);
+    console.log(items, Total);
 
     res.json({ 
         items: items,
