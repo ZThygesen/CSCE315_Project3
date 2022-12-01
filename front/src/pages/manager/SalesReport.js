@@ -4,7 +4,7 @@ import Modal from "../../components/Modal";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
 /**
- * This displays the individual items sold and the profit generated within a certain time frame
+ * @description This displays the individual items sold and the profit generated within a certain time frame
  * @author Zach, Justin
  * @returns Sales Report Page
  */
@@ -20,7 +20,7 @@ export default function SalesReport() {
     const [Total, setTotal] = useState(0.0);
 
     /**
-     * This gets the start and end dates specified by the user and sends it to the server when the user presses the submit button. 
+     * @description This gets the start and end dates specified by the user and sends it to the server when the user presses the submit button. 
      * It then gets the items and other information from the server to display to the user
      * @param {*} e 
      */

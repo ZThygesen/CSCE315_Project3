@@ -5,7 +5,7 @@ import CustomerRoutes from "./pages/customer/CustomerRoutes";
 import EmployeeRoutes from "./pages/EmployeeRoutes";
 import "./App.css";
 /**
- * Creates routes for creating an order (Customer-side) and employee side
+ * @description Creates routes for creating an order (Customer-side) and employee side
  * 
  * @author Zach
  * @returns null

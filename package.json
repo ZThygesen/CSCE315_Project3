@@ -1,7 +1,6 @@
 {
   "name": "back",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix ../front",
@@ -10,18 +9,30 @@
     "dev": "nodemon server",
     "client": "npm start --prefix ../front",
     "heroku-postbuild": "npm install --prefix front && npm run build --prefix front",
-    "jsdoc": "jsdoc -c jsdoc.json"
+    "jsdoc": "jsdoc -c jsdoc.json",
+    "generate-docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "better-docs": "^2.7.2",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "jsdoc": "^4.0.0",
     "nodemon": "^2.0.20",
     "pg": "^8.8.0",
     "pg-promise": "^10.12.1",
     "uuid": "^9.0.0"
-  }
+  },
+  "devDependencies": {
+    "jsdoc": "^4.0.0"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.tamu.edu/justin-heger/CSCE_315_Project3"
+  },
+  "description": ""
 }

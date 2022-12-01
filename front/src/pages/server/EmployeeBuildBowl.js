@@ -5,7 +5,7 @@ import Option from "../../components/Option";
 import Modal from "../../components/Modal";
 
 /**
- * Creates interface for building a bowl on the employee-side interface
+ * @description Creates interface for building a bowl on the employee-side interface
  * @param {*} props 
  * @returns null
  */
@@ -23,7 +23,7 @@ export default function EmployeeBuildBowl(props) {
     const [extraDressingErr, setExtraDressingErr] = useState(false);
 
     /**
-     * Gets item corresponding to given id
+     * @description Gets item corresponding to given id
      * @param {*} selectionId 
      * @returns selection
      */
@@ -46,7 +46,7 @@ export default function EmployeeBuildBowl(props) {
     }
 
     /**
-     * Checks if selection contains extra protein or a regular amount of protein
+     * @description Checks if selection contains extra protein or a regular amount of protein
      * @param {*} selections 
      * @returns boolean
      */
@@ -67,7 +67,7 @@ export default function EmployeeBuildBowl(props) {
     }
 
     /**
-     * Checks if selection contains extra dressing or a regular amount of dressing
+     * @description Checks if selection contains extra dressing or a regular amount of dressing
      * @param {*} selections 
      * @returns boolean
      */
@@ -88,7 +88,7 @@ export default function EmployeeBuildBowl(props) {
     }
 
     /**
-     * Calculates the price of the order based on the selected items
+     * @description Calculates the price of the order based on the selected items
      * @param {*} selections 
      * @returns price
      */
@@ -105,7 +105,7 @@ export default function EmployeeBuildBowl(props) {
     }
 
     /**
-     * Processes order when user clicks submit order button.
+     * @description Processes order when user clicks submit order button.
      * @param {*} e 
      * @returns null
      */
@@ -139,7 +139,7 @@ export default function EmployeeBuildBowl(props) {
     }
 
     /**
-     * Displays message if extra protein is added but no protein is selected
+     * @description Displays message if extra protein is added but no protein is selected
      * @returns null
      */
     function ExtraProteinModal() {
@@ -161,7 +161,7 @@ export default function EmployeeBuildBowl(props) {
     }
 
     /**
-     * Displays message if extra dressing is added but no dressing is selected
+     * @description Displays message if extra dressing is added but no dressing is selected
      * @returns null
      */
     function ExtraDressingModal() {

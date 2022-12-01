@@ -8,7 +8,7 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import "../CreateOrder.css";
 
 /**
- * Displays page for customer to create order
+ * @description Displays page for customer to create order
  * @returns null
  */
 export default function CustomerRoutes() {
@@ -37,7 +37,7 @@ export default function CustomerRoutes() {
     }, []);
 
     /**
-     * Adds item to order
+     * @description Adds item to order
      * @param {*} item 
      */
     function addOrderItem(item) {
@@ -60,7 +60,7 @@ export default function CustomerRoutes() {
     }
 
     /**
-     * Edit one of the items on the order
+     * @description Edit one of the items on the order
      * @param {*} item 
      */
     function editOrderItem(item) {
@@ -69,7 +69,7 @@ export default function CustomerRoutes() {
     }
 
     /**
-     * Remove item from current order
+     * @description Remove item from current order
      * @param {*} item 
      */
     function removeOrderItem(item) {
@@ -82,7 +82,7 @@ export default function CustomerRoutes() {
     }
 
     /**
-     * Clear entire order
+     * @description Clear entire order
      */
     function clearOrder() {
         setOrderItems([]);
@@ -91,7 +91,7 @@ export default function CustomerRoutes() {
     }
 
     /**
-     * Changes page according to current page
+     * @description Changes page according to current page
      * @param {*} page 
      */
     function changePage(page) {

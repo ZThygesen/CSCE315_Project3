@@ -4,7 +4,7 @@ import Modal from "../../components/Modal";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
 /**
- * This allows the manager the ability to remove an item from the inventory
+ * @description This allows the manager the ability to remove an item from the inventory
  * @author Zach, Ardian
  * @returns Remove Inventory Page
  */
@@ -34,7 +34,7 @@ export default function RemoveInventory() {
     }, []);
 
     /**
-     * This gets the item the user selected and sends it to the server when the user presses submit. 
+     * @description This gets the item the user selected and sends it to the server when the user presses submit. 
      * It then gets the confirmation from the server to display to the user
      * @param {*} e 
      */
@@ -59,7 +59,7 @@ export default function RemoveInventory() {
     }
 
     /**
-     * This handles the modal that appears when the user presses submit, confirming that the
+     * @description This handles the modal that appears when the user presses submit, confirming that the
      * action worked
      * @returns Submission Modal
      */

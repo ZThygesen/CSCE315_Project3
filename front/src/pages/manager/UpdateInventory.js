@@ -4,7 +4,7 @@ import Modal from "../../components/Modal";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
 /**
- * This allows the manager the ability to update the information of an item in the inventory
+ * @description This allows the manager the ability to update the information of an item in the inventory
  * @author Zach, Ardian
  * @returns Update Inventory Page
  */
@@ -34,7 +34,7 @@ export default function UpdateInventory() {
     }, []);
 
     /**
-     * This will get the the item selected and the new information from the user and sends it to the server when the
+     * @description This will get the the item selected and the new information from the user and sends it to the server when the
      * user presses the submit button. It then gets the confirmation from the server to display to the user
      * @param {*} e 
      */
@@ -64,7 +64,7 @@ export default function UpdateInventory() {
     }
 
     /**
-     * This handles the modal that appears when the user presses submit, confirming that the
+     * @description This handles the modal that appears when the user presses submit, confirming that the
      * action worked
      * @returns Submission Modal
      */

@@ -2,7 +2,7 @@ import { v4 as uuid } from "uuid";
 import Option from "../../components/Option";
 
 /**
- * Creates sides options for customer-side
+ * @description Creates sides options for customer-side
  * of the interface
  * @param {*} props 
  * @returns null
@@ -13,7 +13,7 @@ export default function EmployeeSides(props) {
     const editMode = props.editItem !== undefined
 
     /**
-     * Gets item corresponding to given id
+     * @description Gets item corresponding to given id
      * @param {*} selectionId 
      * @returns selection
      */
@@ -32,7 +32,7 @@ export default function EmployeeSides(props) {
     }
 
     /**
-     * Adds sides selected by employee to selection array.
+     * @description Adds sides selected by employee to selection array.
      * Selection array displayed on order item screen
      * @param {*} e 
      */

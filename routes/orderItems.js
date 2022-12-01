@@ -19,7 +19,7 @@ function getItemsByType(items) {
 }
 
 /**
- * Retrieves inventory and menu items from database 
+ * @description Retrieves inventory and menu items from database 
  * to display on interface tables.
  */
 router.get("/", async (req, res) => {

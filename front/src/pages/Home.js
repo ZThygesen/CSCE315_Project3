@@ -4,7 +4,7 @@ import { useMemo } from "react";
 
 /**
  * @author Justin, Zach
- * Displays main home page for application
+ * @description Displays main home page for application
  * @returns null
  */
 export default function Home() {
@@ -32,7 +32,7 @@ export default function Home() {
 /**
  * @author Justin
  * 
- * Creates map React object to be displayed on home page.
+ * @description Creates map React object to be displayed on home page.
  * Map contains the location of the restaurant
  * @returns null
  */

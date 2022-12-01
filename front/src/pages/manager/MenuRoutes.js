@@ -5,7 +5,7 @@ import RemoveMenu from "./RemoveMenu";
 import UpdateMenu  from "./UpdateMenu";
 
 /**
- * This the handles the routes for the manager to access the add, remove, and update menu items pages
+ * @description This the handles the routes for the manager to access the add, remove, and update menu items pages
  * @author Zach
  * @returns Routes for Menu
  */

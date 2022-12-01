@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: front/src/pages/customer/BuildGyro.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: front/src/pages/customer/BuildGyro.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useState } from "react";
+import { v4 as uuid } from "uuid";
+import Extra from "../../components/Extra";
+import Option from "../../components/Option";
+import Modal from "../../components/Modal";
+
+/**
+ * @description Creates interface for building a gyro on the customer-side interface
+ * @param {*} props 
+ * @returns null
+ */
+export default function BuildGyro(props) {
+    const pita = props.items.pita[0];
+    const proteins = props.items.proteins;
+    const toppings = props.items.toppings;
+    const dressings = props.items.dressings;
+    const extraProtein = props.items.menuItems.filter(item => item.product_name === "Extra Protein")[0];
+    const extraDressing = props.items.menuItems.filter(item => item.product_name === "Extra Dressing")[0];
+
+    const editMode = props.editItem !== undefined;
+
+    const [extraProteinErr, setExtraProteinErr] = useState(false);
+    const [extraDressingErr, setExtraDressingErr] = useState(false);
+
+    /**
+     * @description Gets item corresponding to given id
+     * @param {*} selectionId 
+     * @returns selection
+     */
+    function getSelectionObject(selectionId) {
+        let selection;
+        for (let key in props.items) {
+            for (let i = 0; i &lt; props.items[key].length; i++) {
+                if (props.items[key][i].product_id === selectionId) {
+                    selection = props.items[key][i];
+                    break;
+                }
+            }
+
+            if (selection !== undefined) {
+                break;
+            }
+        }
+
+        return selection
+    }
+
+    /**
+     * @description Checks if selection contains extra protein or a regular amount of protein
+     * @param {*} selections 
+     * @returns boolean
+     */
+    function checkExtraProtein(selections) {
+        const hasExtraProtein = selections.filter(selection => (
+            selection.product_name === "Extra Protein"
+        )).length > 0;
+
+        const hasProtein = selections.filter(selection => (
+            selection.product_type === "Protein"
+        )).length > 0;
+
+        if (hasExtraProtein &amp;&amp; !hasProtein) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @description Checks if selection contains extra dressing or a regular amount of dressing
+     * @param {*} selections 
+     * @returns boolean
+     */
+    function checkExtraDressing(selections) {
+        const hasExtraDressing = selections.filter(selection => (
+            selection.product_name === "Extra Dressing"
+        )).length > 0;
+
+        const hasDressing = selections.filter(selection => (
+            selection.product_type === "Dressing"
+        )).length > 0;
+
+        if (hasExtraDressing &amp;&amp; !hasDressing) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @description Calculates the price of the order based on the selected items
+     * @param {*} selections 
+     * @returns price
+     */
+    function calculatePrice(selections) {
+        // start with base price of a gyro
+        let price = props.items.menuItems.filter(item => item.product_name === "Gyro")[0].price;
+
+        // get the price for all the potentially selected extras
+        selections.forEach(selection => {
+            price += (selection.price === undefined) ? 0 : selection.price;
+        });
+
+        return price;
+    }
+
+    /**
+     * @description Processes order when user clicks submit order button.
+     * @param {*} e 
+     * @returns null
+     */
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        const selections = Array.from(document.querySelectorAll(".order-options-form input[type=\"checkbox\"]"))
+            .filter(option => option.checked)
+            .map(selection => getSelectionObject(selection.id));
+        
+        if (checkExtraProtein(selections)) {
+            setExtraProteinErr(true);
+            return;
+        } else if (checkExtraDressing(selections)) {
+            setExtraDressingErr(true);
+            return;
+        }
+
+        const price = calculatePrice(selections);
+
+        if (selections.length === 0) {
+            props.addGyro();
+        } else {
+            selections.push(pita);
+            props.addGyro({
+                id: uuid(),
+                type: "Gyro",
+                items: selections,
+                price: price
+            });
+        }
+    }
+
+    /**
+     * @description Displays message if extra protein is added but no protein is selected
+     * @returns null
+     */
+    function ExtraProteinModal() {
+        return (
+            &lt;Modal isVisible={extraProteinErr} full={true}
+                body={
+                    &lt;p>Cannot select extra protein with no protein selected&lt;/p>
+                }
+                footer={ 
+                    &lt;button
+                        className="modal-close-button"
+                        onClick={() => setExtraProteinErr(current => !current)}
+                    >
+                        Close
+                    &lt;/button>
+                }
+            />
+        );
+    }
+
+    /**
+     * @description Displays message if extra dressing is added but no dressing is selected
+     * @returns null
+     */
+    function ExtraDressingModal() {
+        return (
+            &lt;Modal isVisible={extraDressingErr} full={true}
+                body={
+                    &lt;p>Cannot select extra dressing with no dressing selected&lt;/p>
+                }
+                footer={ 
+                    &lt;button
+                        className="modal-close-button"
+                        onClick={() => setExtraDressingErr(current => !current)}
+                    >
+                        Close
+                    &lt;/button>
+                }
+            />
+        );
+    }
+
+    return (
+        &lt;>
+            &lt;ExtraProteinModal />
+            &lt;ExtraDressingModal />
+            &lt;div className="order-options-container">
+                &lt;div className="order-options-title">
+                    &lt;div>
+                        &lt;h1>Gyro&lt;/h1>
+                        &lt;p>Build your own gyro by selecting from the options below.&lt;/p>
+                        &lt;p>You may select up to one protein, all toppings, and one dressing.&lt;/p>
+                    &lt;/div>
+                &lt;/div>
+
+                &lt;form onSubmit={handleSubmit} className="order-options-form">
+                    &lt;div className="order-options">
+                        &lt;div className="order-option">
+                            &lt;p>Protein&lt;/p>
+                            &lt;p>Select one&lt;/p>
+                        &lt;/div>
+                        &lt;div className="options">
+                            {
+                                proteins.map((item, i) =>
+                                    &lt;Option
+                                        key={i}
+                                        data={item}
+                                        buttonType="radio"
+                                        checked={editMode ? props.editItem.items.includes(item) : false}
+                                    />
+                                )
+                            }
+                            &lt;Extra
+                                data={extraProtein}
+                                type="Protein"
+                                checked={editMode ? props.editItem.items.includes(extraProtein) : false}
+                                price={extraProtein.price}
+                            />
+                        &lt;/div>
+
+                        &lt;div className="order-option">
+                            &lt;p>Toppings&lt;/p>
+                            &lt;p>Select multiple&lt;/p>
+                        &lt;/div>
+                        &lt;div className="options">
+                            {
+                                toppings.map((item, i) =>
+                                    &lt;Option
+                                        key={i}
+                                        data={item}
+                                        buttonType="checkbox"
+                                        checked={editMode ? props.editItem.items.includes(item) : false}
+                                    />
+                                )
+                            }
+                        &lt;/div>
+
+                        &lt;div className="order-option">
+                            &lt;p>Dressing&lt;/p>
+                            &lt;p>Select one&lt;/p>
+                        &lt;/div>
+                        &lt;div className="options">
+                            {
+                                dressings.map((item, i) =>
+                                    &lt;Option
+                                        key={i}
+                                        data={item}
+                                        buttonType="radio"
+                                        checked={editMode ? props.editItem.items.includes(item) : false}
+                                    />
+                                )
+                            }
+                            &lt;Extra
+                                data={extraDressing}
+                                type="Dressing"
+                                checked={editMode ? props.editItem.items.includes(extraDressing) : false}
+                                price={extraDressing.price}
+                            />
+                        &lt;/div>
+                    &lt;/div>
+                    &lt;div className="order-options-button-container">
+                        &lt;div className="order-option-buttons">
+                            &lt;button type="button" className="order-option-button" onClick={() => props.addGyro()}>Cancel&lt;/button>
+                            &lt;button type="submit" className="order-option-button">Add to Order&lt;/button>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/form>
+            &lt;/div>
+        &lt;/>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Map">Map</a></li><li><a href="global.html#containsExtra">containsExtra</a></li><li><a href="global.html#createAndInsertCustomer">createAndInsertCustomer</a></li><li><a href="global.html#createAndInsertOrder">createAndInsertOrder</a></li><li><a href="global.html#createAndInsertOrderProducts">createAndInsertOrderProducts</a></li><li><a href="global.html#getEmployeeId">getEmployeeId</a></li><li><a href="global.html#getExcess">getExcess</a></li><li><a href="global.html#getItemsByType">getItemsByType</a></li><li><a href="global.html#pad">pad</a></li><li><a href="global.html#subtractFromInventory">subtractFromInventory</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Wed Nov 30 2022 19:22:39 GMT-0600 (Central Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: front/src/pages/customer/CustomerRoutes.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: front/src/pages/customer/CustomerRoutes.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useEffect, useState } from "react";
+import CreateOrder from "./CreateOrder";
+import BuildBowl from "./BuildBowl";
+import BuildGyro from "./BuildGyro";
+import Sides from "./Sides";
+import Modal from "../../components/Modal";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import "../CreateOrder.css";
+
+/**
+ * @description Displays page for customer to create order
+ * @returns null
+ */
+export default function CustomerRoutes() {
+    const [isLoading, setIsLoading] = useState(true);
+
+    const [isMainPage, setIsMainPage] = useState(true)
+    const [isBowlPage, setIsBowlPage] = useState(false);
+    const [isGyroPage, setIsGyroPage] = useState(false);
+    const [isSidePage, setIsSidePage] = useState(false);
+
+    const [items, setItems] = useState({});
+
+    const [orderItems, setOrderItems] = useState([]);
+    const [editItem, setEditItem] = useState(undefined);
+
+    useEffect(() => {
+        setIsLoading(true);
+        fetch("/api/order-items")
+            .then(res => res.json())
+            .then(items => {
+                setTimeout(() => {
+                    setItems(items);
+                    setIsLoading(false);
+                }, 250);
+            });
+    }, []);
+
+    /**
+     * @description Adds item to order
+     * @param {*} item 
+     */
+    function addOrderItem(item) {
+        if (item !== undefined) {
+            if (editItem !== undefined) {
+                const index = orderItems.indexOf(editItem);
+
+                const newOrderItems = [...orderItems];
+                newOrderItems[index] = item;
+
+                setOrderItems(newOrderItems);
+            } else {
+                setOrderItems(current => [...current, item]);
+            }
+        }
+
+        setEditItem(undefined);
+
+        changePage("Main");
+    }
+
+    /**
+     * @description Edit one of the items on the order
+     * @param {*} item 
+     */
+    function editOrderItem(item) {
+        setEditItem(item);
+        changePage(item.type);
+    }
+
+    /**
+     * @description Remove item from current order
+     * @param {*} item 
+     */
+    function removeOrderItem(item) {
+        const index = orderItems.indexOf(item);
+ 
+        const newOrderItems = [...orderItems];
+        newOrderItems.splice(index, 1);
+
+        setOrderItems(newOrderItems);
+    }
+
+    /**
+     * @description Clear entire order
+     */
+    function clearOrder() {
+        setOrderItems([]);
+        setEditItem(undefined);
+        changePage("Main");
+    }
+
+    /**
+     * @description Changes page according to current page
+     * @param {*} page 
+     */
+    function changePage(page) {
+        setIsMainPage(false);
+        setIsBowlPage(false);
+        setIsGyroPage(false);
+        setIsSidePage(false);
+
+        switch (page) {
+            case ("Main"):
+                setIsMainPage(true);
+                break;
+            case ("Bowl"):
+                setIsBowlPage(true);
+                break;
+            case ("Gyro"):
+                setIsGyroPage(true);
+                break;
+            case ("Side"):
+                setIsSidePage(true);
+                break;
+            default:
+                setIsMainPage(true);
+        }
+    }
+
+    return (
+        &lt;>
+            &lt;Modal isVisible={isLoading} full={true} loading={&lt;LoadingSpinner />} />
+            {isLoading ? &lt;>&lt;/> :   
+                &lt;>
+                    {isMainPage &amp;&amp;
+                        &lt;CreateOrder
+                            orderItems={orderItems}
+                            changePage={changePage}
+                            removeOrderItem={removeOrderItem}
+                            editOrderItem={editOrderItem}
+                            clearOrder={clearOrder}
+                            orderTypes={items.menuItems}
+                        />
+                    }
+                    {isBowlPage &amp;&amp; &lt;BuildBowl items={items} addBowl={addOrderItem} editItem={editItem} />}
+                    {isGyroPage &amp;&amp; &lt;BuildGyro items={items} addGyro={addOrderItem} editItem={editItem} />}
+                    {isSidePage &amp;&amp;
+                        &lt;Sides
+                            items={items.menuItems.filter(item => item.product_type === "Side")}
+                            addSide={addOrderItem}
+                            editItem={editItem}
+                        />
+                    }
+                &lt;/>
+            }
+        &lt;/>
+    )
+}  
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Map">Map</a></li><li><a href="global.html#containsExtra">containsExtra</a></li><li><a href="global.html#createAndInsertCustomer">createAndInsertCustomer</a></li><li><a href="global.html#createAndInsertOrder">createAndInsertOrder</a></li><li><a href="global.html#createAndInsertOrderProducts">createAndInsertOrderProducts</a></li><li><a href="global.html#getEmployeeId">getEmployeeId</a></li><li><a href="global.html#getExcess">getExcess</a></li><li><a href="global.html#getItemsByType">getItemsByType</a></li><li><a href="global.html#pad">pad</a></li><li><a href="global.html#subtractFromInventory">subtractFromInventory</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Wed Nov 30 2022 19:22:39 GMT-0600 (Central Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

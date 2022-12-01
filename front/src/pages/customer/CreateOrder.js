@@ -5,7 +5,7 @@ import Modal from "../../components/Modal";
 import LoadingSpinner from "../../components/LoadingSpinner.js";
 
 /**
- * Create order page for customer-side interface
+ * @description Create order page for customer-side interface
  * @param {*} props 
  * @returns null
  */
@@ -27,7 +27,7 @@ export default function CreateOrder(props) {
     }
 
     /**
-     * Calculates price of items and fixes 
+     * @description Calculates price of items and fixes 
      * the value to 2 decimal values
      * @returns price
      */
@@ -42,7 +42,7 @@ export default function CreateOrder(props) {
     }
 
     /**
-     * Handles submitting an order by passing information to the backend
+     * @description Handles submitting an order by passing information to the backend
      * @returns null
      */
     function submitOrder() {
@@ -66,7 +66,7 @@ export default function CreateOrder(props) {
     }
 
     /**
-     * Prevents user from submitting an empty order
+     * @description Prevents user from submitting an empty order
      * @returns null
      */
     function EmptySubmissionModal() {
@@ -88,7 +88,7 @@ export default function CreateOrder(props) {
     }
 
     /**
-     * Provides submission display message to prevent user
+     * @description Provides submission display message to prevent user
      * from spamming the submit button
      * 
      * @returns null

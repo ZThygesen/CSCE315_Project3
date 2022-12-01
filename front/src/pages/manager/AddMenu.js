@@ -5,7 +5,7 @@ import Modal from "../../components/Modal";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
 /**
- * This provides the manager the ability to add an item to the menu
+ * @description This provides the manager the ability to add an item to the menu
  * @author Zach, Ardian
  * @returns Add Menu Page
  */
@@ -18,7 +18,7 @@ export default function AddMenu() {
     const [submissionMsg, setSubmissionMsg] = useState("");
 
     /**
-     * This handles the functionality for when the user presses the submit button and will send the information for 
+     * @description This handles the functionality for when the user presses the submit button and will send the information for 
      * the new item to the server. It then gets the confirmation from the server to display to the user
      * @param {*} e 
      */
@@ -50,7 +50,7 @@ export default function AddMenu() {
     }   
 
     /**
-     * This handles the modal that appears when the user presses submit, confirming that the
+     * @description This handles the modal that appears when the user presses submit, confirming that the
      * action worked
      * @returns Submission Modal
      */

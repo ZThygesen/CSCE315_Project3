@@ -3,7 +3,7 @@ const router = express.Router();
 const conn = require("../db");
 
 /**
- * Posts update information for menu to database
+ * @description Posts update information for menu to database
  */
 router.post("/", async (req, res) => {
     var temp = "UPDATE menu SET ";

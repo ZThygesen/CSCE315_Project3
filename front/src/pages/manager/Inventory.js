@@ -4,7 +4,7 @@ import Modal from "../../components/Modal";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
 /**
- * This displays the inventory, including item names, product type, quantity, on-hand amount, and serving size 
+ * @description This displays the inventory, including item names, product type, quantity, on-hand amount, and serving size 
  * @author Zach, Ardian
  * @returns Inventory Page
  */

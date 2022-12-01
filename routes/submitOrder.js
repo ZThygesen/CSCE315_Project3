@@ -4,7 +4,7 @@ const conn = require("../db");
 const uuid = require("uuid");
 
 /**
- * Grabs employee ids from database
+ * @description Grabs employee ids from database
  * @returns employee_id
  */
 async function getEmployeeId() {
@@ -18,7 +18,7 @@ async function getEmployeeId() {
 }
 
 /**
- * Creates customers using random combination of first and last names.
+ * @description Creates customers using random combination of first and last names.
  * Inserts these customer names into the database along with a random UUID.
  * @returns customerId
  */
@@ -38,7 +38,7 @@ async function createAndInsertCustomer() {
 }
 
 /**
- * Inserts order into database given variables
+ * @description Inserts order into database given variables
  * @param {*} orderId 
  * @param {*} employeeId 
  * @param {*} customerId 
@@ -53,7 +53,7 @@ async function createAndInsertOrder(orderId, employeeId, customerId, orderPrice,
 }
 
 /**
- * Determines if items list contains an extra
+ * @description Determines if items list contains an extra
  * @param {*} items 
  * @param {*} extra 
  * @returns items filter
@@ -63,7 +63,7 @@ function containsExtra(items, extra) {
 }
 
 /**
- * Database query to remove items from inventory
+ * @description Database query to remove items from inventory
  * @param {*} productId 
  * @param {*} amount 
  */
@@ -75,7 +75,7 @@ async function subtractFromInventory(productId, amount) {
 }
 
 /**
- * Inserts information from order into order_product 
+ * @description Inserts information from order into order_product 
  * relation table in database
  * @param {*} orderId 
  * @param {*} orderItems 
