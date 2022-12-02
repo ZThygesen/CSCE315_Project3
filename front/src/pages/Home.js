@@ -155,23 +155,23 @@ export default function Home() {
                         </tr>
                         <tr className="table-row">
                             <td className="day">Monday</td>
-                            <td className="hour">10:00am - 3:00am</td>
+                            <td className="hour">10:00am - 3:00pm</td>
                         </tr>
                         <tr className="table-row">
                             <td className="day">Tuesday</td>
-                            <td className="hour">10:00am - 3:00am</td>
+                            <td className="hour">10:00am - 3:00pm</td>
                         </tr>
                         <tr className="table-row">
                             <td className="day">Wednesday</td>
-                            <td className="hour">10:00am - 3:00am</td>
+                            <td className="hour">10:00am - 3:00pm</td>
                         </tr>
                         <tr className="table-row">
                             <td className="day">Thursday</td>
-                            <td className="hour">10:00am - 3:00am</td>
+                            <td className="hour">10:00am - 3:00pm</td>
                         </tr>
                         <tr className="table-row">
                             <td className="day">Friday</td>
-                            <td className="hour">10:00am - 3:00am</td>
+                            <td className="hour">10:00am - 3:00pm</td>
                         </tr>
                         <tr className="table-row">
                             <td className="day">Saturday</td>
