@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { GoogleLogout } from "react-google-login";
 import OrderItem from "../../components/OrderItem.js";
 import Modal from "../../components/Modal.js";
 import LoadingSpinner from "../../components/LoadingSpinner.js";
@@ -108,6 +109,11 @@ export default function EmployeeCreateOrder(props) {
         );
     }
 
+    function logOut() {
+        localStorage.clear();
+        navigate("/");
+    }
+
     return (
         <>
             <Modal isVisible={isLoading} full={true} loading={<LoadingSpinner />} />
@@ -138,7 +144,7 @@ export default function EmployeeCreateOrder(props) {
                         </div>
                     </div>
                     <div className="order-buttons-container">
-                        <button onClick={() => navigate("/")}>Logout</button>
+                        <GoogleLogout clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID} buttonText="Log out" onLogoutSuccess={logOut} />
                         <button onClick={props.clearOrder}>Cancel</button>
                         <button onClick={submitOrder}>Submit</button>
                     </div>

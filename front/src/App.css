@@ -40,7 +40,6 @@ body {
 }
 
 .home-buttons button,
-.employee-login-container button,
 .modal-close-button {
     border-style: none;
     background-color: var(--secondary-color);
@@ -51,28 +50,15 @@ body {
     font-size: 28px;
     transition: all 0.1s;
     font-family: 'Poppins';font-size: 22px;
-    
 }
 
 .home-buttons button:hover,
-.employee-login-container button:hover,
 .modal-close-button:hover {
     cursor: pointer;
     background-color: var(--primary-color);
     color: var(--font-color);
 }
 
-.employee-login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 60px;
-}
-
-.login-buttons {
-    display: flex;
-    gap: 20px;
-}
 .map-container {
     width: 800px;
     height: 600px;

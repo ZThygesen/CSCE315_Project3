@@ -3,6 +3,7 @@ const path = require("path");
 
 const app = express();
 const port = 5000;
+const login = require("./routes/login");
 const orderItems = require("./routes/orderItems");
 const submitOrder = require("./routes/submitOrder");
 const inventory = require("./routes/inventory");
@@ -17,6 +18,8 @@ const removeMenu = require("./routes/removeMenu");
 const updateMenu = require("./routes/updateMenu");
 
 app.use(express.json());
+
+app.use("/api/login", login);
 app.use("/api/order-items", orderItems);
 app.use("/api/submit-order", submitOrder);
 app.use("/api/inventory", inventory);
