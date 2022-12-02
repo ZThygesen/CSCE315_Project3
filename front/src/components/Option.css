@@ -10,7 +10,8 @@ label.extra {
     transition: all 0.15s;
 }
 
-label.extra {
+label.extra,
+label.square {
     border-radius: 0px;
 }
 

@@ -37,7 +37,7 @@ export default function OptionButton(props) {
                 checked={checked}
                 onChange={handleChange}
             />
-            <label htmlFor={id} className="option">
+            <label htmlFor={id} className={`option ${buttonType === "checkbox" ? "square" : ""}`}>
                 {name}
                 {
                     price !== undefined ?

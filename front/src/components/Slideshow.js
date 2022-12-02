@@ -81,8 +81,8 @@ export default function Slideshow({images=[], interval=3000}){
           </div>
 
           <div className="slideshow-controller">
-              <span onClick={previous}>Previous</span>
-              <span onClick={next}>Next</span>
+              <span onClick={previous} style={{userSelect: "none"}}>❰</span>
+              <span onClick={next} style={{userSelect: "none"}}>❱</span>
           </div>
       </section>
   )

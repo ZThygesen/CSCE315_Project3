@@ -128,7 +128,7 @@ export default function Home() {
             <div className="map-title">We are located in the MSC!</div>
 
             <Slideshow 
-                interval={3000}
+                interval={7000}
                 images={[
                 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.olivetomato.com%2Fwp-content%2Fuploads%2F2020%2F08%2FE73678B0-5FC4-4F05-8A28-4E7B3804E2CC.jpg&f=1&nofb=1&ipt=b23b58cdd98509b2735c0e42fa55c9c0d9a71d65c5ea38b52a73e33b913f4f74&ipo=images',
                 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.healthygffamily.com%2Fwp-content%2Fuploads%2F2018%2F02%2FIMG_8271-1024x1024.jpg&f=1&nofb=1&ipt=9efc282689b2bf1bd3162243b5d04a946ddeae64d3a56614342026d196ece2e4&ipo=images',
@@ -142,38 +142,42 @@ export default function Home() {
 
             <div className="table-bg">
                 <table className="store-hours">
-                    <tr className="table-row">
-                        <th>Days</th>
-                        <th>Hours</th>
-                    </tr>
-                    <tr className="table-row">
-                        <td className="day">Sunday</td>
-                        <td className="hour">Closed</td>
-                    </tr>
-                    <tr className="table-row">
-                        <td className="day">Monday</td>
-                        <td className="hour">10:00am - 3:00am</td>
-                    </tr>
-                    <tr className="table-row">
-                        <td className="day">Tuesday</td>
-                        <td className="hour">10:00am - 3:00am</td>
-                    </tr>
-                    <tr className="table-row">
-                        <td className="day">Wednesday</td>
-                        <td className="hour">10:00am - 3:00am</td>
-                    </tr>
-                    <tr className="table-row">
-                        <td className="day">Thursday</td>
-                        <td className="hour">10:00am - 3:00am</td>
-                    </tr>
-                    <tr className="table-row">
-                        <td className="day">Friday</td>
-                        <td className="hour">10:00am - 3:00am</td>
-                    </tr>
-                    <tr className="table-row">
-                        <td className="day">Saturday</td>
-                        <td className="hour">Closed</td>
-                    </tr>
+                    <thead>
+                        <tr className="table-row">
+                            <th>Days</th>
+                            <th>Hours</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr className="table-row">
+                            <td className="day">Sunday</td>
+                            <td className="hour">Closed</td>
+                        </tr>
+                        <tr className="table-row">
+                            <td className="day">Monday</td>
+                            <td className="hour">10:00am - 3:00am</td>
+                        </tr>
+                        <tr className="table-row">
+                            <td className="day">Tuesday</td>
+                            <td className="hour">10:00am - 3:00am</td>
+                        </tr>
+                        <tr className="table-row">
+                            <td className="day">Wednesday</td>
+                            <td className="hour">10:00am - 3:00am</td>
+                        </tr>
+                        <tr className="table-row">
+                            <td className="day">Thursday</td>
+                            <td className="hour">10:00am - 3:00am</td>
+                        </tr>
+                        <tr className="table-row">
+                            <td className="day">Friday</td>
+                            <td className="hour">10:00am - 3:00am</td>
+                        </tr>
+                        <tr className="table-row">
+                            <td className="day">Saturday</td>
+                            <td className="hour">Closed</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             

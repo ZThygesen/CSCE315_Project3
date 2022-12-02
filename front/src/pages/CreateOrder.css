@@ -192,10 +192,9 @@
     margin: 0;
 }
 
-
 .order-options {
-    background-color: black;
-    grid-gap: 1px;
+    background-color: var(--primary-color);
+    grid-gap: 3px;
 }
 
 .order-options-title,
