@@ -1,5 +1,7 @@
 import { v4 as uuid } from "uuid";
 import Option from "../../components/Option";
+import Counter from "../../components/Counter";
+import { React, useState } from 'react';
 
 /**
  * @description Creates sides options for customer-side
@@ -31,6 +33,12 @@ export default function EmployeeSides(props) {
         return selection
     }
 
+    const [count, setCount] = useState();
+
+    const countToOrder = (countC) => {
+        setCount(countC);
+    }
+
     /**
      * @description Adds sides selected by employee to selection array.
      * Selection array displayed on order item screen
@@ -38,6 +46,7 @@ export default function EmployeeSides(props) {
      */
     function handleSubmit(e) {
         e.preventDefault();
+        alert(count);
 
         const selections = Array.from(document.querySelectorAll(".order-options-form input[type=\"checkbox\"]"))
             .filter(option => option.checked)
@@ -46,14 +55,16 @@ export default function EmployeeSides(props) {
         if (selections.length === 0) {
             props.addSide();
         } else {
-            selections.map(selection => (
-                props.addSide({
-                    id: uuid(),
-                    type: "Side",
-                    items: [selection],
-                    price: selection.price
-                })
-            ))
+            for(let i = 0; i < count; i++){
+                selections.map(selection => (
+                    props.addSide({
+                        id: uuid(),
+                        type: "Side",
+                        items: [selection],
+                        price: selection.price
+                    })
+                ))
+            }
         }
     }
 
@@ -83,7 +94,9 @@ export default function EmployeeSides(props) {
                     </div>
                 </form>
             </div>
+            <Counter countToOrder={countToOrder}/>
         </>
+
     );
 }
 
