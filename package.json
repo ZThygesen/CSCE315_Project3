@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "client-install": "npm install --prefix ../front",
+    "client-install": "npm install --prefix front && npm run build --prefix front",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server",
     "dev": "nodemon server",
-    "client": "npm start --prefix ../front",
+    "client": "npm start --prefix front",
     "heroku-postbuild": "npm install --prefix front && npm run build --prefix front",
     "jsdoc": "jsdoc -c jsdoc.json",
     "generate-docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose"
