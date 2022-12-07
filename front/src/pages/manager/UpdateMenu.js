@@ -125,9 +125,18 @@ export default function UpdateMenu() {
                         </div>
 
                         <div className="update-menu-input">
-                            <label htmlFor="type">Enter the product type:</label>
-                            <input type="text" id="type" name="type" />
+                            <label htmlFor="type">
+                                Choose a product type:
+                            </label>
+                            <select id="type">
+                                <option value="Type">Type</option>
+                                <option value="Side">Side</option>
+                                <option value="Extra">Extra</option>
+                                <option value="Bowl">Bowl</option>
+                                <option value="Gyro">Gyro</option>
+                            </select>
                         </div>
+                        
 
                         <div className="update-menu-buttons">
                             <button type="button" onClick={() => navigate(-1)}>Back</button>

@@ -188,7 +188,7 @@ export default function BuildBowl(props) {
             <ExtraDressingModal />
             <div className="order-options-container">
                 <div className="order-options-title">
-                    <div>
+                    <div style={{textAlign: "center"}}>
                         <h1>Bowl</h1>
                         <p>Build your own bowl by selecting from the options below.</p>
                         <p>You may select up to one base, one protein, all toppings, and one dressing.</p>

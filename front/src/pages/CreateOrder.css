@@ -260,6 +260,13 @@
     gap: 20px;
 }
 
+.side-options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 /* ----------- Ordering Screen Buttons ----------- */
 
 .order-option-button {

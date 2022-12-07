@@ -23,7 +23,6 @@
     max-height: calc(100vh - 105px);
     box-sizing: border-box;
     overflow: auto;
-    scrollbar-gutter: stable;
 }
 
 .sales-report-date-pickers,

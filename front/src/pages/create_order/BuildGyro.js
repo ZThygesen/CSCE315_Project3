@@ -189,7 +189,7 @@ export default function BuildGyro(props) {
             <ExtraDressingModal />
             <div className="order-options-container">
                 <div className="order-options-title">
-                    <div>
+                    <div style={{textAlign: "center"}}>
                         <h1>Gyro</h1>
                         <p>Build your own gyro by selecting from the options below.</p>
                         <p>You may select up to one protein, all toppings, and one dressing.</p>

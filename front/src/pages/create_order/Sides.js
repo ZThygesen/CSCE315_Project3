@@ -1,7 +1,6 @@
 import { v4 as uuid } from "uuid";
-import Option from "../../components/Option";
-import Counter from "../../components/Counter";
-import { React, useState } from 'react';
+import SideOption from "../../components/SideOption";
+import { useEffect, useState } from 'react';
 
 /**
  * @description Creates sides options for customer-side
@@ -11,6 +10,17 @@ import { React, useState } from 'react';
  */
 export default function EmployeeSides(props) {
     const sides = props.items;
+
+    const [quantities, setQuantities] = useState([]);
+
+    useEffect(() => {
+        setQuantities(sides.map(item => {
+            return {
+                item: item,
+                quantity: 0,
+            }
+        }))
+    }, [sides]);
 
     const editMode = props.editItem !== undefined
 
@@ -30,13 +40,7 @@ export default function EmployeeSides(props) {
             
         }
 
-        return selection
-    }
-
-    const [count, setCount] = useState();
-
-    const countToOrder = (countC) => {
-        setCount(countC);
+        return selection;
     }
 
     /**
@@ -46,7 +50,8 @@ export default function EmployeeSides(props) {
      */
     function handleSubmit(e) {
         e.preventDefault();
-        alert(count);
+
+        console.log(quantities)
 
         const selections = Array.from(document.querySelectorAll(".order-options-form input[type=\"checkbox\"]"))
             .filter(option => option.checked)
@@ -55,7 +60,22 @@ export default function EmployeeSides(props) {
         if (selections.length === 0) {
             props.addSide();
         } else {
-            for(let i = 0; i < count; i++){
+            selections.forEach(selection => {
+                const quantity = quantities.filter(item => selection === item.item)[0].quantity;
+                for (let i = 0; i < quantity; i++) {
+                    props.addSide({
+                        id: uuid(),
+                        type: "Side",
+                        items: [selection],
+                        price: selection.price
+                    })
+                }
+            })
+        }
+
+        }
+
+            /* for(let i = 0; i < count; i++){
                 selections.map(selection => (
                     props.addSide({
                         id: uuid(),
@@ -64,9 +84,7 @@ export default function EmployeeSides(props) {
                         price: selection.price
                     })
                 ))
-            }
-        }
-    }
+            } */
 
     return (
         <>
@@ -78,12 +96,18 @@ export default function EmployeeSides(props) {
                     <div className="side-options">
                         {
                             sides.map((item, i) =>
-                                <Option
+                                <SideOption
                                     key={i}
                                     data={item}
                                     buttonType="checkbox"
                                     checked={editMode ? props.editItem.items.includes(item) : false}
                                     price={item.price}
+                                    setQuantity={(item, quantity) => {
+                                        const index = quantities.map(item => item.item).indexOf(item);
+                                        const temp = quantities;
+                                        temp[index] = { item: item, quantity: quantity }
+                                        setQuantities(temp);
+                                    }}
                                 />
                             )
                         }
@@ -94,7 +118,6 @@ export default function EmployeeSides(props) {
                     </div>
                 </form>
             </div>
-            <Counter countToOrder={countToOrder}/>
         </>
 
     );

@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+/* import { React, useState } from 'react';
 import "./Counter.css";
  
 export default function Counter({countToOrder}) {
@@ -36,4 +36,4 @@ export default function Counter({countToOrder}) {
         </div>
     </div>
     );
-}
+} */

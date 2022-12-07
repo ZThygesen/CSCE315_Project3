@@ -37,7 +37,34 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.landing-section {
+    width: 100vw;
+    height: calc(100vh - 105px);
+    background-color: #EFEFEF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
     max-width: 1400px;
+}
+
+.info-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1000px;
 }
 
 .home-buttons {
@@ -124,11 +151,12 @@ body {
     border-radius: 30px;
     background-color: var(--table-background);
     border: 2px solid var(--primary-color);
-    padding: 10px 40px;
+    padding: 10px 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    margin-bottom: 40px;
 }
 
 .employee-nav {
