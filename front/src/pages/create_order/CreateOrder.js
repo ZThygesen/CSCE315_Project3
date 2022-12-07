@@ -2,15 +2,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogout } from "react-google-login";
 import OrderItem from "../../components/OrderItem.js";
-import Modal from "../../components/Modal.js";
+import Modal from "../../components/Modal";
 import LoadingSpinner from "../../components/LoadingSpinner.js";
 
 /**
- * @description Create order page for employee-side interface
+ * @description Create order page for customer-side interface
  * @param {*} props 
  * @returns null
  */
-export default function EmployeeCreateOrder(props) {
+export default function CreateOrder(props) {
     const navigate = useNavigate();
 
     const [isLoading, setIsLoading] = useState(false);
@@ -19,6 +19,25 @@ export default function EmployeeCreateOrder(props) {
     const [submission, setSubmission] = useState(false);
 
     const [submissionMsg, setSubmissionMsg] = useState("");
+
+    let bowlPrice;
+    let gyroPrice;
+    if (props.orderTypes !== undefined) {
+        bowlPrice = props.orderTypes.filter(item => item.product_name === "Bowl")[0].price;
+        gyroPrice = props.orderTypes.filter(item => item.product_name === "Gyro")[0].price;
+    }
+
+    let employeeMode = false;
+    let serverMode = false;
+    let managerMode = false;
+    if (props.employeePos !== undefined) {
+        employeeMode = true;
+        if (props.employeePos === "Server") {
+            serverMode = true;
+        } else {
+            managerMode = true;
+        }
+    }
 
     /**
      * @description Calculates price of items and fixes 
@@ -59,13 +78,18 @@ export default function EmployeeCreateOrder(props) {
             });
     }
 
+    function logOut() {
+        localStorage.clear();
+        navigate("/");
+    }
+
     /**
      * @description Prevents user from submitting an empty order
      * @returns null
      */
     function EmptySubmissionModal() {
         return (
-            <Modal isVisible={emptySubmission} full={true}
+            <Modal isVisible={emptySubmission} full={!managerMode}
                 body={
                     <p>Cannot submit empty order</p>
                 }
@@ -89,7 +113,7 @@ export default function EmployeeCreateOrder(props) {
      */
     function SubmissionModal() {
         return (
-            <Modal isVisible={submission} full={true}
+            <Modal isVisible={submission} full={!managerMode}
                 body={
                     <p>{submissionMsg}</p>
                 }
@@ -100,6 +124,9 @@ export default function EmployeeCreateOrder(props) {
                             setSubmission(current => !current);
                             setSubmissionMsg("");
                             props.clearOrder();
+                            if (!employeeMode) {
+                                navigate("/");
+                            }
                         }}
                     >
                         Close
@@ -109,14 +136,9 @@ export default function EmployeeCreateOrder(props) {
         );
     }
 
-    function logOut() {
-        localStorage.clear();
-        navigate("/");
-    }
-
     return (
         <>
-            <Modal isVisible={isLoading} full={true} loading={<LoadingSpinner />} />
+            <Modal isVisible={isLoading} full={!managerMode} loading={<LoadingSpinner />} />
             <EmptySubmissionModal />
             <SubmissionModal />
             <div className="create-order-container">
@@ -144,16 +166,36 @@ export default function EmployeeCreateOrder(props) {
                         </div>
                     </div>
                     <div className="order-buttons-container">
-                        <GoogleLogout clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID} buttonText="Log out" onLogoutSuccess={logOut} />
-                        <button onClick={props.clearOrder}>Cancel</button>
-                        <button onClick={submitOrder}>Submit</button>
+                        {serverMode ? (
+                                <GoogleLogout clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID} buttonText="Log out" onLogoutSuccess={logOut} /> 
+                            ) : (
+                                <></>  
+                            )
+                        }
+                        <button
+                            onClick={() => {
+                                props.clearOrder();
+                                if (!employeeMode) {
+                                    navigate("/");
+                                }
+                            }}
+                        >
+                            Cancel
+                        </button>
+                        <button onClick={submitOrder}>Checkout</button>
                     </div>
                 </div>
                 <div className="right">
                     <p className="create-order-title">Add Items</p>
-                    <div className="add-items-container">
-                        <button onClick={() => props.changePage("Bowl")}>Bowl</button>
-                        <button onClick={() => props.changePage("Gyro")}>Gyro</button>
+                    <div className="add-items-container customer">
+                        <button
+                            onClick={() => props.changePage("Bowl")}>
+                            Build a Bowl<br /><span className="bowl-price">${bowlPrice}</span>
+                        </button>
+                        <button
+                            onClick={() => props.changePage("Gyro")}>
+                            Build a Gyro<br /><span className="gyro-price">${gyroPrice}</span>
+                        </button>
                         <button onClick={() => props.changePage("Side")}>Sides</button>
                     </div>
                 </div>

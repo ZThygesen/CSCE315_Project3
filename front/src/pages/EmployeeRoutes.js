@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import ManagerRoutes from "./manager/ManagerRoutes";
-import ServerRoutes from "./server/ServerRoutes";
+import ServerRoutes from "./ServerRoutes";
 
 /**
  * @description Routes for manager and server interfaces

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import EmployeeCreateOrder from "./EmployeeCreateOrder";
-import EmployeeBuildBowl from "./EmployeeBuildBowl";
-import EmployeeBuildGyro from "./EmployeeBuildGyro";
-import EmployeeSides from "./EmployeeSides";
-import Modal from "../../components/Modal";
-import LoadingSpinner from "../../components/LoadingSpinner";
-import "../CreateOrder.css";
+import CreateOrder from "./create_order/CreateOrder";
+import BuildBowl from "./create_order/BuildBowl";
+import BuildGyro from "./create_order/BuildGyro";
+import Sides from "./create_order/Sides";
+import Modal from "../components/Modal";
+import LoadingSpinner from "../components/LoadingSpinner";
+import "./CreateOrder.css";
 
 /**
  * @description Displays page for server to create an order for a customer
@@ -127,18 +127,20 @@ export default function ServerRoutes(props) {
             {isLoading ? <></> :
                 <>
                     {isMainPage &&
-                        <EmployeeCreateOrder
+                        <CreateOrder
                             orderItems={orderItems}
                             changePage={changePage}
                             removeOrderItem={removeOrderItem}
                             editOrderItem={editOrderItem}
                             clearOrder={clearOrder}
+                            orderTypes={items.menuItems}
+                            employeePos={managerMode ? "Manager" : "Server"}
                         />
                     }
-                    {isBowlPage && <EmployeeBuildBowl items={items} addBowl={addOrderItem} editItem={editItem} />}
-                    {isGyroPage && <EmployeeBuildGyro items={items} addGyro={addOrderItem} editItem={editItem} />}
+                    {isBowlPage && <BuildBowl items={items} addBowl={addOrderItem} editItem={editItem} />}
+                    {isGyroPage && <BuildGyro items={items} addGyro={addOrderItem} editItem={editItem} />}
                     {isSidePage &&
-                        <EmployeeSides
+                        <Sides
                             items={items.menuItems.filter(item => item.product_type === "Side")}
                             addSide={addOrderItem}
                             editItem={editItem}

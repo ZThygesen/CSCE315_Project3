@@ -23,7 +23,7 @@ export default function Home() {
 
     useEffect(() => {
         const initClient = () => {
-            gapi.auth2.init({
+            gapi.auth2.getAuthInstance({
                 clientId: REACT_APP_GOOGLE_CLIENT_ID,
                 scope: ""
             });

@@ -5,7 +5,7 @@ import MenuRoutes from "./MenuRoutes";
 import SalesReport from "./SalesReport";
 import ExcessReport from "./ExcessReport";
 import RestockReport from "./RestockReport";
-import ServerRoutes from "../server/ServerRoutes";
+import ServerRoutes from "../ServerRoutes";
 import "./Manager.css";
 
 /**
