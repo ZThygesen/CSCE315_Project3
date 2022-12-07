@@ -1,20 +1,28 @@
-SCRUM 1 (11/11)
-We mainly focused on our group meeting for Monday 11/14. We decided our flow of topics for the presentation 
-we will be giving and who will be talking about certain topics. We also added tasks to the backlog for error 
-handling and loading screens. We also realized that we were not accounting for restock, excess, and  Our final 
-topic of discussion was our user feedback surveys and how we were going to use the data we collected to 
-improve our product.
+SCRUM 1 (11/28)
+We started by talking about what we have left to do for the remainder 
+of the Sprint. Zach also talked about implementing OAuth. Mainly, he 
+discussed that it may be more difficult than initially thought and 
+that it might get in the way during development. Zach and Ardian then 
+went over Google Translate and the problems the team is having with 
+implementing it. We also discussed how we need to delete branches after 
+they’ve been merged in the main branch.  We concluded by talking about 
+the tasks remaining for the rest of the Sprint and the fact that we might 
+need to push implementing OAuth to Sprint 3.
 
-SCRUM 2 (11/18)
-We started the meeting by updating each other on what tasks we completed since the last meeting. We also talked 
-about the feedback left on our grade for the team meeting. We decided we will increase the font size and make 
-the color more comfortable to the eyes. Zach mentioned that he will implement loading screens. Ardian and Zach 
-discussed the need to merge the google translate branch into the main branch of our project. We decided that we 
-will keep our product hosted on Render for the remainder of the sprint.
+SCRUM 2 (11/30)
+We started by discussing our findings from the expert panel assignment. 
+We then accounted for these findings in our backlog and task list. 
+Justin then assigned the team tasks for the remainder of Sprint 3. 
+Zach mentioned that he was unable to complete the OAuth implementation 
+for Sprint 2 due to the difficulty of the implementation, and we all 
+agreed that it can be completed for Sprint 3. We concluded by scheduling 
+the remainder of the SCRUM meetings for the semester (11/30, 12/2).
 
-SCRUM 3 (11/21)
-We started by talking about what we have left to do for the remainder of the Sprint. Zach also talked about implementing 
-OAuth. Mainly, he discussed that it may be more difficult than initially thought and that it might get in the way during 
-development. Zach and Ardian then went over Google Translate and the problems the team is having with implementing it. 
-We also discussed how we need to delete branches after they’ve been merged in the main branch.  We concluded by talking 
-about the tasks remaining for the rest of the Sprint and the fact that we might need to push implementing OAuth to Sprint 3.
+SCRUM 3 (12/2)
+We started by discussing our findings from the expert panel assignment. 
+We then accounted for these findings in our backlog and task list. 
+Justin then assigned the team tasks for the remainder of Sprint 3. 
+Zach mentioned that he was unable to complete the OAuth implementation for 
+Sprint 2 due to the difficulty of the implementation, and we all agreed that 
+it can be completed for Sprint 3. We concluded by scheduling the remainder of 
+the SCRUM meetings for the semester (11/30, 12/2).
