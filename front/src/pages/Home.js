@@ -142,7 +142,7 @@ export default function Home() {
                 <div className="map-title">We are located in the MSC!</div>
                 <Map />
                 <div className="table-bg">
-                    <h3 style={{margin: 0}}>Store Hours</h3>
+                    <h2 style={{margin: 0}}>Store Hours</h2>
                     <table className="store-hours">
                         <thead>
                             <tr className="table-row">
@@ -184,7 +184,7 @@ export default function Home() {
                 </div>
                 
                 <div className="employee-section">
-                    <h3 style={{margin: 0}}>Employees</h3>
+                    <h2 style={{margin: 0}}>Employees</h2>
                     {employee !== null ? (
                         <div className="employee-nav">
                             <button
