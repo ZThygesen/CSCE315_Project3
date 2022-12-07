@@ -33,14 +33,22 @@ body {
 }
 
 /* -------------- Home and Employee Pages -------------- */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1400px;
+}
+
 .home-buttons {
     display: flex;
     gap: 20px;
-    margin-top: 20px;
+    margin-bottom: 40px;
 }
 
 .home-buttons button,
-.modal-close-button {
+.modal-close-button,
+.employee-nav-button {
     border-style: none;
     background-color: var(--secondary-color);
     color: var(--primary-color);
@@ -53,21 +61,23 @@ body {
 }
 
 .home-buttons button:hover,
-.modal-close-button:hover {
+.modal-close-button:hover,
+.employee-nav-button:hover {
     cursor: pointer;
     background-color: var(--primary-color);
     color: var(--font-color);
 }
 
 .map-container {
-    width: 800px;
+    width: 100%;
     height: 600px;
 }
 
 .map-title {
-    padding: 10px;
     text-decoration: underline;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 5px;
+    margin-top: 50px;
 }
 
 .home-img {
@@ -76,12 +86,19 @@ body {
 
 /* Store Hours */
 .table-bg {
-    width: 90%;
+    margin-top: 60px;
+    border-radius: 50px;
+    width: 100%;
     background-color: var(--secondary-color);
+    padding: 10px;
+    border: 2px solid var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.day{
-    text-align: left;
+.day {
+    text-align: center;
 }
 
 .hour{
@@ -99,5 +116,29 @@ body {
     background-color: var(--secondary-color);
     align-items: center;
     text-align: center;
-    border-spacing: 5px;
+    border-spacing: 50px 0;
 }
+
+.employee-section {
+    margin-top: 60px;
+    border-radius: 30px;
+    background-color: var(--table-background);
+    border: 2px solid var(--primary-color);
+    padding: 10px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.employee-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.employee-nav-button {
+    font-size: 16px;
+}
+

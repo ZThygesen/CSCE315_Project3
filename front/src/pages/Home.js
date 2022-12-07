@@ -118,14 +118,13 @@ export default function Home() {
     if (!isLoaded) return <div>Loading...</div>;
     
     return (
-        <>
+        <div className="home-container">
             <UnauthorizedModal />
             <h1>Welcome to Pom & Honey!</h1>
             
             <div className="home-buttons">
                 <button onClick={() => navigate("create-order")}>Place an Order</button>
             </div>
-            <div className="map-title">We are located in the MSC!</div>
 
             <Slideshow 
                 interval={7000}
@@ -136,15 +135,15 @@ export default function Home() {
                 ]}
             />
 
-            <p></p>
+            <div className="map-title">We are located in the MSC!</div>
             <Map />
-            <p></p>
 
             <div className="table-bg">
+                <h3 style={{margin: 0}}>Store Hours</h3>
                 <table className="store-hours">
                     <thead>
                         <tr className="table-row">
-                            <th>Days</th>
+                            <th>Day</th>
                             <th>Hours</th>
                         </tr>
                     </thead>
@@ -181,21 +180,32 @@ export default function Home() {
                 </table>
             </div>
             
-            {employee !== null ? (
-                <div>
-                    <button onClick={employeeNav}>{employee.position === "Server" ? "Navigate to Server Page" : "Navigate to Manager Page"}</button>
-                    <GoogleLogout clientId={REACT_APP_GOOGLE_CLIENT_ID} buttonText="Log out" onLogoutSuccess={logOut} />
-                </div>
-            ) : (
-                <GoogleLogin
-                    clientId={REACT_APP_GOOGLE_CLIENT_ID}
-                    buttonText="Sign in with Google"
-                    onSuccess={handleLogin}
-                    cookiePolicy={'single_host_origin'}
-                    prompt="select_account"
-                />
-            )}
-        </>
+            <div className="employee-section">
+                <h3 style={{margin: 0}}>Employees</h3>
+                {employee !== null ? (
+                    <div className="employee-nav">
+                        <button
+                            onClick={employeeNav}
+                            className="employee-nav-button"
+                        >
+                        {employee.position === "Server" ? "Navigate to Server Page" : "Navigate to Manager Page"}
+                        </button>
+                        <GoogleLogout clientId={REACT_APP_GOOGLE_CLIENT_ID} buttonText="Log out" onLogoutSuccess={logOut} />
+                    </div>
+                ) : (
+                    <GoogleLogin
+                        clientId={REACT_APP_GOOGLE_CLIENT_ID}
+                        buttonText="Sign in with Google"
+                        onSuccess={handleLogin}
+                        cookiePolicy={'single_host_origin'}
+                        prompt="select_account"
+                        style={{
+                            backgroundColor: "black"
+                        }}
+                    />
+                )}
+            </div>
+        </div>
         
     );
 }

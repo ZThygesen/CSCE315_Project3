@@ -23,7 +23,7 @@ export default function ManagerNav() {
             <button onClick={() => navigate("excess-report")}>Excess Report</button>
             <button onClick={() => navigate("restock-report")}>Restock Report</button>
             <button onClick={() => navigate("create-order")}>Create Order</button>
-            <GoogleLogout clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID} buttonText="Log out" onLogoutSuccess={logOut} />
+            <GoogleLogout clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID} buttonText="Log out" onLogoutSuccess={logOut} className="manager-logout"/>
         </div>
     );
 }
